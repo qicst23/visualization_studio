@@ -1,0 +1,210 @@
+# Single Canonical Indication Mapping & Subtype Hygiene Registry for AMG 757 / Tarlatamab (DLL3 x CD3)
+# Serves as the single source of truth across:
+#   1. optimus_txgnn/bite_biomarker_and_expansion.py (IHC surface gating & family deduplication)
+#   2. optimus_txgnn/option1_protocol_and_omics.py (within-platform omics & ClinicalTrials.gov landscape)
+#   3. run_amgen_goal1_and_goal2_pipeline.py (Option-1 protocol ranking & MCDA sensitivity)
+#
+# Scientific hygiene rules enforced here:
+#   - Pediatric / circumscribed IDH-wildtype astrocytomas (pilocytic, pilomyxoid, cerebellar,
+#     desmoplastic infantile, childhood brainstem/DIPG, diencephalic, spinal cord, SEGA) NEVER
+#     inherit adult IDH1/2-mutant G-CIMP diffuse glioma DLL3 prevalence.
+#   - "non-small cell lung" NEVER matches "small cell lung".
+#   - MONDO_0016685 ("low-grade astrocytoma") maps to astrocytoma, NEVER oligodendroglioma, and
+#     is collapsed into the single adult diffuse astrocytoma family (`idh_mut_diffuse_astrocytoma`)
+#     alongside `EFO_0002499` (`anaplastic astrocytoma`) so redundant ontology terms never flood Top-20.
+#   - Ontology `disease_name` labels are preserved verbatim; required molecular selection gates
+#     are stored separately in `required_molecular_gate`.
+
+schema_version: "amg757-canonical-map-v2.1"
+
+# Circumscribed / Pediatric IDH-Wildtype Glioma Subtypes (BRAF-fusion / H3K27M / TSC1/2)
+# Explicitly excluded from adult IDH-mutant G-CIMP DLL3 high-expression priors!
+pediatric_or_circumscribed_idh_wt_glioma_ids:
+  - "MONDO_0003165"   # cerebellar astrocytoma (predominantly pilocytic BRAF-KIAA1549, IDH-WT)
+  - "MONDO_0022963"   # desmoplastic infantile astrocytoma (BRAF/RAF1, infant IDH-WT)
+  - "MONDO_0003169"   # diencephalic astrocytomas (optic/hypothalamic BRAF, IDH-WT)
+  - "EFO_1000544"     # Spinal Cord Astrocytoma (predominantly H3K27M or BRAF, IDH-WT)
+  - "MONDO_0016692"   # pilomyxoid astrocytoma (pediatric BRAF-fusion, IDH-WT)
+  - "MONDO_0003870"   # childhood brainstem astrocytoma (H3K27M diffuse midline glioma, IDH-WT)
+  - "EFO_0005586"     # pilocytic astrocytoma
+  - "MONDO_0016691"   # pilocytic astrocytoma
+  - "MONDO_0016693"   # pleomorphic xanthoastrocytoma (BRAF V600E, IDH-WT)
+  - "MONDO_0016690"   # subependymal giant cell astrocytoma (TSC1/TSC2, IDH-WT)
+
+pediatric_or_circumscribed_glioma_keywords:
+  - "pilocytic"
+  - "pilomyxoid"
+  - "cerebellar astrocytoma"
+  - "desmoplastic infantile"
+  - "childhood brainstem"
+  - "brainstem astrocytoma"
+  - "brain stem astrocytoma"
+  - "diencephalic astrocytoma"
+  - "optic nerve glioma"
+  - "optic pathway glioma"
+  - "spinal cord astrocytoma"
+  - "subependymal giant cell"
+  - "pleomorphic xanthoastrocytoma"
+  - "diffuse midline glioma"
+
+# Confirmed Non-Neuroendocrine DLL3-Low Epithelial Carcinomas (<8% DLL3+ IHC negative controls)
+dll3_low_epithelial_control_ids:
+  - "EFO_0000641"     # papillary thyroid carcinoma (TCGA-THCA: 0% high DLL3)
+  - "EFO_0002892"     # thyroid carcinoma (bulk non-medullary follicular/papillary)
+  - "EFO_0003060"     # non-small cell lung carcinoma (untransformed NSCLC: <3% DLL3+)
+  - "EFO_0000708"     # squamous cell lung carcinoma
+  - "EFO_1000601"     # Transitional Cell Carcinoma (conventional urothelial BLCA)
+  - "EFO_0008528"     # urothelial carcinoma (conventional non-neuroendocrine BLCA)
+  - "MONDO_0007576"   # esophageal cancer (unselected squamous/adeno)
+  - "EFO_0001061"     # cervical carcinoma (unselected non-NE squamous/adeno)
+  - "MONDO_0000956"   # malignant neoplasm of small intestine (unselected non-NEC)
+  - "EFO_1001512"     # endometrial carcinoma (unselected non-NEC)
+  - "EFO_0000349"     # clear cell renal carcinoma
+  - "EFO_0000640"     # papillary renal cell carcinoma
+  - "EFO_0000681"     # renal cell carcinoma
+  - "EFO_0000199"     # oral squamous cell carcinoma
+  - "EFO_0006352"     # laryngeal squamous cell carcinoma
+
+# Canonical Indication Families (max_representatives_in_top50 prevents ontology sibling flooding)
+indication_families:
+  es_sclc_anchor:
+    canonical_label: "Small Cell Lung Carcinoma (ES-SCLC / LS-SCLC)"
+    disease_ids: ["EFO_0000702", "MONDO_0008433", "MONDO_0003438", "MONDO_0000532"]
+    omics_cohort_key: "ncbi_tpm_sclc_primary"
+    landscape_key: "es_sclc"
+    required_molecular_gate: "Histologic SCLC (Approved All-Comer Label)"
+    max_representatives: 1
+
+  merkel_cell_carcinoma:
+    canonical_label: "Merkel Cell Carcinoma"
+    disease_ids: ["EFO_1001471", "MONDO_0016680"]
+    preferred_primary_id: "EFO_1001471"
+    omics_cohort_key: "nature2024_mcc_primary_biopsies"
+    landscape_key: "merkel_cell_carcinoma"
+    required_molecular_gate: "Confirmed MCC Histology + Ventana SP347 DLL3 IHC >=1% Gate (Pre-Specified >=50% Stratification)"
+    max_representatives: 1
+
+  medullary_thyroid_carcinoma:
+    canonical_label: "Medullary Thyroid Carcinoma"
+    disease_ids: ["MONDO_0015277", "EFO_0004245", "MONDO_0007958"]
+    preferred_primary_id: "MONDO_0015277"
+    omics_cohort_key: "gse196264_mtc_primary_surgical"
+    landscape_key: "medullary_thyroid_carcinoma"
+    required_molecular_gate: "Confirmed C-Cell MTC + RET/Sporadic Genotyping + Ventana SP347 DLL3 IHC >=1% Gate (Pre-Specified >=50% Stratification)"
+    max_representatives: 1
+
+  idh_mut_diffuse_astrocytoma:
+    canonical_label: "Adult Diffuse / Anaplastic Astrocytoma (IDH1/2-Mutant Gated)"
+    disease_ids: ["EFO_0002499", "MONDO_0016685", "MONDO_0021633", "EFO_0002500", "EFO_0000272", "MONDO_0016686", "MONDO_0019781"]
+    preferred_primary_id: "EFO_0002499"
+    omics_cohort_key: "tcga_idh_mut_astrocytoma"
+    landscape_key: "idh_mutant_glioma"
+    required_molecular_gate: "MANDATORY Somatic IDH1/2 Mutation + Post-Vorasidenib DLL3 Retention Verification (Re-Resection SP347 IHC >=25% or 89Zr-DFO-SC16 PET)"
+    max_representatives: 1
+
+  idh_mut_1p19q_oligodendroglioma:
+    canonical_label: "Oligodendroglioma (IDH-Mutant, 1p/19q-Codeleted Gated)"
+    disease_ids: ["EFO_0002501", "EFO_0000632"]
+    preferred_primary_id: "EFO_0002501"
+    omics_cohort_key: "tcga_idh_mut_1p19q_codel"
+    landscape_key: "idh_mutant_glioma"
+    required_molecular_gate: "MANDATORY IDH1/2 Mutation + 1p/19q Codeletion + Post-Vorasidenib DLL3 Retention Verification (SP347 IHC >=25% or 89Zr-DFO-SC16 PET)"
+    max_representatives: 1
+
+  idh_wt_glioblastoma_proneural:
+    canonical_label: "Glioblastoma (IDH-Wildtype Proneural Subset Gated)"
+    disease_ids: ["EFO_0000519", "EFO_0006545", "MONDO_0018177"]
+    preferred_primary_id: "EFO_0006545"
+    omics_cohort_key: "tcga_idh_wt_gbm"
+    landscape_key: "idh_mutant_glioma"
+    required_molecular_gate: "STRICT Proneural DLL3 IHC >=25% Subset Gate (~38% focal positivity in IDH-WT GBM)"
+    max_representatives: 1
+
+  cervical_scnec:
+    canonical_label: "Cervical Small Cell / High-Grade Neuroendocrine Carcinoma"
+    disease_ids: ["EFO_1000171", "EFO_1000167", "MONDO_0006143"]
+    preferred_primary_id: "EFO_1000171"
+    omics_cohort_key: null
+    landscape_key: "small_cell_cervical"
+    required_molecular_gate: "Ventana SP347 DLL3 IHC >=1% Enrollment Gate (Pre-Specified >=50% Stratification; Exclude >50% Pure Squamous/Adeno)"
+    max_representatives: 1
+
+  bladder_scbc:
+    canonical_label: "Bladder Small Cell Neuroendocrine Carcinoma"
+    disease_ids: ["EFO_1000129", "MONDO_0006423"]
+    preferred_primary_id: "EFO_1000129"
+    omics_cohort_key: "tcga_bladder_neuronal_scbc"
+    landscape_key: "small_cell_bladder"
+    required_molecular_gate: "Ventana SP347 DLL3 IHC >=1% Enrollment Gate (Pre-Specified >=50% Stratification; Exclude >50% Pure Urothelial)"
+    max_representatives: 1
+
+  prostate_nepc:
+    canonical_label: "Neuroendocrine Prostate Cancer (De Novo & Treatment-Emergent NEPC)"
+    disease_ids: ["MONDO_0002477", "EFO_1000499", "EFO_1000516", "EFO_0000196"]
+    preferred_primary_id: "MONDO_0002477"
+    omics_cohort_key: "beltran_nepc_crpc_ne"
+    landscape_key: "nepc"
+    required_molecular_gate: "Mandatory Metastatic Biopsy Ventana SP347 DLL3 IHC >=1% (Pre-Specified >=50% Stratification; DeLLpro-300 Gate)"
+    max_representatives: 1
+
+  pulmonary_lcnec:
+    canonical_label: "Pulmonary Large Cell Neuroendocrine Carcinoma (LCNEC)"
+    disease_ids: ["MONDO_0003960", "EFO_0000563", "EFO_0005220"]
+    preferred_primary_id: "MONDO_0003960"
+    omics_cohort_key: null
+    landscape_key: "pulmonary_lcnec"
+    required_molecular_gate: "Ventana SP347 DLL3 IHC >=1% Companion Gate (Enriched in Type I ASCL1-High LCNEC)"
+    max_representatives: 1
+
+  egfr_transformed_sclc:
+    canonical_label: "EGFR/ALK-Mutant NSCLC Transformed to SCLC (t-SCLC)"
+    disease_ids: ["EFO_0005288"]
+    omics_cohort_key: "tcga_luad_rb1_tp53_highrisk"
+    landscape_key: "es_sclc"
+    required_molecular_gate: "Post-TKI Re-Biopsy Confirming SCLC Histology + Ventana SP347 DLL3 IHC >=1%"
+    max_representatives: 1
+
+  high_risk_neuroblastoma:
+    canonical_label: "Relapsed/Refractory High-Risk Adrenergic Neuroblastoma (Pediatric / AYA)"
+    disease_ids: ["EFO_0000621", "MONDO_0005072", "EFO_0000502", "EFO_1000075", "EFO_1000367"]
+    preferred_primary_id: "EFO_0000621"
+    omics_cohort_key: "target_nbl_highrisk_adrn"
+    landscape_key: "neuroblastoma"
+    required_molecular_gate: "Confirmed R/R High-Risk Adrenergic (PHOX2B+/MYCN) Neuroblastoma + Ventana SP347 DLL3 IHC >=10%"
+    max_representatives: 1
+
+  olfactory_neuroblastoma:
+    canonical_label: "Olfactory Neuroblastoma (Esthesioneuroblastoma, Hyams III/IV)"
+    disease_ids: ["EFO_1000407"]
+    preferred_primary_id: "EFO_1000407"
+    omics_cohort_key: null
+    landscape_key: "ppgl_chromaffin"
+    required_molecular_gate: "Hyams Grade III/IV Olfactory Neuroblastoma + Ventana SP347 DLL3 IHC >=10%"
+    max_representatives: 1
+
+  metastatic_malignant_ppgl:
+    canonical_label: "Malignant / Metastatic Pheochromocytoma & Sympathetic Paraganglioma (PPGL)"
+    disease_ids: ["EFO_1000348", "MONDO_0008233", "EFO_1000288", "EFO_1000453", "MONDO_0007959"]
+    preferred_primary_id: "EFO_1000348"
+    omics_cohort_key: null
+    landscape_key: "ppgl_chromaffin"
+    required_molecular_gate: "Confirmed Metastatic/Malignant PPGL + Ventana SP347 DLL3 IHC >=10% + Mandatory Alpha-Blockade"
+    max_representatives: 1
+
+  gep_high_grade_nec:
+    canonical_label: "Gastroenteropancreatic High-Grade NEC & Mixed MiNEN"
+    disease_ids: ["EFO_1000219", "EFO_1000277", "EFO_1000444", "EFO_1000442", "MONDO_0004116", "MONDO_0003978", "EFO_1000266", "MONDO_0015072"]
+    preferred_primary_id: "EFO_1000219"
+    omics_cohort_key: null
+    landscape_key: "epnec_gep_nec"
+    required_molecular_gate: "STRICT WHO Grade 3 NEC Histology (Ki-67 >55%) + Ventana SP347 DLL3 IHC >=1% Gate"
+    max_representatives: 2
+
+  dedifferentiated_melanoma_subset:
+    canonical_label: "Neuroendocrine-Transdifferentiated / Dedifferentiated Melanoma Subset"
+    disease_ids: ["EFO_0000756", "EFO_0000389", "MONDO_0005105", "EFO_0002617", "EFO_1000090", "MONDO_0005012"]
+    preferred_primary_id: "EFO_0000756"
+    omics_cohort_key: null
+    landscape_key: "epnec_gep_nec"
+    required_molecular_gate: "Strict Ventana SP347 DLL3 IHC >=25% Gate (ICI-Refractory INSM1+/ASCL1+ Neural-Crest Melanoma Subset)"
+    max_representatives: 1

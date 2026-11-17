@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OptimusKG — AMG 757 &amp; AMG 691 Interactive Visualization Hub</title>
+<style>
+  :root {
+    --bg: #0b1120;
+    --panel: #111827;
+    --card: #1e293b;
+    --border: #334155;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --cyan: #38bdf8;
+    --indigo: #818cf8;
+    --emerald: #34d399;
+    --amber: #fbbf24;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0;
+    background: radial-gradient(circle at top right, #1e293b 0%, #0b1120 55%);
+    color: var(--text);
+    font-family: "Segoe UI", Inter, system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 1220px; margin: 0 auto; padding: 34px 24px 56px; }
+  .topbar {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+    gap: 16px; padding-bottom: 22px; border-bottom: 1px solid var(--border);
+  }
+  .title-block h1 { margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.02em; }
+  .title-block p { margin: 6px 0 0; color: var(--muted); font-size: 14px; }
+  .status-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px; border-radius: 999px; font-size: 12.5px; font-weight: 600;
+    background: rgba(30, 41, 59, 0.9); border: 1px solid var(--border);
+  }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--amber); }
+  .dot.live { background: var(--emerald); box-shadow: 0 0 10px var(--emerald); }
+  .dot.offline { background: var(--cyan); }
+  .grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+    gap: 20px; margin-top: 26px;
+  }
+  @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    background: linear-gradient(180deg, rgba(30, 41, 59, 0.92), rgba(15, 23, 42, 0.95));
+    border: 1px solid var(--border); border-radius: 16px; padding: 24px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .card:hover { transform: translateY(-2px); border-color: var(--cyan); }
+  .badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .badge {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+    padding: 3px 9px; border-radius: 999px; background: rgba(56, 189, 248, 0.14); color: var(--cyan);
+    border: 1px solid rgba(56, 189, 248, 0.32);
+  }
+  .badge.emerald { background: rgba(52, 211, 153, 0.14); color: var(--emerald); border-color: rgba(52, 211, 153, 0.32); }
+  .badge.indigo { background: rgba(129, 140, 248, 0.14); color: var(--indigo); border-color: rgba(129, 140, 248, 0.32); }
+  .badge.amber { background: rgba(251, 191, 36, 0.14); color: var(--amber); border-color: rgba(251, 191, 36, 0.32); }
+  .card h2 { margin: 4px 0 8px; font-size: 20px; font-weight: 700; }
+  .card p { margin: 0 0 16px; color: #cbd5e1; font-size: 13.8px; line-height: 1.58; }
+  .feat-list { margin: 0 0 18px; padding-left: 18px; color: var(--muted); font-size: 13px; line-height: 1.65; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 10px 16px; border-radius: 10px; font-size: 13.5px; font-weight: 700;
+    text-decoration: none; cursor: pointer; border: 1px solid transparent;
+    transition: filter 0.15s ease, background 0.15s ease;
+  }
+  .btn-primary { background: var(--cyan); color: #0f172a; }
+  .btn-primary:hover { filter: brightness(1.08); }
+  .btn-emerald { background: var(--emerald); color: #064e3b; }
+  .btn-emerald:hover { filter: brightness(1.08); }
+  .btn-ghost {
+    background: rgba(15, 23, 42, 0.7); color: #e2e8f0; border-color: var(--border);
+  }
+  .btn-ghost:hover { border-color: var(--cyan); color: #ffffff; }
+  .info-banner {
+    margin-top: 26px; padding: 18px 22px; border-radius: 14px;
+    background: rgba(15, 23, 42, 0.85); border: 1px solid var(--border);
+    font-size: 13px; color: var(--muted); line-height: 1.65;
+  }
+  .info-banner code {
+    background: rgba(51, 65, 85, 0.55); color: #e2e8f0; padding: 2px 6px; border-radius: 5px;
+    font-family: Consolas, "SFMono-Regular", Menlo, monospace; font-size: 12px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div class="title-block">
+      <h1>OptimusKG Translational Visualization Studio</h1>
+      <p>Self-Contained Cross-Platform Edition &middot; Runs identically on <b>Windows 11</b> &amp; <b>Linux</b> (Zero External Dependencies)</p>
+    </div>
+    <div class="status-pill" id="mode-badge">
+      <span class="dot" id="mode-dot"></span>
+      <span id="mode-text">Checking runtime mode...</span>
+    </div>
+  </div>
+
+  <div class="grid">
+    <!-- Card 1A: AMG 757 Canonical v4.3.2 Audited Evidence Studio -->
+    <div class="card" style="border-color: rgba(52, 211, 153, 0.55);">
+      <div>
+        <div class="badge-row">
+          <span class="badge emerald">Canonical v4.3.2 &middot; Primary Biostatistics Studio</span>
+          <span class="badge">AMG 757 &middot; Tarlatamab (DLL3&times;CD3)</span>
+        </div>
+        <h2>AMG 757 Audited Evidence &amp; Basket Studio (v4)</h2>
+        <p>Evidence-backed Bayesian clinical &amp; portfolio workbench for <b>IMDELLTRA&reg; (Tarlatamab)</b>: <code>260</code> audited provenance records, segregated <code>Table A</code> (committed SCLC baseline) vs <code>Table B</code> (incremental options across <code>V0 / V1 / V2</code>), and <code>3/3</code> Bitcoin-PoW settled <code>SHA-256 + .ots</code> readout forecasts.</p>
+        <ul class="feat-list">
+          <li>5 interactive tabs: <code>Table A / B</code> Split Portfolio, <code>Q1</code> Multinomial IHC &amp; <code>Q2</code> TCE <code>EXNEX</code> Forest, <code>32</code>-Antigen Temporal Back-Test (<code>Q5</code> Retired), <code>WP9</code> Basket OCs, &amp; Appendix B 3-Track Synapse Biophysics (<code>Ion Guard</code>)</li>
+          <li>Interactive <code>2036 RPE Floor</code> vs <code>2039 Patent</code> &amp; execution-route toggles &mdash; 100% standalone offline HTML5</li>
+        </ul>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn-emerald" href="AMG757_Tarlatamab_V4_Evidence_Studio.html">Launch AMG 757 v4 Evidence Studio &rarr;</a>
+        <a class="btn btn-ghost guide-link" data-md="AMG757_VISUALIZATION_LIVE_DEMO_GUIDE_EN.md" href="demo_guides/AMG757_VISUALIZATION_LIVE_DEMO_GUIDE_EN.md">Demo Guide (EN)</a>
+        <a class="btn btn-ghost guide-link" data-md="AMG757_VISUALIZATION_LIVE_DEMO_GUIDE_ZH.md" href="demo_guides/AMG757_VISUALIZATION_LIVE_DEMO_GUIDE_ZH.md">&#28436;&#31034;&#25351;&#21335; (&#20013;&#25991;)</a>
+      </div>
+    </div>
+
+    <!-- Card 1B: AMG 757 KG & Single-Cell Companion Studio -->
+    <div class="card">
+      <div>
+        <div class="badge-row">
+          <span class="badge">AMG 757 &middot; Companion KG &amp; scRNA Explorer</span>
+          <span class="badge indigo">v3.2 &middot; 17 Interactive Tabs</span>
+        </div>
+        <h2>AMG 757 KG &amp; Single-Cell Expansion Explorer</h2>
+        <p>Interactive Knowledge Graph &amp; multi-omics companion workbench across <code>18,025</code> diseases, <code>2,215</code> primary human patient biopsies, and <code>60,026</code> SCLC single cells (use <b>v4 Evidence Studio</b> as primary governance ledger; <code>Q5</code> ML score is retired in <code>v4</code>).</p>
+        <ul class="feat-list">
+          <li>Interactive KG subgraphs, 2&ndash;5 hop metapaths, attention trees &amp; 2D t-SNE manifold</li>
+          <li>Live <code>DLL3 % Pos</code> cutoff slider &amp; single-cell <code>&le;14 nm</code> <code>OR</code>-gate escape explorer</li>
+          <li>Works 100% offline via double-click <i>and</i> unlocks live <code>&#9889; Score New Target</code> on local server</li>
+        </ul>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="AMG757_Tarlatamab_Indication_Expansion_Studio.html">Open Companion KG Studio &rarr;</a>
+        <a class="btn btn-ghost guide-link" data-md="AMG757_VISUALIZATION_LIVE_DEMO_GUIDE_EN.md" href="demo_guides/AMG757_VISUALIZATION_LIVE_DEMO_GUIDE_EN.md">Demo Guide (EN)</a>
+        <a class="btn btn-ghost guide-link" data-md="AMG757_VISUALIZATION_LIVE_DEMO_GUIDE_ZH.md" href="demo_guides/AMG757_VISUALIZATION_LIVE_DEMO_GUIDE_ZH.md">&#28436;&#31034;&#25351;&#21335; (&#20013;&#25991;)</a>
+      </div>
+    </div>
+
+    <!-- Card 2: AMG 691 -->
+    <div class="card">
+      <div>
+        <div class="badge-row">
+          <span class="badge emerald">AMG 691 &middot; CD30 / CD30L (I&amp;I)</span>
+          <span class="badge indigo">v2.0 &middot; Bilingual EN / &#20013;&#25991;</span>
+        </div>
+        <h2>AMG 691 15-Indication &amp; Combination Discovery Studio</h2>
+        <p>Mechanism-aware benign Inflammation &amp; Immunology workbench for <b>AMG 691 (<code>TNFRSF8</code> / <code>TNFSF8</code>, Phase 1 <code>NCT06637371</code> &amp; <code>NCT07745907</code>)</b> across <code>15</code> barrier/mucosal diseases, <code>2,790</code> scored combinations, <code>6</code> <code>2.0</code> bispecific constructs, and <code>5</code> Phase 2a trials.</p>
+        <ul class="feat-list">
+          <li>1-click <b>English / &#31616;&#20307;&#20013;&#25991;</b> toggle, 9 interactive tabs &amp; live 6-pillar weight sensitivity</li>
+          <li><code>52,152</code> asthmatic airway single cells (<code>94.99%</code> <code>FOXP3+ Treg</code> sparing) + <code>1,642</code> patient biopsies (post-Dupilumab persistence)</li>
+          <li>Blind 14-anchor 2025&ndash;2026 clinical calibration (<code>AUROC = 1.0000</code>) + Tier-1/2/3 partner matrix (<code>+Tezepelumab</code>, <code>+Rocatinlimab</code>, <code>+Ustekinumab</code>, <code>+Ordesekimab</code>)</li>
+        </ul>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn-emerald" href="AMG691_CD30_Combination_Discovery_Studio.html">Launch AMG 691 Studio &rarr;</a>
+        <a class="btn btn-ghost guide-link" data-md="AMG691_VISUALIZATION_LIVE_DEMO_GUIDE_EN.md" href="demo_guides/AMG691_VISUALIZATION_LIVE_DEMO_GUIDE_EN.md">Demo Guide (EN)</a>
+        <a class="btn btn-ghost guide-link" data-md="AMG691_VISUALIZATION_LIVE_DEMO_GUIDE_ZH.md" href="demo_guides/AMG691_VISUALIZATION_LIVE_DEMO_GUIDE_ZH.md">&#28436;&#31034;&#25351;&#21335; (&#20013;&#25991;)</a>
+      </div>
+    </div>
+
+    <!-- Card 3: Full 47-Asset Portal -->
+    <div class="card">
+      <div>
+        <div class="badge-row">
+          <span class="badge indigo">Full 47-Asset Amgen Portfolio</span>
+          <span class="badge amber">Local HTTP Server Mode</span>
+        </div>
+        <h2>Amgen Translational Discovery Portal (All 47 Assets)</h2>
+        <p>Bidirectional <code>Drug &rarr; Disease</code> and live <code>&lt;15 ms</code> <code>Disease &rarr; Drug</code> explorer across all 47 commercial &amp; pipeline Amgen assets (including <b>Tarlatamab</b>, <b>AMG 691</b>, and <b>Xaluritamig</b>) and 9,860+ clinical drugs.</p>
+        <ul class="feat-list">
+          <li>Lazy-loads per-asset KG subgraphs from local <code>explorer_data/</code> (zero internet needed)</li>
+          <li>Includes live <code>&#9889; Score New Target</code> CPU inductive hypothesis scorer (<code>&lt;1.5 s</code>)</li>
+        </ul>
+      </div>
+      <div class="btn-row" id="portal-btns">
+        <a class="btn btn-primary" href="Full_Portfolio_47_Assets_Discovery_Portal.html">Open 47-Asset Portal &rarr;</a>
+        <a class="btn btn-ghost" href="Full_Portfolio_47_Assets_Discovery_Portal.html?asset=tarlatamab">Jump to AMG 757</a>
+        <a class="btn btn-ghost" href="Full_Portfolio_47_Assets_Discovery_Portal.html?asset=amg_691">Jump to AMG 691</a>
+      </div>
+    </div>
+
+    <!-- Card 4: Executive Interactive HTML Slide Deck -->
+    <div class="card">
+      <div>
+        <div class="badge-row">
+          <span class="badge">Executive Slide Deck (16 Slides)</span>
+          <span class="badge emerald">Bilingual EN / &#20013;&#25991; &middot; 100% Offline</span>
+        </div>
+        <h2>OptimusKG + AMG 757 (v4.3.2) + AMG 691 (v2.0) Slide Deck</h2>
+        <p>Browser-native widescreen presentation deck in <b>English</b> and <b>Simplified Chinese</b> covering the 24-checkpoint OptimusKG foundation ensemble, de-biased validation, AMG 757 canonical <code>v4.3.2</code> Bayesian portfolio model, and AMG 691 <code>v2.0</code> combination roadmap.</p>
+        <ul class="feat-list">
+          <li>Keyboard arrow navigation (<code>&larr;</code> / <code>&rarr;</code>) and high-DPI embedded figures</li>
+          <li>Zero external fonts, scripts, or network calls &mdash; works on any projector or laptop</li>
+        </ul>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="OptimusKG_Models_Apps_AMG757_AMG691_Slide_Deck_EN.html">Open Slide Deck (EN) &rarr;</a>
+        <a class="btn btn-ghost" style="border-color:#38bdf8;color:#38bdf8;" href="OptimusKG_Models_Apps_AMG757_AMG691_Slide_Deck_ZH.html">&#25171;&#24320;&#20013;&#25991;&#28436;&#31034;&#24187;&#28783;&#29255; (ZH) &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-banner">
+    <b>How to Run Anywhere (Windows 11 or Linux) Inside This Folder:</b><br>
+    &bull; <b>Windows 11 (Recommended Full Mode):</b> Double-click <code>Launch_Visualization_Windows.bat</code> (or run <code>python run_visualization_studio.py</code> in PowerShell / Command Prompt).<br>
+    &bull; <b>Linux (Recommended Full Mode):</b> Run <code>./launch_visualization_linux.sh</code> (or <code>python3 run_visualization_studio.py</code>).<br>
+    &bull; <b>Zero-Install Direct Browser Mode:</b> Even on a locked-down laptop without Python, double-clicking <code>index.html</code>, <code>AMG757_Tarlatamab_V4_Evidence_Studio.html</code>, <code>AMG757_Tarlatamab_Indication_Expansion_Studio.html</code>, or <code>AMG691_CD30_Combination_Discovery_Studio.html</code> works 100% offline in Edge, Chrome, or Firefox.
+  </div>
+</div>
+
+<script>
+(async function() {
+  const dot = document.getElementById("mode-dot");
+  const txt = document.getElementById("mode-text");
+  const isFile = window.location.protocol === "file:";
+  if (isFile) {
+    dot.className = "dot offline";
+    txt.textContent = "Offline Direct Browser Mode (Run Launch_Visualization_Windows.bat / launch_visualization_linux.sh for Live API)";
+    return;
+  }
+  // Upgrade Demo Guide links to rendered HTML view when running on local HTTP server
+  document.querySelectorAll(".guide-link").forEach(a => {
+    const md = a.getAttribute("data-md");
+    if (md) a.setAttribute("href", "guide?file=" + encodeURIComponent(md));
+  });
+  try {
+    const r = await fetch("api/health");
+    if (r.ok) {
+      const d = await r.json();
+      dot.className = "dot live";
+      txt.textContent = d.live_engine_available
+        ? "Live Server + Neural KG Engine Active (" + window.location.host + ")"
+        : "Local HTTP Portal Active (" + window.location.host + " — install numpy for Live Scoring)";
+      return;
+    }
+  } catch (_e) {}
+  dot.className = "dot offline";
+  txt.textContent = "Static HTTP Mode (" + window.location.host + ")";
+})();
+</script>
+</body>
+</html>

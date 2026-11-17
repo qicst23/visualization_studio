@@ -1,0 +1,3 @@
+# Optional single-package dependency for live <15ms Disease->Drug & <1.5s Score New Target API
+# (Not required for standalone HTML studios or static 47-Asset Portal browsing)
+numpy>=1.22

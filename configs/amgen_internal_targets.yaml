@@ -1,0 +1,20 @@
+# Plug-and-Play Custom Internal / Preclinical Amgen Targets Hook
+# Add any confidential internal program below (3 lines per target) and run:
+#   python score_new_amgen_asset.py --config configs/amgen_internal_targets.yaml
+# Zero GNN retraining required (<2s CPU/GPU execution even after Nov 14, 2026).
+
+version: "5.0"
+custom_assets: []
+# Example schema (uncomment or append your internal assets anytime):
+#  - key: amg_internal_example
+#    display_name: "AMG-XXXX (Internal Discovery)"
+#    brand_or_code: "AMG-XXXX"
+#    franchise: "Inflammation & Immunology"
+#    stage: "Preclinical"
+#    category: "amgen_pipeline"
+#    modality: "Bispecific Antibody"
+#    preferred_id: "AMGEN_INTERNAL:AMG_XXXX"
+#    signed_targets:
+#      - {gene: "TSLP", action: "inhibits", weight: 1.0}
+#      - {gene: "TNFSF4", action: "inhibits", weight: 1.0}
+#    summary: "Example custom internal dual-axis inhibitor."

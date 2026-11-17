@@ -1,0 +1,391 @@
+# Pan-Cancer Surface Antigen IHC/RNA Prevalence, Lineage Plasticity & Clinical Benchmark Atlas
+# for Amgen Bispecific T-Cell Engagers (BiTEs):
+#   1. Tarlatamab-dlle (IMDELLTRA / AMG 757): Half-life extended DLL3 x CD3 BiTE
+#   2. Xaluritamig (AMG 509): XmAb 2+1 STEAP1 x CD3 T-cell engager
+#
+# All prevalence percentages reflect peer-reviewed immunohistochemistry (IHC >=1% positivity and
+# >=50% high-expression cohorts) and prospective clinical trial disclosures (2020-2026).
+
+version: "5.3-2026-11"
+
+tcell_effector_genes:
+  - CD3D
+  - CD3E
+  - CD3G
+  - CD247
+
+lymphoid_heme_taas:
+  - CD19
+  - MS4A1
+  - CD22
+  - TNFRSF17
+  - GPRC5D
+  - FCRL5
+  - CD33
+  - IL3RA
+  - CLEC12A
+  - FLT3
+  - CD38
+  - SLAMF7
+
+congenital_germline_lof_regex_patterns:
+  - "dysostosis"
+  - "spondylocostal"
+  - "spondylothoracic"
+  - "congenital disorder of glycosylation"
+  - "severe combined immunodeficiency"
+  - "combined immunodeficiency"
+  - "agammaglobulinemia"
+  - "inborn error"
+  - "malformation syndrome"
+  - "autosomal recessive.*immunodeficiency"
+
+crs_icans_management:
+  tarlatamab:
+    boxed_warnings:
+      - "Cytokine Release Syndrome (CRS)"
+      - "Neurologic Toxicity including Immune Effector Cell-Associated Neurotoxicity Syndrome (ICANS)"
+    fda_monitoring_update_2026_09: >-
+      Sept 2026 FDA label update shortened mandatory healthcare-facility monitoring for Cycle 1 Day 1 (1 mg step-up)
+      and Cycle 1 Day 8 (10 mg) infusions to 6-8 hours (down from 22-24h inpatient), provided patients remain within
+      1 hour of an appropriate healthcare setting for 48 hours post-infusion with caregiver accompaniment.
+    dosing_evolution:
+      approved_iv_regimen: "Cycle 1 Day 1: 1 mg IV step-up -> Day 8: 10 mg IV -> Day 15: 10 mg IV, then 10 mg Q2W"
+      extended_interval_dellphi_309: "DeLLphi-309 (WCLC 2026): 20 mg IV Q3W or 30 mg IV Q4W post step-up (comparable PK/ORR/safety)"
+      subcutaneous_dellphi_308: "DeLLphi-308 (Phase 1b): Subcutaneous (SC) tarlatamab reducing peak Cmax cytokine spikes"
+    pharmacologic_mitigation_agents:
+      - drug_name: "Tocilizumab"
+        node_id: "DRUGBANK:DB06273"
+        target: "IL6R"
+        role: "First-line Grade >=2 CRS blockade (anti-IL-6R mAb) without ablating BiTE T-cell cytotoxicity"
+      - drug_name: "Siltuximab"
+        node_id: "DRUGBANK:DB09036"
+        target: "IL6"
+        role: "Direct IL-6 cytokine neutralization for tocilizumab-refractory CRS"
+      - drug_name: "Anakinra"
+        node_id: "DRUGBANK:DB00026"
+        target: "IL1R1"
+        role: "Second-line IL-1R1 antagonist for steroid-refractory ICANS (low passive CSF penetration ~0.3%-4%; requires high-dose IV dosing per ASTCT/NCCN practice)"
+      - drug_name: "Dexamethasone"
+        node_id: "CHEMBL384467"
+        target: "NR3C1"
+        role: "Pre-medication & acute CRS/ICANS corticosteroid control"
+
+bite_programs:
+  DLL3:
+    anchor_asset_key: "tarlatamab"
+    anchor_drug_id: "CHEMBL5095292"
+    brand_name: "IMDELLTRA (tarlatamab-dlle / AMG 757)"
+    approved_anchor_disease_ids:
+      - "EFO_0000702"   # small cell lung carcinoma
+      - "MONDO_0008433" # small cell lung carcinoma
+      - "MONDO_0003438" # combined small cell lung carcinoma
+    lineage_transcription_genes:
+      ASCL1: 0.42
+      INSM1: 0.38
+      SYP: 0.22
+      CHGA: 0.20
+      NCAM1: 0.18
+      MYCN: 0.20
+      IDH1: 0.22
+      RET: 0.18
+      RB1: 0.16
+    resistance_and_escape_genes:
+      - gene: "EZH2"
+        mechanism: "PRC2 H3K27me3 epigenetic silencing of ASCL1/DLL3 & MHC-I antigen presentation (reversible by Tazemetostat)"
+      - gene: "KDM1A"
+        mechanism: "LSD1 chromatin remodeling driving SCLC-A -> SCLC-Y/P non-neuroendocrine plasticity & DLL3 downregulation"
+      - gene: "NOTCH1"
+        mechanism: "Active Notch1 intracellular signaling switches neuroendocrine ASCL1high/DLL3+ cells into REST+/DLL3- fate"
+      - gene: "YAP1"
+        mechanism: "Hippo/YAP1 inflamed/mesenchymal state with minimal surface DLL3 expression (SCLC-Y)"
+      - gene: "POU2F3"
+        mechanism: "Tuft-cell-like SCLC-P lineage lacking ASCL1-driven DLL3 transcription"
+      - gene: "CD274"
+        mechanism: "IFN-gamma induced adaptive PD-L1 upregulation on tumor/myeloid cells following BiTE T-cell engagement (DeLLphi-305 rationale)"
+
+    clinical_trials_2025_2026:
+      - trial_id: "DeLLphi-301 (NCT05060016)"
+        phase: "Phase 2 (Accelerated Approval May 2024)"
+        indication: "2L+ ES-SCLC"
+        key_readout: "ORR 40% (10 mg Q2W), median DOR 9.7 mo, mOS 15.2 mo"
+      - trial_id: "DeLLphi-304 (NCT05740566)"
+        phase: "Phase 3 Confirmatory (Full FDA Approval Nov 2025)"
+        indication: "2L ES-SCLC post-platinum"
+        key_readout: "mOS 13.6 mo vs 8.3 mo SOC chemo (topotecan/lurbinectedin/amrubicin), HR 0.60"
+      - trial_id: "DeLLphi-305 (NCT06211036)"
+        phase: "Phase 3 Landmark (NEJM / ESMO Oct 2026)"
+        indication: "1L Maintenance ES-SCLC (Tarlatamab + Durvalumab vs Durvalumab)"
+        key_readout: "mOS 21.1 mo vs 12.7 mo (HR 0.42, p<0.0001); mPFS 7.4 mo vs 1.9 mo"
+      - trial_id: "DeLLphi-306 (NCT06117774)"
+        phase: "Phase 3 Ongoing"
+        indication: "Limited-Stage SCLC (LS-SCLC) post-concurrent chemoradiation"
+        key_readout: "Curative-intent consolidation evaluating Tarlatamab after cCRT"
+      - trial_id: "DeLLpro-300 (NCT04702737)"
+        phase: "Phase 1b Completed Readout"
+        indication: "Metastatic de novo or treatment-emergent NEPC"
+        key_readout: "Overall ORR 10.5% (n=38); DLL3+ (>=1% IHC) ORR 22.2%, mOS 9.8 mo, mPFS 3.7 mo vs DLL3-negative ORR 0.0%!"
+      - trial_id: "NCT06788938 / NCT07788365 (Pan-EPNEC & MTC Baskets)"
+        phase: "Phase 2 Recruiting (2025-2026)"
+        indication: "DLL3-expressing extrapulmonary neuroendocrine carcinomas (EPNEC) & medullary thyroid carcinoma"
+        key_readout: "Prospective pan-cancer biomarker-selected DLL3+ EPNEC & C-cell NEC expansion baskets"
+      - trial_id: "NCT06814496 (MCC)"
+        phase: "Phase 2 Investigator-Initiated / Cooperative Recruiting (2025-2026)"
+        indication: "Refractory Merkel cell carcinoma (MCC)"
+        key_readout: "Evaluates DLL3xCD3 T-cell redirection in post-PD-(L)1 cutaneous neuroendocrine carcinoma"
+      - trial_id: "DeLLphi-308 / DeLLphi-309"
+        phase: "Phase 1b / Phase 2 (WCLC 2026)"
+        indication: "Outpatient SC formulation & Q3W (20 mg) / Q4W (30 mg) extended dosing"
+        key_readout: "Enables community-oncology administration alongside 6-8h Cycle 1 monitoring"
+
+    pan_cancer_indications:
+      # --- APPROVED ANCHOR ---
+      - canonical_label: "Small Cell Lung Carcinoma (ES-SCLC / LS-SCLC)"
+        disease_ids: ["EFO_0000702", "MONDO_0008433", "MONDO_0003438", "MONDO_0000532"]
+        dll3_pos_pct: 83.0
+        dll3_high_pct: 68.0
+        biomarker_gate: "All-Comers (Broad >=80% DLL3+; SCLC-A/N Enriched)"
+        lineage_subtypes: "SCLC-A (ASCL1+, ~50%, highest DLL3) & SCLC-N (NEUROD1+, ~25%, high DLL3) vs SCLC-P/Y (low DLL3)"
+        cns_icans_risk: "Moderate (Brain metastases frequent in ES-SCLC; baseline brain MRI & steroid control)"
+        clinical_status: "FDA Full Approval (2L ES-SCLC, DeLLphi-304) + Ph3 1L Maint +Durvalumab Win (DeLLphi-305) + Ph3 LS-SCLC (DeLLphi-306)"
+        evidence_citation: "Rojo et al. Lung Cancer 2020; Ahn et al. NEJM 2023; Mountzios et al. NEJM 2025; DeLLphi-305 NEJM 2026"
+        expansion_tier: "Approved Anchor & Frontline Lifecycle"
+
+      # --- TIER 1 HIGH-PREVALENCE (>=68% DLL3+) EXPANSION INDICATIONS ---
+      - canonical_label: "Merkel Cell Carcinoma (Cutaneous Neuroendocrine Carcinoma)"
+        disease_ids: ["EFO_1001471", "MONDO_0016680"]
+        dll3_pos_pct: 89.0
+        dll3_high_pct: 52.0
+        biomarker_gate: "Ventana SP347 DLL3 IHC >=1% Enrollment Gate (Pre-Specified >=50% High-DLL3 Stratification; ~89% DLL3+)"
+        lineage_subtypes: "MCPyV-positive & UV-mutated RB1/TP53-null neuroendocrine skin carcinoma (ATOH1/ASCL1/INSM1+)"
+        cns_icans_risk: "Standard Systemic (6-8h Cycle 1 Outpatient Eligible)"
+        clinical_status: "High-Priority PD-1-Refractory Registration Expansion (Post-Avelumab/Pembrolizumab/Retifanlimab; NCT06814496 Context)"
+        evidence_citation: "Xie et al. Mod Pathol 2020; Rand et al. 2024 (~89% DLL3+, 52% >=50% tumor cells)"
+        expansion_tier: "Tier 1 Broad High-Expression Whitespace"
+
+      - canonical_label: "EGFR/ALK-Mutant Histologic Transformation to SCLC (t-SCLC)"
+        disease_ids: ["EFO_0005288"]
+        dll3_pos_pct: 92.0
+        dll3_high_pct: 80.0
+        effective_population_share: 0.14
+        biomarker_gate: "STRICT Re-Biopsy Gate Post-Osimertinib/ALK-TKI + Ventana SP347 DLL3 IHC >=1% (~92% DLL3+ in Transformed t-SCLC; ~14% of TKI-Resistant EGFR+ LUAD)"
+        lineage_subtypes: "EGFR L858R/ex19del + RB1/TP53 co-loss driving lineage transdifferentiation into ASCL1+/DLL3high SCLC"
+        cns_icans_risk: "Moderate (Frequent CNS leptomeningeal/parenchymal disease in TKI-resistant EGFR+ NSCLC)"
+        clinical_status: "High-Priority Combination Expansion (Tarlatamab + Osimertinib Continuation)"
+        evidence_citation: "Quintanal-Villalonga et al. Cancer Res / Clin Cancer Res (92% DLL3+ in transformed EGFR-mutant SCLC, median 80% cells)"
+        expansion_tier: "Tier 1 Lineage-Plasticity Expansion"
+
+      - canonical_label: "Medullary Thyroid Carcinoma (MTC, RET-Driven Calcitonin/C-Cell NEC)"
+        disease_ids: ["MONDO_0015277", "EFO_0004245", "MONDO_0007958"]
+        dll3_pos_pct: 89.1
+        dll3_high_pct: 35.3
+        biomarker_gate: "Ventana SP347 DLL3 IHC >=1% Enrollment Gate (Pre-Specified >=50% High-DLL3 Desmoplastic Stratification; ~89.1% DLL3+)"
+        lineage_subtypes: "Neural-crest parafollicular C-cell lineage (ASCL1/INSM1/CALCA+, RET M918T/germline MEN2)"
+        cns_icans_risk: "Standard Systemic (6-8h Cycle 1 Outpatient Eligible)"
+        clinical_status: "Untapped Dedicated Whitespace Post-Selpercatinib/Cabozantinib Resistance (NCT07788365 Basket Context)"
+        evidence_citation: "Ingenwerth et al. Endocr Relat Cancer / Virchows Arch (89.1% DLL3+, 35.3% high >=50% associated with aggressive MTC)"
+        expansion_tier: "Tier 1 Broad High-Expression Whitespace"
+
+      - canonical_label: "IDH-Mutant Diffuse Astrocytoma & Anaplastic Oligodendroglioma"
+        disease_ids: ["EFO_0002499", "EFO_0002501", "EFO_0000632", "MONDO_0019781"]
+        dll3_pos_pct: 86.0
+        dll3_high_pct: 62.0
+        biomarker_gate: "MANDATORY Post-Vorasidenib Progression + Verified DLL3 Retention (Re-Resection SP347 IHC >=25% or 89Zr-DFO-SC16 PET; Somatic IDH1/2 Gate)"
+        lineage_subtypes: "IDH1 R132H CpG hypermethylation disrupts CTCF boundary activating OLIG2/ASCL1/DLL3 (verify 2-HG suppression did not epigenetically silence DLL3)"
+        cns_icans_risk: "HIGH CNS/ICANS ALERT (Intracranial tumor inflammation / cerebral edema risk; 48h+ inpatient step-up + steroid/IV Anakinra protocol)"
+        clinical_status: "Translational Phase 1b CNS Window Opportunity (Post-Vorasidenib & Alkylator Progression; Monotherapy PK/Safety Lead-In)"
+        evidence_citation: "Flavahan et al. Nature 2016; Spino et al. Clin Cancer Res 2019 (~86% DLL3+ in IDH-mutant diffuse gliomas)"
+        expansion_tier: "Tier 1 Molecularly Gated CNS Whitespace"
+
+      - canonical_label: "Cervical Small Cell & Large Cell Neuroendocrine Carcinoma (SCNEC)"
+        disease_ids: ["EFO_1000171", "EFO_1000167", "MONDO_0006143"]
+        dll3_pos_pct: 81.0
+        dll3_high_pct: 49.0
+        biomarker_gate: "Ventana SP347 DLL3 IHC >=1% Enrollment Gate (Pre-Specified >=50% High-DLL3 Stratification; ~81% DLL3+)"
+        lineage_subtypes: "HPV18/16 E6/E7 p53/RB1 inactivation driving aggressive neuroendocrine cervical lineage (median OS <16 mo)"
+        cns_icans_risk: "Standard Systemic (6-8h Cycle 1 Outpatient Eligible; Baseline Brain MRI Staging)"
+        clinical_status: "Orphan Ultra-High Unmet Need (Dedicated Cohort Complementing NCT06788938 EPNEC Basket; Zero Targeted Approvals)"
+        evidence_citation: "Frumovitz / Gynecol Oncol IHC cohorts (81% DLL3+ in cervical NEC, 49% diffuse high staining)"
+        expansion_tier: "Tier 1 Orphan EPNEC Priority"
+
+      - canonical_label: "Neuroendocrine Prostate Cancer (De Novo & Treatment-Emergent NEPC)"
+        disease_ids: ["EFO_1000499", "MONDO_0002477", "EFO_1000516"]
+        dll3_pos_pct: 76.6
+        dll3_high_pct: 55.0
+        biomarker_gate: "MANDATORY Ventana SP347 DLL3 IHC >=1% Gate (Pre-Specified >=50% Stratification; DeLLpro-300: 22.2% vs 0% ORR!)"
+        lineage_subtypes: "AR-independent RB1/TP53/PTEN loss + EZH2/N-MYC/ASCL1 lineage plasticity; spatial heterogeneity with STEAP1+/PSMA+ clones"
+        cns_icans_risk: "Standard Systemic (Cycle 1 CRS 82.5% mostly G1-2 in DeLLpro-300; 0% G4+)"
+        clinical_status: "Clinical PoC Validated (DeLLpro-300 NCT04702737) -> Staggered Intermittent Dual-BiTE (AMG 757 + AMG 509) & +EZH2i Expansion"
+        evidence_citation: "Puca et al. Sci Transl Med 2019 (76.6% NEPC vs 12.5% CRPC); Aggarwal et al. DeLLpro-300 JCO 2025 (22.2% ORR in DLL3+)"
+        expansion_tier: "Tier 1 Biomarker-Gated & Dual-BiTE Priority"
+
+      - canonical_label: "Treatment-Emergent NEPC Subset in Metastatic CRPC (Post-ARPI)"
+        disease_ids: ["EFO_0000196"]
+        dll3_pos_pct: 20.0
+        dll3_high_pct: 14.0
+        biomarker_gate: "STRICT ctDNA RB1/TP53 + Ventana SP347 DLL3 IHC >=1% Gate (~17-20% t-NEPC transdifferentiation in post-ARPI mCRPC)"
+        lineage_subtypes: "Mixed amphicrine / biphenotypic STEAP1+ luminal + DLL3+ neuroendocrine subclones -> Staggered Tarlatamab + Xaluritamig!"
+        cns_icans_risk: "Standard Systemic"
+        clinical_status: "Dual-BiTE Combination Anchor (Tarlatamab + Xaluritamig in Biphenotypic mCRPC/t-NEPC)"
+        evidence_citation: "Aggarwal et al. JCO / Puca et al. Sci Transl Med 2019"
+        expansion_tier: "Tier 2 Companion-Diagnostic & Dual-BiTE Subset"
+
+      - canonical_label: "Bladder Small Cell Neuroendocrine Carcinoma (SCBC)"
+        disease_ids: ["EFO_1000129", "MONDO_0006423"]
+        dll3_pos_pct: 73.5
+        dll3_high_pct: 44.0
+        biomarker_gate: "Ventana SP347 DLL3 IHC >=1% Enrollment Gate (Pre-Specified >=50% High-DLL3 Stratification; 68-79% DLL3+)"
+        lineage_subtypes: "RB1/TP53/TERT-mutated urothelial-to-neuroendocrine transdifferentiation (ASCL1/NEUROD1+)"
+        cns_icans_risk: "Standard Systemic (6-8h Cycle 1 Outpatient Eligible; Baseline Brain MRI Staging)"
+        clinical_status: "Orphan EPNEC Priority (Dedicated Cohort Complementing NCT06788938 Basket; Combines with PD-L1 or Enfortumab/Sacituzumab)"
+        evidence_citation: "Koshkin et al. Clin Cancer Res 2019 (68-79% DLL3+ in small cell bladder cancer)"
+        expansion_tier: "Tier 1 Orphan EPNEC Priority"
+
+      - canonical_label: "Relapsed/Refractory High-Risk Adrenergic Neuroblastoma (Pediatric / AYA)"
+        disease_ids: ["EFO_0000621", "MONDO_0005072", "EFO_0000502", "EFO_1000075", "EFO_1000367"]
+        dll3_pos_pct: 70.0
+        dll3_high_pct: 45.0
+        effective_population_share: 0.85
+        biomarker_gate: "Confirmed R/R High-Risk Neuroblastoma + Ventana SP347 DLL3 IHC >=10% Gate (~70% DLL3+ in PHOX2B+/ASCL1+/MYCN ADRN state; track ADRN->MES plasticity)"
+        lineage_subtypes: "Adrenergic PHOX2B/ASCL1/MYCN core regulatory circuitry (~85% of high-risk NBL) drives surface DLL3 vs mesenchymal (YAP1/PRRX1) DLL3-low escape"
+        cns_icans_risk: "Moderate (Pediatric/AYA specialty-center weight-adapted Cycle 1 inpatient step-up observation; extracranial sympathetic chain primary)"
+        clinical_status: "High-Impact Pediatric / AYA Rare Oncology Priority (Staggered Post-Dinutuximab or +Irinotecan/Temozolomide)"
+        evidence_citation: "Krytska, Maris et al. CHOP Sci Transl Med / Clin Cancer Res (~70% surface DLL3+ in high-risk adrenergic neuroblastoma)"
+        expansion_tier: "Tier 1B Pediatric/AYA Biomarker-Selected Priority"
+
+      # --- TIER 2 MODERATE-PREVALENCE (35% - 64% DLL3+) BIOMARKER-SELECTED INDICATIONS ---
+      - canonical_label: "Pulmonary Large Cell Neuroendocrine Carcinoma (LCNEC)"
+        disease_ids: ["EFO_0000563", "MONDO_0003960", "EFO_0005220"]
+        dll3_pos_pct: 58.5
+        dll3_high_pct: 37.0
+        biomarker_gate: "IHC Companion Diagnostic Gate (~54-63% DLL3+; Type I STK11/KEAP1/ASCL1high Enriched)"
+        lineage_subtypes: "Type I LCNEC (ASCL1high/DLL3+, SCLC-like transcriptional profile) vs Type II LCNEC (RB1-mut/NOTCH-active/DLL3-low)"
+        cns_icans_risk: "Moderate (Screen for occult CNS metastases)"
+        clinical_status: "Natural Thoracic Label Adjacent Expansion (+Durvalumab / Platinum)"
+        evidence_citation: "Hermans et al. J Thorac Oncol; Rekhtman et al. Clin Cancer Res (54-63% DLL3+ enriched in Type I ASCL1+ LCNEC)"
+        expansion_tier: "Tier 2 Companion-Diagnostic Expansion"
+
+      - canonical_label: "Gastroenteropancreatic High-Grade NEC & Mixed MiNEN (Gastric / Pancreatic / Esophageal / Colon)"
+        disease_ids: ["EFO_1000219", "EFO_1000277", "EFO_1000444", "EFO_1000442", "MONDO_0004116", "MONDO_0003978", "EFO_1000266", "MONDO_0015072"]
+        dll3_pos_pct: 44.0
+        dll3_high_pct: 26.0
+        biomarker_gate: "STRICT Grade 3 NEC + DLL3 IHC >=1% Gate (37-50% in G3 GEP-NEC vs ~5.1% in well-diff G1/G2 NET!)"
+        lineage_subtypes: "Poorly differentiated Ki-67 >55% RB1/TP53-inactivated GEP-NEC & MiNEN neuroendocrine component (exclude G1/G2 carcinoids)"
+        cns_icans_risk: "Standard Systemic (Monitor hepatic reserve in liver-metastatic GEP-NEC)"
+        clinical_status: "Active Basket Evaluation (NCT06788938; +Bemarituzumab in FGFR2b+ Gastric MiNEN or +FOLFIRI/Platinum)"
+        evidence_citation: "Liverani et al. / Matsuo et al. / Caris Pan-NEC Atlas (37-50% DLL3+ in poorly-diff GEP-NEC vs 5.1% G1/G2 NET)"
+        expansion_tier: "Tier 2 Companion-Diagnostic Expansion"
+
+      - canonical_label: "Endometrial & Ovarian Neuroendocrine Carcinoma"
+        disease_ids: ["EFO_1000239", "EFO_1000431", "MONDO_0003049", "MONDO_0021650"]
+        dll3_pos_pct: 48.0
+        dll3_high_pct: 28.0
+        biomarker_gate: "DLL3 IHC >=1% Gate (~45-55% in Gynecologic Small/Large-Cell NEC)"
+        lineage_subtypes: "SMARCA4/SWI-SNF-deficient or TP53/RB1-lost gynecologic neuroendocrine differentiation"
+        cns_icans_risk: "Standard Systemic"
+        clinical_status: "Orphan Gynecologic Basket Cohort (+PD-1 or +PARP Inhibitor)"
+        evidence_citation: "Gynecol Oncol / Modern Pathology pan-gynecologic NEC cohorts"
+        expansion_tier: "Tier 2 Companion-Diagnostic Expansion"
+
+      - canonical_label: "Olfactory Neuroblastoma (Esthesioneuroblastoma, Hyams High-Grade)"
+        disease_ids: ["EFO_1000407"]
+        dll3_pos_pct: 42.0
+        dll3_high_pct: 24.0
+        biomarker_gate: "Ventana SP347 DLL3 IHC >=10% Gate (~42% DLL3+, enriched in Hyams Grade III/IV olfactory neuroblastoma)"
+        lineage_subtypes: "Cribriform-plate olfactory neuroepithelium (ASCL1/INSM1+ in high-grade Hyams III/IV subset)"
+        cns_icans_risk: "Moderate (Skull-base/cribriform plate dural proximity; mandatory skull-base/brain MRI)"
+        clinical_status: "Exploratory Orphan Skull-Base Cohort (Eligible in Pan-NEC/DLL3 Baskets)"
+        evidence_citation: "Classe / Skull-Base Hyams III/IV Esthesioneuroblastoma DLL3 IHC Series (~42% DLL3+)"
+        expansion_tier: "Tier 2 Companion-Diagnostic Expansion"
+
+      - canonical_label: "Metastatic / Malignant Pheochromocytoma & Sympathetic Paraganglioma (PPGL)"
+        disease_ids: ["EFO_1000348", "MONDO_0008233", "EFO_1000288", "EFO_1000453", "MONDO_0007959"]
+        dll3_pos_pct: 36.0
+        dll3_high_pct: 18.0
+        biomarker_gate: "Strict Malignant/Metastatic Gate + Ventana SP347 DLL3 IHC >=10% (~30-42% neural-crest expression; mandatory alpha-blockade)"
+        lineage_subtypes: "Adrenal chromaffin / sympathetic neural-crest lineage (SDHB-mutant metastatic PPGL)"
+        cns_icans_risk: "Moderate (Mandatory alpha-adrenergic blockade & inpatient Cycle 1 hemodynamic monitoring for CRS catecholamine surge)"
+        clinical_status: "Exploratory Neural-Crest Biomarker Subset (Eligible in Pan-NEN/DLL3+ Baskets)"
+        evidence_citation: "TCGA-PCPG & Sympathetic Neural-Crest Surfaceome Expression Cohorts (~36% DLL3+)"
+        expansion_tier: "Tier 3 Exploratory Biomarker Subset"
+
+      - canonical_label: "Glioblastoma (IDH-Wildtype Proneural Subset)"
+        disease_ids: ["EFO_0000519", "EFO_0006545", "MONDO_0018177"]
+        dll3_pos_pct: 38.0
+        dll3_high_pct: 19.0
+        biomarker_gate: "Strict DLL3 IHC >=25% Proneural Subset Gate (~35-42% any DLL3+, much lower diffuse density than IDH-mutant)"
+        lineage_subtypes: "ASCL1+/OLIG2+ proneural GBM stem-like cells (mesenchymal GBM is DLL3-negative; cold myeloid TME requires combo)"
+        cns_icans_risk: "HIGH CNS/ICANS ALERT (Peritumoral cerebral edema & BBB toxicity; strict volume/steroid/Anakinra gating)"
+        clinical_status: "Exploratory Biomarker-Gated CNS Combo (+AMG 193 in MTAP-del GBM or +Bevacizumab edema control)"
+        evidence_citation: "Spino et al. Clin Cancer Res 2019 (~38-42% focal/proneural positivity in IDH-wt GBM)"
+        expansion_tier: "Tier 3 Exploratory Biomarker Subset"
+
+      - canonical_label: "Thymic & Head/Neck (Laryngeal) Small-Cell / Large-Cell NEC"
+        disease_ids: ["EFO_1000578", "MONDO_0003047", "MONDO_0020516", "EFO_1000320"]
+        dll3_pos_pct: 52.0
+        dll3_high_pct: 30.0
+        biomarker_gate: "DLL3 IHC >=1% Gate (~45-60% in high-grade thymic & laryngeal NEC)"
+        lineage_subtypes: "High-grade mediastinal & upper aerodigestive neuroendocrine carcinoma"
+        cns_icans_risk: "Standard Systemic"
+        clinical_status: "Ultra-Rare Basket Eligibility (NCT06788938)"
+        evidence_citation: "Thoracic & Head/Neck NEC IHC series"
+        expansion_tier: "Tier 2 Companion-Diagnostic Expansion"
+
+      # --- EXPLICIT LOW-EXPRESSION / NEGATIVE CONTROL GUARDRAILS ---
+      - canonical_label: "Well-Differentiated G1/G2 Gastroenteropancreatic NET (Carcinoid)"
+        disease_ids: ["EFO_1000045", "EFO_1000092", "EFO_1000188", "EFO_1000300", "MONDO_0000386", "MONDO_0015062", "MONDO_0015065"]
+        dll3_pos_pct: 5.1
+        dll3_high_pct: 1.5
+        biomarker_gate: "DO NOT ADVANCE UNSELECTED (~5.1% DLL3+ in G1/G2 well-diff NET; SSTR2/Lutathera lineage, NOT ASCL1/DLL3)"
+        lineage_subtypes: "Indolent RB1/TP53-intact enterochromaffin NETs express SSTR2 rather than DLL3"
+        cns_icans_risk: "Low"
+        clinical_status: "Negative Biomarker Guardrail (Exclude G1/G2 NETs unless rare G3 transformation with IHC proof)"
+        evidence_citation: "Matsuo et al. / Liverani et al. (5.1% DLL3+ in G1/G2 NET vs 44% in G3 GEP-NEC)"
+        expansion_tier: "Biomarker Guardrail (Low Prevalence)"
+
+  STEAP1:
+    anchor_asset_key: "xaluritamig"
+    anchor_drug_id: "AMGEN_PIPE:AMG_509"
+    brand_name: "Xaluritamig (AMG 509, XmAb 2+1 STEAP1 x CD3)"
+    approved_anchor_disease_ids: []
+    lineage_transcription_genes:
+      STEAP1: 0.55
+      FOLH1: 0.34
+      KLK3: 0.30
+      EWSR1: 0.28
+      FLI1: 0.24
+      AR: 0.22
+      HOXB13: 0.18
+    pan_cancer_indications:
+      - canonical_label: "Metastatic Castration-Resistant Prostate Cancer (mCRPC)"
+        disease_ids: ["EFO_0000196", "EFO_0001663", "EFO_0000673"]
+        dll3_pos_pct: 89.0
+        dll3_high_pct: 74.0
+        biomarker_gate: "Broad High-Density Avidity Gate (89% STEAP1+ in mCRPC, 84% in bone mets; XmAb 2+1 spares low-STEAP1 normal tissue)"
+        lineage_subtypes: "AR-driven luminal prostate adenocarcinoma (complements Tarlatamab on AR-null DLL3+ NEPC subclones!)"
+        cns_icans_risk: "Standard Systemic (Step-up dosing + dexamethasone)"
+        clinical_status: "Phase 3 Registrational mCRPC (Xaluritamig monotherapy & +Abiraterone/Enzalutamide)"
+        evidence_citation: "Kelly et al. Cancer Discov 2024 (PSA50 49%, ORR 41% at high dose; 89% mCRPC STEAP1+)"
+        expansion_tier: "Lead Phase 3 Anchor"
+
+      - canonical_label: "Ewing Sarcoma (EWSR1-FLI1 Fusion Bone & Soft-Tissue Sarcoma)"
+        disease_ids: ["EFO_0000174", "EFO_1000250", "MONDO_0002625", "MONDO_0021038"]
+        dll3_pos_pct: 63.0
+        dll3_high_pct: 48.0
+        biomarker_gate: "High-Density STEAP1 IHC Gate (~63% high STEAP1 driven directly by EWSR1-FLI1 GGAA microsatellite enhancer)"
+        lineage_subtypes: "Pathognomonic EWSR1-FLI1 fusion directly transactivates STEAP1 on sarcoma cell membranes"
+        cns_icans_risk: "Standard Systemic"
+        clinical_status: "High-Priority Pediatric/AYA Expansion Whitespace"
+        evidence_citation: "Grunewald et al. Cancer Res; Nolan-Stevaux et al. Cancer Discov (63% high STEAP1 in Ewing sarcoma)"
+        expansion_tier: "Tier 1 Fusion-Driven Expansion"
+
+      - canonical_label: "Bladder Urothelial & Renal Cell Carcinoma Subset"
+        disease_ids: ["EFO_0006544", "EFO_1000125"]
+        dll3_pos_pct: 38.0
+        dll3_high_pct: 20.0
+        biomarker_gate: "STEAP1 High-Density IHC >=2+ Companion Gate (2+1 bivalent avidity requires high receptor density)"
+        lineage_subtypes: "Epithelial transmembrane metalloreductase overexpression subset"
+        cns_icans_risk: "Standard Systemic"
+        clinical_status: "Exploratory Biomarker-Selected Solid Tumor Cohort"
+        evidence_citation: "TCGA / HPA & XmAb 2+1 preclinical STEAP1 density profiling"
+        expansion_tier: "Tier 2 Companion-Diagnostic Expansion"

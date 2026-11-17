@@ -1,0 +1,9 @@
+# Large neural tensor weights (>100MB; hosted on Google Drive)
+engine_data/pack_tensors_fp16.npz
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+.pytest_cache/

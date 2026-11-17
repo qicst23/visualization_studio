@@ -1,0 +1,643 @@
+# Amgen Commercial, Biosimilar & Clinical/Preclinical Pipeline Master Registry (v5)
+# Every asset includes franchise, clinical stage, modality, and signed pharmacodynamic targets
+# (`inhibits`, `activates`, or `binds`) verified against OptimusKG HGNC gene symbols.
+
+version: "5.0"
+portfolio:
+  # ============================================================================
+  # 1. ONCOLOGY & HEMATOLOGY (Commercial + Pipeline)
+  # ============================================================================
+  - key: sotorasib
+    display_name: "Sotorasib (Lumakras)"
+    brand_or_code: "Lumakras / AMG 510"
+    franchise: "Oncology & Hematology"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "Small Molecule"
+    preferred_id: "CHEMBL4535757"
+    signed_targets:
+      - {gene: "KRAS", action: "inhibits", weight: 1.0}
+    summary: "Covalent KRAS G12C inhibitor switching KRAS into its inactive GDP-bound state."
+
+  - key: tarlatamab
+    display_name: "Tarlatamab (Imdelltra)"
+    brand_or_code: "Imdelltra / AMG 757"
+    franchise: "Oncology & Hematology"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "BiTE (Bispecific T-Cell Engager)"
+    preferred_id: "CHEMBL5095292"
+    approved_indication_ids:
+      - "EFO_0000702"   # small cell lung carcinoma (FDA Accelerated May 2024; Full Approval Nov 2025 DeLLphi-304)
+      - "MONDO_0008433" # small cell lung carcinoma
+      - "MONDO_0003438" # combined small cell lung carcinoma
+    post2024_trial_overrides:
+      EFO_1000499: {max_phase: 2, nct_count: 2, note: "DeLLpro-300 (NCT04702737): 22.2% ORR in DLL3+ NEPC vs 0% DLL3-"}
+      MONDO_0002477: {max_phase: 2, nct_count: 2, note: "DeLLpro-300 (NCT04702737) NEPC"}
+      EFO_1000129: {max_phase: 2, nct_count: 1, note: "NCT06788938 Phase 2 DLL3+ EPNEC Basket"}
+      EFO_1000171: {max_phase: 2, nct_count: 1, note: "NCT06788938 Phase 2 DLL3+ EPNEC Basket"}
+      EFO_1000219: {max_phase: 2, nct_count: 1, note: "NCT06788938 Phase 2 DLL3+ EPNEC Basket"}
+      EFO_1000444: {max_phase: 2, nct_count: 1, note: "NCT06788938 Phase 2 DLL3+ EPNEC Basket"}
+      EFO_0000563: {max_phase: 2, nct_count: 1, note: "NCT06788938 / Thoracic NEC Cohorts"}
+    boxed_warnings:
+      - "Cytokine Release Syndrome (CRS)"
+      - "Neurologic Toxicity including ICANS"
+    fda_monitoring_note: "Cycle 1 Days 1 & 8: 6-8h clinic monitoring (Sept 2026 FDA label update) + 48h proximity"
+    signed_targets:
+      - {gene: "DLL3", action: "binds", weight: 1.0, role: "tumor_antigen"}
+      - {gene: "CD3E", action: "activates", weight: 0.7, role: "tcell_effector"}
+      - {gene: "CD3D", action: "activates", weight: 0.5, role: "tcell_effector"}
+      - {gene: "CD3G", action: "activates", weight: 0.5, role: "tcell_effector"}
+    summary: "First-in-class half-life extended DLL3 x CD3 BiTE (IMDELLTRA) directing cytolytic T-cell synapse formation against DLL3+ neuroendocrine/SCLC tumors (FDA full approval ES-SCLC; DeLLphi-305 +Durvalumab HR 0.42; 6-8h Cycle 1 monitoring)."
+
+  - key: blinatumomab
+    display_name: "Blinatumomab (Blincyto)"
+    brand_or_code: "Blincyto / AMG 103"
+    franchise: "Oncology & Hematology"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "BiTE (Bispecific T-Cell Engager)"
+    preferred_id: "CHEMBL1742992"
+    signed_targets:
+      - {gene: "CD19", action: "binds", weight: 1.0}
+      - {gene: "CD3E", action: "activates", weight: 0.7}
+      - {gene: "CD3D", action: "activates", weight: 0.5}
+      - {gene: "CD3G", action: "activates", weight: 0.5}
+    summary: "CD19 x CD3 BiTE redirecting endogenous T cells against CD19+ B-lineage leukemias, lymphomas, and B-cell autoimmunity."
+
+  - key: carfilzomib
+    display_name: "Carfilzomib (Kyprolis)"
+    brand_or_code: "Kyprolis"
+    franchise: "Oncology & Hematology"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "Small Molecule (Peptide Epoxyketone)"
+    preferred_id: "CHEMBL451887"
+    signed_targets:
+      - {gene: "PSMB5", action: "inhibits", weight: 1.0}
+      - {gene: "PSMB8", action: "inhibits", weight: 0.7}
+      - {gene: "PSMB1", action: "inhibits", weight: 0.5}
+      - {gene: "PSMB2", action: "inhibits", weight: 0.5}
+    summary: "Irreversible 20S proteasome chymotrypsin-like (PSMB5/PSMB8) inhibitor inducing proteotoxic apoptosis in plasma cell dyscrasias."
+
+  - key: panitumumab
+    display_name: "Panitumumab (Vectibix)"
+    brand_or_code: "Vectibix / ABX-EGF"
+    franchise: "Oncology & Hematology"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "Monoclonal Antibody"
+    preferred_id: "CHEMBL1201827"
+    signed_targets:
+      - {gene: "EGFR", action: "inhibits", weight: 1.0}
+    summary: "Fully human IgG2 anti-EGFR mAb blocking ligand-induced MAPK/PI3K signaling and RTK feedback reactivation."
+
+  - key: talimogene_laherparepvec
+    display_name: "Talimogene laherparepvec (Imlygic)"
+    brand_or_code: "Imlygic / T-VEC"
+    franchise: "Oncology & Hematology"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "Oncolytic Immunotherapy"
+    preferred_id: "CHEMBL2108727"
+    signed_targets:
+      - {gene: "CSF2", action: "activates", weight: 1.0}
+      - {gene: "CSF2RA", action: "activates", weight: 0.8}
+    summary: "GM-CSF-expressing HSV-1 oncolytic viral immunotherapy promoting tumor lysis and dendritic antigen presentation."
+
+  - key: filgrastim
+    display_name: "Filgrastim (Neupogen)"
+    brand_or_code: "Neupogen"
+    franchise: "Oncology & Hematology"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "Recombinant Protein"
+    preferred_id: "CHEMBL1201567"
+    signed_targets:
+      - {gene: "CSF3R", action: "activates", weight: 1.0}
+    summary: "Recombinant human G-CSF activating CSF3R granulopoiesis and hematopoietic mobilization."
+
+  - key: pegfilgrastim
+    display_name: "Pegfilgrastim (Neulasta)"
+    brand_or_code: "Neulasta"
+    franchise: "Oncology & Hematology"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "PEGylated Protein"
+    preferred_id: "CHEMBL1201568"
+    signed_targets:
+      - {gene: "CSF3R", action: "activates", weight: 1.0}
+    summary: "Sustained-duration PEGylated G-CSF receptor agonist."
+
+  - key: romiplostim
+    display_name: "Romiplostim (Nplate)"
+    brand_or_code: "Nplate / AMG 531"
+    franchise: "Oncology & Hematology"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "Peptibody"
+    preferred_id: "CHEMBL1201832"
+    signed_targets:
+      - {gene: "MPL", action: "activates", weight: 1.0}
+    summary: "Thrombopoietin receptor (MPL/c-Mpl) agonist peptibody stimulating megakaryopoiesis."
+
+  - key: bemarituzumab
+    display_name: "Bemarituzumab (Phase 3)"
+    brand_or_code: "AMG 552 / FPA144"
+    franchise: "Oncology & Hematology"
+    stage: "Phase 3"
+    category: "amgen_pipeline"
+    modality: "Monoclonal Antibody (ADCC-Enhanced)"
+    preferred_id: "CHEMBL4802165"
+    signed_targets:
+      - {gene: "FGFR2", action: "inhibits", weight: 1.0}
+    summary: "Afucosylated humanized IgG1 mAb blocking FGFR2b signaling and mediating ADCC in FGFR2b-overexpressing gastric/epithelial tumors."
+
+  - key: xaluritamig
+    display_name: "Xaluritamig (AMG 509, Phase 3)"
+    brand_or_code: "AMG 509"
+    franchise: "Oncology & Hematology"
+    stage: "Phase 3"
+    category: "amgen_pipeline"
+    modality: "XmAb 2+1 BiTE"
+    preferred_id: "AMGEN_PIPE:AMG509"
+    post2024_trial_overrides:
+      EFO_0000196: {max_phase: 3, nct_count: 3, note: "Phase 3 Xaluritamig mCRPC Registrational Program"}
+      EFO_0001663: {max_phase: 3, nct_count: 3, note: "Phase 3 Xaluritamig Prostate Carcinoma"}
+      EFO_0000673: {max_phase: 3, nct_count: 3, note: "Phase 3 Xaluritamig Prostate Adenocarcinoma"}
+      EFO_0000174: {max_phase: 2, nct_count: 1, note: "Phase 1b/2 STEAP1+ Ewing Sarcoma Cohort"}
+    signed_targets:
+      - {gene: "STEAP1", action: "binds", weight: 1.0, role: "tumor_antigen"}
+      - {gene: "CD3E", action: "activates", weight: 0.7, role: "tcell_effector"}
+      - {gene: "CD3D", action: "activates", weight: 0.5, role: "tcell_effector"}
+      - {gene: "CD3G", action: "activates", weight: 0.5, role: "tcell_effector"}
+    summary: "2+1 XmAb STEAP1 x CD3 T-cell engager avidity-selective for high-STEAP1 prostate cancer (89% mCRPC+) and EWSR1-FLI1 Ewing sarcoma (63%+)."
+
+  - key: amg_193
+    display_name: "AMG 193 (PRMT5-MTA, Phase 2)"
+    brand_or_code: "AMG 193"
+    franchise: "Oncology & Hematology"
+    stage: "Phase 2"
+    category: "amgen_pipeline"
+    modality: "Small Molecule (Synthetic Lethal)"
+    preferred_id: "AMGEN_PIPE:AMG193"
+    signed_targets:
+      - {gene: "PRMT5", action: "inhibits", weight: 1.0}
+    summary: "First-in-class MTA-cooperative PRMT5 inhibitor selectively lethal in MTAP-deleted solid tumors (NSCLC, PDAC, GBM, biliary)."
+
+  # ============================================================================
+  # 2. INFLAMMATION, AUTOIMMUNE & IMMUNOLOGY (Commercial + Pipeline)
+  # ============================================================================
+  - key: tezepelumab
+    display_name: "Tezepelumab (Tezspire)"
+    brand_or_code: "Tezspire / AMG 157"
+    franchise: "Inflammation & Immunology"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "Monoclonal Antibody"
+    preferred_id: "CHEMBL3707229"
+    signed_targets:
+      - {gene: "TSLP", action: "inhibits", weight: 1.0}
+    summary: "Human IgG2lambda anti-TSLP mAb blocking upstream epithelial alarmin signaling across T2 and non-T2 barrier inflammation."
+
+  - key: apremilast
+    display_name: "Apremilast (Otezla)"
+    brand_or_code: "Otezla"
+    franchise: "Inflammation & Immunology"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "Small Molecule"
+    preferred_id: "CHEMBL514800"
+    signed_targets:
+      - {gene: "PDE4A", action: "inhibits", weight: 1.0}
+      - {gene: "PDE4B", action: "inhibits", weight: 1.0}
+      - {gene: "PDE4C", action: "inhibits", weight: 0.8}
+      - {gene: "PDE4D", action: "inhibits", weight: 1.0}
+    summary: "Oral PDE4 inhibitor elevating intracellular cAMP to suppress TNF, IL-23, and IL-17 while enhancing IL-10."
+
+  - key: etanercept
+    display_name: "Etanercept (Enbrel)"
+    brand_or_code: "Enbrel"
+    franchise: "Inflammation & Immunology"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "Fc-Fusion Protein"
+    preferred_id: "CHEMBL1201572"
+    signed_targets:
+      - {gene: "TNF", action: "inhibits", weight: 1.0}
+      - {gene: "LTA", action: "inhibits", weight: 0.8}
+    summary: "Dimeric soluble TNFR2-Fc fusion neutralizing TNF-alpha and lymphotoxin-alpha."
+
+  - key: avacopan
+    display_name: "Avacopan (Tavneos)"
+    brand_or_code: "Tavneos"
+    franchise: "Inflammation & Immunology"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "Small Molecule"
+    preferred_id: "CHEMBL3989871"
+    signed_targets:
+      - {gene: "C5AR1", action: "inhibits", weight: 1.0}
+    summary: "Selective oral complement C5a receptor 1 (C5AR1) antagonist blocking neutrophil chemoattraction and NETosis without C5b-9 MAC depletion."
+
+  - key: inebilizumab
+    display_name: "Inebilizumab (Uplizna)"
+    brand_or_code: "Uplizna / MEDI-551"
+    franchise: "Inflammation & Immunology"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "Monoclonal Antibody (ADCC-Enhanced)"
+    preferred_id: "CHEMBL2109334"
+    signed_targets:
+      - {gene: "CD19", action: "inhibits", weight: 1.0}
+    summary: "Afucosylated anti-CD19 B-cell-depleting mAb targeting plasmablasts and pre-B through memory B lineages (NMOSD, IgG4-RD, gMG)."
+
+  - key: rocatinlimab
+    display_name: "Rocatinlimab (Phase 3)"
+    brand_or_code: "AMG 451 / KHK4083"
+    franchise: "Inflammation & Immunology"
+    stage: "Phase 3"
+    category: "amgen_pipeline"
+    modality: "Monoclonal Antibody (ADCC-Enhanced)"
+    preferred_id: "CHEMBL4594567"
+    signed_targets:
+      - {gene: "TNFRSF4", action: "inhibits", weight: 1.0}
+    summary: "Afucosylated anti-OX40 (TNFRSF4) mAb inhibiting and depleting pathogenic OX40+ effector/memory T cells."
+
+  - key: dazodalibep
+    display_name: "Dazodalibep (Phase 3)"
+    brand_or_code: "AMG 628 / VIB4920"
+    franchise: "Inflammation & Immunology"
+    stage: "Phase 3"
+    category: "amgen_pipeline"
+    modality: "Tn3 Fusion Protein"
+    preferred_id: "CHEMBL4594331"
+    signed_targets:
+      - {gene: "CD40LG", action: "inhibits", weight: 1.0}
+    summary: "Non-antibody CD40L (CD154) antagonist fusion blocking T-B germinal center costimulation without Fc platelet thromboembolism (positive Phase 3 Sjögren's)."
+
+  - key: daxdilimab
+    display_name: "Daxdilimab (Phase 2)"
+    brand_or_code: "HZN-7734 / VIB7734"
+    franchise: "Inflammation & Immunology"
+    stage: "Phase 2"
+    category: "amgen_pipeline"
+    modality: "Monoclonal Antibody"
+    preferred_id: "CHEMBL4594330"
+    signed_targets:
+      - {gene: "LILRA4", action: "inhibits", weight: 1.0}
+    summary: "Anti-ILT7 (LILRA4) mAb depleting plasmacytoid dendritic cells (pDCs) to abrogate local type-I interferon production in CLE/SLE/DM."
+
+  - key: fipaxalparant
+    display_name: "Fipaxalparant (Phase 2)"
+    brand_or_code: "AMG 655 / HZN-825"
+    franchise: "Inflammation & Immunology"
+    stage: "Phase 2"
+    category: "amgen_pipeline"
+    modality: "Small Molecule"
+    preferred_id: "CHEMBL3621969"
+    signed_targets:
+      - {gene: "LPAR1", action: "inhibits", weight: 1.0}
+    summary: "Selective lysophosphatidic acid receptor 1 (LPAR1) antagonist inhibiting myofibroblast activation and tissue fibrosis."
+
+  - key: ordesekimab
+    display_name: "Ordesekimab (AMG 714, Phase 2)"
+    brand_or_code: "AMG 714"
+    franchise: "Inflammation & Immunology"
+    stage: "Phase 2"
+    category: "amgen_pipeline"
+    modality: "Monoclonal Antibody"
+    preferred_id: "CHEMBL2109467"
+    signed_targets:
+      - {gene: "IL15", action: "inhibits", weight: 1.0}
+    summary: "Human IgG1kappa anti-IL-15 mAb blocking intraepithelial lymphocyte survival and NK/CD8 tissue cytotoxicity (celiac, vitiligo, T-LGL)."
+
+  - key: amg_691
+    display_name: "AMG 691 (Anti-CD30/CD30L Axis, Phase 1)"
+    brand_or_code: "AMG 691 (NCT06637371)"
+    franchise: "Inflammation & Immunology"
+    stage: "Phase 1"
+    category: "amgen_pipeline"
+    modality: "Monoclonal Antibody"
+    preferred_id: "AMGEN_PIPE:AMG691"
+    signed_targets:
+      - {gene: "TNFRSF8", action: "inhibits", weight: 1.0}
+      - {gene: "TNFSF8", action: "inhibits", weight: 0.9}
+    summary: "Subcutaneous CD30 (TNFRSF8) / CD30L (TNFSF8) co-stimulatory axis mAb (Phase 1 SAD/MAD NCT06637371 in asthma & healthy volunteers) blocking TRAF2/NF-kB survival in pathogenic tissue-resident memory T cells."
+
+  # ============================================================================
+  # 3. CARDIOMETABOLIC & OBESITY (Commercial + Pipeline)
+  # ============================================================================
+  - key: evolocumab
+    display_name: "Evolocumab (Repatha)"
+    brand_or_code: "Repatha / AMG 145"
+    franchise: "Cardiometabolic & Obesity"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "Monoclonal Antibody"
+    preferred_id: "CHEMBL2364655"
+    signed_targets:
+      - {gene: "PCSK9", action: "inhibits", weight: 1.0}
+    summary: "Human IgG2 anti-PCSK9 mAb preventing hepatic LDLR degradation to drive deep LDL-C reduction and plaque regression."
+
+  - key: maritide
+    display_name: "MariTide (Maridebart cafraglutide, Phase 3)"
+    brand_or_code: "MariTide / AMG 133"
+    franchise: "Cardiometabolic & Obesity"
+    stage: "Phase 3"
+    category: "amgen_pipeline"
+    modality: "Peptide-Antibody Conjugate"
+    preferred_id: "AMGEN_PIPE:AMG133"
+    signed_targets:
+      - {gene: "GLP1R", action: "activates", weight: 1.0}
+      - {gene: "GIPR", action: "inhibits", weight: 1.0}
+    summary: "Monthly bispecific mAb-peptide conjugate combining GLP-1R agonism with GIPR antagonism across obesity, T2D, ASCVD, HFpEF, CKD, and OSA."
+
+  - key: olpasiran
+    display_name: "Olpasiran (AMG 890, Phase 3)"
+    brand_or_code: "AMG 890"
+    franchise: "Cardiometabolic & Obesity"
+    stage: "Phase 3"
+    category: "amgen_pipeline"
+    modality: "GalNAc-siRNA"
+    preferred_id: "CHEMBL4650413"
+    signed_targets:
+      - {gene: "LPA", action: "inhibits", weight: 1.0}
+    summary: "Hepatocyte-targeted GalNAc siRNA degrading apolipoprotein(a) mRNA to reduce Lp(a) by >95% in ASCVD and calcific aortic stenosis."
+
+  # ============================================================================
+  # 4. BONE, MINERAL & NEPHROLOGY
+  # ============================================================================
+  - key: romosozumab
+    display_name: "Romosozumab (Evenity)"
+    brand_or_code: "Evenity / AMG 785"
+    franchise: "Bone & Nephrology"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "Monoclonal Antibody"
+    preferred_id: "CHEMBL2107874"
+    signed_targets:
+      - {gene: "SOST", action: "inhibits", weight: 1.0}
+    summary: "Anti-sclerostin (SOST) mAb unleashing canonical Wnt osteoblast bone formation while decreasing bone resorption."
+
+  - key: denosumab
+    display_name: "Denosumab (Prolia / Xgeva)"
+    brand_or_code: "Prolia / Xgeva / AMG 162"
+    franchise: "Bone & Nephrology"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "Monoclonal Antibody"
+    preferred_id: "CHEMBL1237023"
+    signed_targets:
+      - {gene: "TNFSF11", action: "inhibits", weight: 1.0}
+    summary: "Human IgG2 anti-RANKL (TNFSF11) mAb inhibiting osteoclast differentiation, bone loss, and skeletal-related events."
+
+  - key: cinacalcet
+    display_name: "Cinacalcet (Sensipar)"
+    brand_or_code: "Sensipar"
+    franchise: "Bone & Nephrology"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "Small Molecule"
+    preferred_id: "CHEMBL1201284"
+    signed_targets:
+      - {gene: "CASR", action: "activates", weight: 1.0}
+    summary: "Oral positive allosteric modulator (calcimimetic) of the parathyroid calcium-sensing receptor (CASR)."
+
+  - key: etelcalcetide
+    display_name: "Etelcalcetide (Parsabiv)"
+    brand_or_code: "Parsabiv / AMG 416"
+    franchise: "Bone & Nephrology"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "Synthetic Peptide"
+    preferred_id: "CHEMBL3545183"
+    signed_targets:
+      - {gene: "CASR", action: "activates", weight: 1.0}
+    summary: "Intravenous peptide calcimimetic agonist of CASR for secondary hyperparathyroidism on hemodialysis."
+
+  - key: epoetin_alfa
+    display_name: "Epoetin alfa (Epogen)"
+    brand_or_code: "Epogen"
+    franchise: "Bone & Nephrology"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "Recombinant Glycoprotein"
+    preferred_id: "CHEMBL1201565"
+    signed_targets:
+      - {gene: "EPOR", action: "activates", weight: 1.0}
+    summary: "Recombinant human erythropoietin stimulating EPOR-mediated erythropoiesis."
+
+  - key: darbepoetin_alfa
+    display_name: "Darbepoetin alfa (Aranesp)"
+    brand_or_code: "Aranesp"
+    franchise: "Bone & Nephrology"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "Hyperglycosylated Protein"
+    preferred_id: "CHEMBL1201566"
+    signed_targets:
+      - {gene: "EPOR", action: "activates", weight: 1.0}
+    summary: "Extended-half-life erythropoiesis-stimulating protein activating EPOR."
+
+  # ============================================================================
+  # 5. RARE DISEASE & ENDOCRINOLOGY / OPHTHALMOLOGY (Horizon Legacy)
+  # ============================================================================
+  - key: teprotumumab
+    display_name: "Teprotumumab (Tepezza)"
+    brand_or_code: "Tepezza / HZN-001"
+    franchise: "Rare Disease"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "Monoclonal Antibody"
+    preferred_id: "CHEMBL1743079"
+    signed_targets:
+      - {gene: "IGF1R", action: "inhibits", weight: 1.0}
+    summary: "Human IgG1 anti-IGF-1R mAb blocking IGF1R/TSHR fibrotic cross-talk in orbital and systemic fibro-inflammatory disorders."
+
+  - key: pegloticase
+    display_name: "Pegloticase (Krystexxa)"
+    brand_or_code: "Krystexxa"
+    franchise: "Rare Disease"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "PEGylated Enzyme"
+    preferred_id: "CHEMBL1237025"
+    signed_targets:
+      - {gene: "UOX", action: "activates", weight: 1.0}
+      - {gene: "XDH", action: "inhibits", weight: 0.4}
+    summary: "PEGylated recombinant uricase catalyzing oxidation of uric acid to soluble allantoin in refractory gout and hyperuricemic states."
+
+  - key: sodium_phenylbutyrate
+    display_name: "Sodium phenylbutyrate (Buphenyl)"
+    brand_or_code: "Buphenyl"
+    franchise: "Rare Disease"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "Small Molecule (Nitrogen Scavenger / Chaperone)"
+    preferred_id: "CHEMBL1746"
+    signed_targets:
+      - {gene: "CPS1", action: "binds", weight: 0.7}
+      - {gene: "OTC", action: "binds", weight: 0.7}
+      - {gene: "ASS1", action: "binds", weight: 0.7}
+      - {gene: "HDAC1", action: "inhibits", weight: 0.6}
+      - {gene: "HDAC2", action: "inhibits", weight: 0.6}
+    summary: "Ammonia-scavenging prodrug and chemical ER-stress/HDAC chaperone for urea cycle disorders and protein-misfolding pathologies."
+
+  - key: glycerol_phenylbutyrate
+    display_name: "Glycerol phenylbutyrate (Ravicti)"
+    brand_or_code: "Ravicti"
+    franchise: "Rare Disease"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "Small Molecule (Triglyceride Prodrug)"
+    preferred_id: "CHEMBL2105745"
+    signed_targets:
+      - {gene: "CPS1", action: "binds", weight: 0.7}
+      - {gene: "OTC", action: "binds", weight: 0.7}
+      - {gene: "ASS1", action: "binds", weight: 0.7}
+    summary: "Sodium-free slow-release phenylbutyrate nitrogen scavenger for chronic urea cycle and hyperammonemic disorders."
+
+  - key: cysteamine
+    display_name: "Cysteamine (Procysbi)"
+    brand_or_code: "Procysbi"
+    franchise: "Rare Disease"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "Small Molecule (Aminothiol)"
+    preferred_id: "CHEMBL602"
+    signed_targets:
+      - {gene: "CTNS", action: "activates", weight: 1.0}
+      - {gene: "TGM2", action: "inhibits", weight: 0.6}
+    summary: "Lysosomal cystine-depleting aminothiol rescuing CTNS deficiency (nephropathic cystinosis) and inhibiting transglutaminase 2."
+
+  - key: interferon_gamma_1b
+    display_name: "Interferon gamma-1b (Actimmune)"
+    brand_or_code: "Actimmune"
+    franchise: "Rare Disease"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "Recombinant Cytokine"
+    preferred_id: "CHEMBL1201564"
+    signed_targets:
+      - {gene: "IFNGR1", action: "activates", weight: 1.0}
+      - {gene: "IFNGR2", action: "activates", weight: 1.0}
+    summary: "Recombinant IFN-gamma activating phagocyte oxidative burst and osteoclast regulation (CGD, severe malignant osteopetrosis)."
+
+  # ============================================================================
+  # 6. NEUROSCIENCE
+  # ============================================================================
+  - key: erenumab
+    display_name: "Erenumab (Aimovig)"
+    brand_or_code: "Aimovig / AMG 334"
+    franchise: "Neuroscience"
+    stage: "Approved"
+    category: "amgen_commercial"
+    modality: "Monoclonal Antibody"
+    preferred_id: "CHEMBL3833329"
+    signed_targets:
+      - {gene: "CALCRL", action: "inhibits", weight: 1.0}
+      - {gene: "RAMP1", action: "inhibits", weight: 1.0}
+    summary: "Fully human IgG2 mAb antagonizing the canonical CGRP receptor heterodimer (CALCRL/RAMP1) in trigeminovascular pain disorders."
+
+  # ============================================================================
+  # 7. AMGEN BIOSIMILARS PORTFOLIO (Strategic Low-Cost Internal Combo Backbones!)
+  # ============================================================================
+  - key: adalimumab
+    display_name: "Adalimumab (Amjevita)"
+    brand_or_code: "Amjevita / ABP 501"
+    franchise: "Amgen Biosimilars"
+    stage: "Approved Biosimilar"
+    category: "amgen_biosimilar"
+    modality: "Monoclonal Antibody"
+    preferred_id: "CHEMBL1201580"
+    signed_targets:
+      - {gene: "TNF", action: "inhibits", weight: 1.0}
+    summary: "Amgen anti-TNF-alpha mAb biosimilar across rheumatologic, IBD, and dermatologic autoimmune diseases."
+
+  - key: infliximab
+    display_name: "Infliximab (Avsola)"
+    brand_or_code: "Avsola / ABP 710"
+    franchise: "Amgen Biosimilars"
+    stage: "Approved Biosimilar"
+    category: "amgen_biosimilar"
+    modality: "Monoclonal Antibody"
+    preferred_id: "CHEMBL1201581"
+    signed_targets:
+      - {gene: "TNF", action: "inhibits", weight: 1.0}
+    summary: "Amgen chimeric anti-TNF-alpha mAb biosimilar."
+
+  - key: rituximab
+    display_name: "Rituximab (Riabni)"
+    brand_or_code: "Riabni / ABP 798"
+    franchise: "Amgen Biosimilars"
+    stage: "Approved Biosimilar"
+    category: "amgen_biosimilar"
+    modality: "Monoclonal Antibody"
+    preferred_id: "CHEMBL1201576"
+    signed_targets:
+      - {gene: "MS4A1", action: "inhibits", weight: 1.0}
+    summary: "Amgen anti-CD20 (MS4A1) B-cell-depleting biosimilar across lymphoma, CLL, RA, and ANCA vasculitis."
+
+  - key: bevacizumab
+    display_name: "Bevacizumab (Mvasi)"
+    brand_or_code: "Mvasi / ABP 215"
+    franchise: "Amgen Biosimilars"
+    stage: "Approved Biosimilar"
+    category: "amgen_biosimilar"
+    modality: "Monoclonal Antibody"
+    preferred_id: "CHEMBL1201583"
+    signed_targets:
+      - {gene: "VEGFA", action: "inhibits", weight: 1.0}
+    summary: "Amgen anti-VEGF-A angiogenesis inhibitor biosimilar."
+
+  - key: trastuzumab
+    display_name: "Trastuzumab (Kanjinti)"
+    brand_or_code: "Kanjinti / ABP 980"
+    franchise: "Amgen Biosimilars"
+    stage: "Approved Biosimilar"
+    category: "amgen_biosimilar"
+    modality: "Monoclonal Antibody"
+    preferred_id: "CHEMBL1201585"
+    signed_targets:
+      - {gene: "ERBB2", action: "inhibits", weight: 1.0}
+    summary: "Amgen anti-HER2 (ERBB2) mAb biosimilar for HER2+ breast and gastroesophageal cancers."
+
+  - key: ustekinumab
+    display_name: "Ustekinumab (Wezlana)"
+    brand_or_code: "Wezlana / ABP 654"
+    franchise: "Amgen Biosimilars"
+    stage: "Approved Biosimilar"
+    category: "amgen_biosimilar"
+    modality: "Monoclonal Antibody"
+    preferred_id: "DRUGBANK:DB05679"
+    signed_targets:
+      - {gene: "IL12B", action: "inhibits", weight: 1.0}
+      - {gene: "IL23A", action: "inhibits", weight: 0.9}
+    summary: "Amgen interchangeable anti-IL-12/23 p40 biosimilar for psoriasis, PsA, Crohn's disease, and ulcerative colitis."
+
+  - key: aflibercept
+    display_name: "Aflibercept (Pavblu)"
+    brand_or_code: "Pavblu / ABP 938"
+    franchise: "Amgen Biosimilars"
+    stage: "Approved Biosimilar"
+    category: "amgen_biosimilar"
+    modality: "Fc-Fusion Decoy Receptor"
+    preferred_id: "DRUGBANK:DB08885"
+    signed_targets:
+      - {gene: "VEGFA", action: "inhibits", weight: 1.0}
+      - {gene: "VEGFB", action: "inhibits", weight: 0.8}
+      - {gene: "PGF", action: "inhibits", weight: 0.8}
+    summary: "Amgen VEGF-A/VEGF-B/PlGF decoy receptor biosimilar for neovascular retinal and vascular diseases."
+
+  - key: eculizumab
+    display_name: "Eculizumab (Bekemv)"
+    brand_or_code: "Bekemv / ABP 959"
+    franchise: "Amgen Biosimilars"
+    stage: "Approved Biosimilar"
+    category: "amgen_biosimilar"
+    modality: "Monoclonal Antibody"
+    preferred_id: "DRUGBANK:DB01257"
+    signed_targets:
+      - {gene: "C5", action: "inhibits", weight: 1.0}
+    summary: "Amgen terminal complement C5 inhibitor biosimilar for PNH, aHUS, and complement-mediated microangiopathies."
