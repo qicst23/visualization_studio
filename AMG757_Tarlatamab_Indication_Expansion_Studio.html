@@ -1895,11 +1895,27 @@ async function boot() {
   if (typeof INLINE_DEFAULT_STATE === "object" && INLINE_DEFAULT_STATE) {
     Object.assign(STATE, INLINE_DEFAULT_STATE);
   }
+  let urlDisease = null;
+  try {
+    const qp = new URLSearchParams(window.location.search || "");
+    if (qp.get("asset")) STATE.amgenKey = qp.get("asset");
+    if (qp.get("disease")) {
+      urlDisease = qp.get("disease");
+      STATE.amgenKey = STATE.amgenKey || "tarlatamab";
+      STATE.biteFocalKey = "tarlatamab";
+    }
+    if (qp.get("cohort")) STATE.opt1SelectedCohort = qp.get("cohort");
+    if (qp.get("tab")) STATE.activeTab = qp.get("tab");
+  } catch (_e) {}
   initControls();
   if (STATE.activeTab) {
     document.querySelectorAll(".tab").forEach(x => x.classList.toggle("active", x.dataset.tab === STATE.activeTab));
   }
   await ensureAssetBundle(STATE.amgenKey);
+  if (urlDisease) {
+    STATE.diseaseId = urlDisease;
+    STATE.selectedDiseaseIds = [urlDisease];
+  }
   renderCandidateList();
   await renderAll(true);
 }
@@ -2461,6 +2477,9 @@ function renderBiTEExpansionCockpit(el) {
           <button class="btn" style="background:#fef08a;color:#0f172a;border-color:#fde047;font-weight:800;" onclick="STATE.amgenKey='tarlatamab';switchTab('amg757-option1');">
             📋 Open Option-1 Trial Protocol Dossiers &amp; Multi-Omics &rarr;
           </button>
+          <a class="btn btn-ghost" href="AMG757_Tarlatamab_V4_Evidence_Studio.html" style="text-decoration:none;font-weight:800;">
+            🏛️ Recommended Indications Studio (v4) &rarr;
+          </a>
         </div>
       </div>
       ${trials.length ? `
@@ -2474,6 +2493,43 @@ function renderBiTEExpansionCockpit(el) {
         </div>
       ` : ""}
     </div>
+
+    ${focalKey === "tarlatamab" ? (() => {
+      const recJumpList = [
+        { lbl: "#1 ES-SCLC Brain Mets", did: "EFO_0000702", coh: "" },
+        { lbl: "#2 Pulmonary LCNEC", did: "MONDO_0003960", coh: "" },
+        { lbl: "#3 EGFRm t-SCLC", did: "EFO_0005288", coh: "AMG757-EXP-F" },
+        { lbl: "#4 Merkel Cell", did: "EFO_1001471", coh: "AMG757-EXP-A" },
+        { lbl: "#5 Prostate NEPC (>=50%)", did: "MONDO_0002477", coh: "AMG757-EXP-E" },
+        { lbl: "#6 GU/GYN SCNEC", did: "EFO_1000129", coh: "AMG757-EXP-C" },
+        { lbl: "#7 GEP-NEC (>=50%)", did: "EFO_1000219", coh: "" },
+        { lbl: "#8 Medullary Thyroid", did: "MONDO_0015277", coh: "AMG757-EXP-B" },
+        { lbl: "Pedi Neuroblastoma", did: "EFO_0000621", coh: "AMG757-EXP-G" },
+        { lbl: "IDH Glioma (BBB)", did: "EFO_0002499", coh: "AMG757-EXP-D" }
+      ];
+      const curDid = STATE.diseaseId || "EFO_1001471";
+      const curRec = recJumpList.find(x => x.did === curDid) || recJumpList[3];
+      return `
+        <div class="safety-card" style="margin:0 0 12px;background:linear-gradient(90deg,#f8fafc 0%,#eff6ff 100%);border:1.5px solid #93c5fd;padding:10px 13px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:7px;">
+            <div style="font-size:11.8px;font-weight:800;color:#1e3a8a;">
+              ★ Live-Demo Quick Finder — Click Any Recommended AMG 757 Indication to Spotlight on Quadrant &amp; Inspect KG / Biopsies:
+            </div>
+            <div style="display:flex;gap:5px;flex-wrap:wrap;">
+              <button type="button" class="btn" style="padding:4px 9px;font-size:10.8px;" onclick="jumpToAssetDisease('tarlatamab','${esc(curDid)}','exp-paths10')">🕸️ 10-Hop KG Paths</button>
+              <button type="button" class="btn" style="padding:4px 9px;font-size:10.8px;" onclick="jumpToAssetDisease('tarlatamab','${esc(curDid)}','exp-v1subgraph')">🔬 Zoom Sub-Graph</button>
+              <button type="button" class="btn btn-primary" style="padding:4px 9px;font-size:10.8px;" onclick="${curRec.coh ? `STATE.opt1SelectedCohort='${esc(curRec.coh)}';` : ''}switchTab('amg757-option1')">🧬 Patient Biopsies &amp; Simon Dossier</button>
+            </div>
+          </div>
+          <div style="display:flex;gap:5px;flex-wrap:wrap;">
+            ${recJumpList.map(it => {
+              const active = curDid === it.did;
+              return `<button type="button" class="preset-chip" style="${active ? 'background:#1d4ed8;color:#fff;border-color:#1e3a8a;box-shadow:0 2px 6px rgba(29,78,216,.25);' : ''}" onclick="${it.coh ? `STATE.opt1SelectedCohort='${esc(it.coh)}';` : ''}jumpToAssetDisease('tarlatamab','${esc(it.did)}','bite-expansion')">${esc(it.lbl)}</button>`;
+            }).join("")}
+          </div>
+        </div>
+      `;
+    })() : ""}
 
     <!-- Interactive Cutoff & KPI Bar -->
     <div style="display:grid;grid-template-columns:1.35fr 1fr 1fr 1fr 1fr;gap:10px;margin-bottom:12px;align-items:stretch;">
@@ -2771,25 +2827,62 @@ function drawBiTEDualGateQuadrantD3(box, points, cutoff, taaGene, focalKey) {
       }
     });
 
+  nodes.filter(d => d.disease_id === STATE.diseaseId).append("circle")
+    .attr("r", d => (d.is_anchor ? 12 : rScale(d.high_pct)) + 5)
+    .attr("fill", "none")
+    .attr("stroke", "#1d4ed8")
+    .attr("stroke-width", 2.4)
+    .attr("stroke-dasharray", "3,2");
+
   nodes.append("circle")
     .attr("r", d => d.is_anchor ? 12 : rScale(d.high_pct))
     .attr("fill", ptColor)
-    .attr("stroke", d => d.is_anchor ? "#0f172a" : "#fff")
-    .attr("stroke-width", d => d.is_anchor ? 2.4 : 1.5);
+    .attr("stroke", d => (d.is_anchor || d.disease_id === STATE.diseaseId) ? "#0f172a" : "#fff")
+    .attr("stroke-width", d => (d.is_anchor || d.disease_id === STATE.diseaseId) ? 2.4 : 1.5);
 
-  // Label key non-overlapping landmarks
-  const labeled = points.filter((d, idx) => d.is_anchor || d.is_guardrail || idx < 9);
-  g.selectAll(".qlbl").data(labeled).enter().append("text")
-    .attr("x", d => {
-      const px = x(d.pos_pct);
-      return px > iw * 0.70 ? px - 10 : px + 10;
+  // De-collided callout bank so zero labels cross over bubbles in the 55-90% cluster
+  const labeledRaw = points.filter((d, idx) => d.is_anchor || d.is_guardrail || d.disease_id === STATE.diseaseId || idx < 9).map(d => {
+    const px = x(Math.min(98, Math.max(2, d.pos_pct)));
+    const py = y(yValOf(d));
+    const rad = d.is_anchor ? 12 : rScale(d.high_pct);
+    const endSide = d.pos_pct >= 52;
+    const lx = endSide ? (d.is_anchor ? px - rad - 10 : Math.min(px - rad - 8, x(54))) : px + rad + 8;
+    return { d, px, py, rad, endSide, lx, ly: py + 3 };
+  });
+  [true, false].forEach(side => {
+    const sub = labeledRaw.filter(o => o.endSide === side).sort((a, b) => a.py - b.py);
+    for (let i = 1; i < sub.length; i++) {
+      if (sub[i].ly - sub[i - 1].ly < 15.5) sub[i].ly = sub[i - 1].ly + 15.5;
+    }
+    for (let i = sub.length - 1; i >= 0; i--) {
+      if (sub[i].ly > ih - 5) sub[i].ly = ih - 5;
+      if (i > 0 && sub[i].ly - sub[i - 1].ly < 15.0) sub[i - 1].ly = Math.max(12, sub[i].ly - 15.0);
+    }
+  });
+
+  g.selectAll(".qtick").data(labeledRaw).enter().append("polyline")
+    .attr("points", o => {
+      const sx = o.endSide ? o.px - o.rad - 1 : o.px + o.rad + 1;
+      const kx = o.endSide ? Math.min(sx - 5, o.lx + 12) : Math.max(sx + 5, o.lx - 12);
+      const ex = o.endSide ? o.lx + 3 : o.lx - 3;
+      return `${sx.toFixed(1)},${o.py.toFixed(1)} ${kx.toFixed(1)},${(o.ly - 3).toFixed(1)} ${ex.toFixed(1)},${(o.ly - 3).toFixed(1)}`;
     })
-    .attr("y", (d, idx) => y(yValOf(d)) + (idx % 2 === 0 ? -6 : 11))
-    .attr("text-anchor", d => x(d.pos_pct) > iw * 0.70 ? "end" : "start")
-    .style("font-size", "9.6px").style("font-weight", "700").style("fill", "#0f172a").style("pointer-events", "none")
-    .text(d => {
-      const nm = d.disease_name.length > 26 ? d.disease_name.slice(0, 24) + "…" : d.disease_name;
-      return d.is_anchor ? `★ ${nm}` : nm;
+    .attr("fill", "none")
+    .attr("stroke", o => o.d.disease_id === STATE.diseaseId ? "#2563eb" : "rgba(100,116,139,0.55)")
+    .attr("stroke-width", o => o.d.disease_id === STATE.diseaseId ? 1.4 : 0.9)
+    .style("pointer-events", "none");
+
+  g.selectAll(".qlbl").data(labeledRaw).enter().append("text")
+    .attr("x", o => o.lx)
+    .attr("y", o => o.ly)
+    .attr("text-anchor", o => o.endSide ? "end" : "start")
+    .style("font-size", o => o.d.disease_id === STATE.diseaseId ? "10.3px" : "9.6px")
+    .style("font-weight", o => o.d.disease_id === STATE.diseaseId ? "800" : "700")
+    .style("fill", o => o.d.disease_id === STATE.diseaseId ? "#1e3a8a" : "#0f172a")
+    .style("pointer-events", "none")
+    .text(o => {
+      const nm = o.d.disease_name.length > 26 ? o.d.disease_name.slice(0, 24) + "…" : o.d.disease_name;
+      return o.d.is_anchor ? `★ ${nm}` : nm;
     });
 }
 
@@ -4393,7 +4486,9 @@ boot();
 <div id="portable-hub-pill">
   <span>&#127968; <a href="index.html">Visualization Hub</a></span>
   <span style="color:#475569;">|</span>
-  <a href="AMG757_Tarlatamab_Indication_Expansion_Studio.html">AMG 757</a>
+  <a href="AMG757_Tarlatamab_V4_Evidence_Studio.html">AMG 757 Recommendations (v4)</a>
+  <span style="color:#475569;">&middot;</span>
+  <a href="AMG757_Tarlatamab_Indication_Expansion_Studio.html">AMG 757 KG</a>
   <span style="color:#475569;">&middot;</span>
   <a href="AMG691_CD30_Combination_Discovery_Studio.html">AMG 691</a>
   <button title="Hide bar" onclick="this.parentElement.style.display='none'">&times;</button>

@@ -11,29 +11,36 @@
     --amber: #f59e0b; --rose: #f43f5e;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Noto Sans CJK SC", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; padding: 20px; }
-  .header { padding: 20px 24px; background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
-  .header h1 { font-size: 1.35rem; font-weight: 700; color: #fff; }
-  .header p { color: var(--muted); font-size: 0.84rem; margin-top: 4px; }
-  .lang-btn { background: var(--accent); color: #0f172a; border: none; padding: 7px 14px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.82rem; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Noto Sans CJK SC", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; padding: 18px 22px; }
+  .header { padding: 18px 22px; background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 58%, #0f3d5e 100%); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 14px; }
+  .hdr-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+  .eyebrow { display: inline-block; font-size: 0.71rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #7dd3fc; background: rgba(56,189,248,0.13); border: 1px solid rgba(56,189,248,0.32); padding: 3px 10px; border-radius: 999px; margin-bottom: 6px; }
+  .header h1 { font-size: 1.35rem; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
+  .header p { color: #cbd5e1; font-size: 0.84rem; margin-top: 4px; max-width: 980px; }
+  .hdr-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .lang-btn { background: var(--accent); color: #0f172a; border: none; padding: 7px 14px; border-radius: 8px; font-weight: 800; cursor: pointer; font-size: 0.81rem; }
+  .ghost-btn { background: rgba(15,23,42,0.72); color: #e2e8f0; border: 1px solid rgba(148,163,184,0.42); padding: 7px 12px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.79rem; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
+  .ghost-btn:hover { border-color: var(--accent); color: #7dd3fc; }
   .badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
-  .badge { padding: 4px 10px; border-radius: 999px; font-size: 0.73rem; font-weight: 600; border: 1px solid var(--border); background: rgba(15,23,42,0.75); }
+  .badge { padding: 4px 10px; border-radius: 999px; font-size: 0.72rem; font-weight: 600; border: 1px solid var(--border); background: rgba(15,23,42,0.78); }
   .badge.ok { border-color: #059669; color: #34d399; }
   .badge.warn { border-color: #d97706; color: #fbbf24; }
-  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 12px; margin-bottom: 18px; }
-  .kpi { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
-  .kpi .lbl { font-size: 0.73rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
-  .kpi .val { font-size: 1.22rem; font-weight: 700; margin-top: 4px; color: var(--accent); }
-  .kpi .sub { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
-  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
-  .tab-btn { background: var(--panel); color: var(--muted); border: 1px solid var(--border); padding: 8px 14px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.82rem; }
-  .tab-btn.active { background: var(--accent); color: #0f172a; border-color: var(--accent); }
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 10px; margin-top: 10px; }
+  .kpi { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+  .kpi .lbl { font-size: 0.71rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+  .kpi .val { font-size: 1.12rem; font-weight: 700; margin-top: 3px; color: var(--accent); }
+  .kpi .sub { font-size: 0.73rem; color: var(--muted); margin-top: 2px; }
+  .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; border-bottom: 1px solid var(--border); padding-bottom: 10px; align-items: center; }
+  .tab-btn { background: var(--panel); color: var(--muted); border: 1px solid var(--border); padding: 7px 11px; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 0.78rem; transition: all 0.15s; }
+  .tab-btn:hover { color: #e2e8f0; border-color: #64748b; }
+  .tab-btn.active { background: var(--accent); color: #0f172a; border-color: var(--accent); box-shadow: 0 3px 12px rgba(56,189,248,0.28); }
+  .tab-btn.demo-star.active { background: linear-gradient(135deg, #10b981 0%, #38bdf8 100%); color: #06131f; border-color: #34d399; }
   .tab-pane { display: none; }
   .tab-pane.active { display: block; }
   .split { display: grid; grid-template-columns: 1.65fr 1fr; gap: 16px; }
   @media (max-width: 1100px) { .split { grid-template-columns: 1fr; } }
-  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 16px; overflow-x: auto; margin-bottom: 14px; }
-  .card h2 { font-size: 0.98rem; margin-bottom: 10px; color: #e2e8f0; }
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 11px; padding: 15px 16px; overflow-x: auto; margin-bottom: 14px; }
+  .card h2 { font-size: 0.96rem; margin-bottom: 10px; color: #e2e8f0; }
   .controls { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
   table { width: 100%; border-collapse: collapse; font-size: 0.79rem; }
   th, td { padding: 8px 9px; border-bottom: 1px solid #1e293b; text-align: left; }
@@ -41,16 +48,104 @@
   tr.clickable:hover { background: rgba(56,189,248,0.10); cursor: pointer; }
   tr.selected { background: rgba(56,189,248,0.18); }
   .pill { display: inline-block; padding: 2px 7px; border-radius: 6px; font-size: 0.72rem; font-weight: 600; background: rgba(56,189,248,0.18); color: #38bdf8; }
-  .quote-box { background: var(--card); border-left: 3px solid var(--accent); padding: 8px 10px; margin-top: 8px; border-radius: 4px; font-size: 0.77rem; }
-  .notice { background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.45); color: #fde68a; padding: 9px 12px; border-radius: 8px; font-size: 0.79rem; margin-bottom: 12px; }
-  select { background: var(--card); color: var(--text); border: 1px solid var(--border); padding: 6px 10px; border-radius: 6px; font-size: 0.81rem; }
+  .quote-box { background: var(--card); border-left: 3px solid var(--accent); padding: 7px 10px; margin-top: 7px; border-radius: 4px; font-size: 0.75rem; color: #cbd5e1; }
+  .notice { background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.45); color: #fde68a; padding: 9px 12px; border-radius: 8px; font-size: 0.78rem; margin-top: 10px; }
+  select, input[type="text"] { background: var(--card); color: var(--text); border: 1px solid var(--border); padding: 7px 11px; border-radius: 8px; font-size: 0.81rem; }
+  input[type="text"]:focus, select:focus { outline: none; border-color: var(--accent); }
+
+  /* Live Demo Recommended Indications Hub */
+  .rib-grid { display: grid; grid-template-columns: repeat(4, minmax(220px, 1fr)); gap: 11px; margin-bottom: 13px; }
+  @media (max-width: 1180px) { .rib-grid { grid-template-columns: repeat(2, 1fr); } }
+  .rib-card { background: var(--panel); border: 1px solid var(--border); border-radius: 11px; padding: 12px 14px; cursor: pointer; transition: transform 0.14s, border-color 0.14s, box-shadow 0.14s; }
+  .rib-card:hover { transform: translateY(-1px); border-color: #64748b; }
+  .rib-card.rib-active { box-shadow: 0 0 0 2px rgba(56,189,248,0.45); }
+  .rib-emerald { border-top: 3px solid #10b981; }
+  .rib-sky { border-top: 3px solid #38bdf8; }
+  .rib-violet { border-top: 3px solid #a78bfa; }
+  .rib-rose { border-top: 3px solid #f43f5e; }
+  .rib-step { font-size: 0.67rem; font-weight: 800; letter-spacing: 0.06em; color: var(--muted); text-transform: uppercase; }
+  .rib-title { font-size: 0.91rem; font-weight: 800; color: #fff; margin-top: 3px; }
+  .rib-metric { font-size: 0.8rem; font-weight: 700; color: #7dd3fc; margin-top: 3px; }
+  .rib-desc { font-size: 0.73rem; color: var(--muted); margin-top: 4px; line-height: 1.38; }
+
+  .demo-toolbar { background: var(--panel); border: 1px solid var(--border); border-radius: 11px; padding: 12px 14px; margin-bottom: 13px; display: flex; flex-direction: column; gap: 10px; }
+  .demo-search-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+  .search-wrap { flex: 1; min-width: 280px; display: flex; gap: 6px; align-items: center; }
+  .search-wrap input { width: 100%; }
+  .f-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+  .f-pill { background: rgba(30,41,59,0.85); color: #cbd5e1; border: 1px solid var(--border); padding: 5px 11px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: all 0.13s; }
+  .f-pill:hover { border-color: var(--accent); color: #fff; }
+  .f-pill.active { background: rgba(56,189,248,0.22); color: #7dd3fc; border-color: var(--accent); }
+
+  .demo-map-grid { display: grid; grid-template-columns: 1.55fr 1fr; gap: 14px; align-items: center; }
+  @media (max-width: 1100px) { .demo-map-grid { grid-template-columns: 1fr; } }
+
+  .demo-workspace { display: grid; grid-template-columns: 1.35fr 1fr; gap: 16px; align-items: start; }
+  @media (max-width: 1120px) { .demo-workspace { grid-template-columns: 1fr; } }
+  .ind-grid { display: grid; grid-template-columns: repeat(2, minmax(260px, 1fr)); gap: 11px; }
+  @media (max-width: 820px) { .ind-grid { grid-template-columns: 1fr; } }
+  .ind-card { background: var(--panel); border: 1px solid var(--border); border-radius: 11px; padding: 13px 14px; cursor: pointer; transition: all 0.14s; display: flex; flex-direction: column; gap: 7px; }
+  .ind-card:hover { border-color: #64748b; background: #151f32; }
+  .ind-card.selected { border-color: var(--accent); background: linear-gradient(180deg, rgba(56,189,248,0.13) 0%, rgba(17,24,39,0.98) 100%); box-shadow: 0 0 0 1.5px var(--accent); }
+  .ind-top { display: flex; justify-content: space-between; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .rk-chip, .act-chip { font-size: 0.69rem; font-weight: 800; padding: 2px 8px; border-radius: 999px; }
+  .b-emerald { background: rgba(16,185,129,0.18); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.4); }
+  .b-sky { background: rgba(56,189,248,0.18); color: #7dd3fc; border: 1px solid rgba(56,189,248,0.4); }
+  .b-violet { background: rgba(167,139,250,0.18); color: #ddd6fe; border: 1px solid rgba(167,139,250,0.4); }
+  .b-amber { background: rgba(245,158,11,0.18); color: #fde68a; border: 1px solid rgba(245,158,11,0.4); }
+  .b-rose { background: rgba(244,63,94,0.18); color: #fda4af; border: 1px solid rgba(244,63,94,0.4); }
+  .b-teal { background: rgba(45,212,191,0.18); color: #99f6e4; border: 1px solid rgba(45,212,191,0.4); }
+  .ind-title { font-size: 0.92rem; font-weight: 800; color: #fff; line-height: 1.3; }
+  .ind-sub { font-size: 0.73rem; color: var(--muted); }
+  .gate-banner { font-size: 0.72rem; font-weight: 700; padding: 4px 8px; border-radius: 6px; }
+  .g-open { background: rgba(16,185,129,0.11); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.28); }
+  .g-ge1 { background: rgba(56,189,248,0.11); color: #bae6fd; border: 1px solid rgba(56,189,248,0.28); }
+  .g-ge50 { background: rgba(245,158,11,0.15); color: #fde68a; border: 1px solid rgba(245,158,11,0.42); }
+  .g-stop { background: rgba(244,63,94,0.14); color: #fda4af; border: 1px solid rgba(244,63,94,0.35); }
+
+  .metric-row { display: flex; flex-direction: column; gap: 3px; }
+  .metric-hdr { display: flex; justify-content: space-between; font-size: 0.72rem; color: #cbd5e1; }
+  .dual-bar { position: relative; height: 8px; background: #0b1120; border-radius: 999px; overflow: hidden; border: 1px solid #1e293b; }
+  .dual-ge1 { position: absolute; left: 0; top: 0; bottom: 0; background: rgba(167,139,250,0.42); border-radius: 999px; }
+  .dual-ge50 { position: absolute; left: 0; top: 0; bottom: 0; background: #a78bfa; border-radius: 999px; }
+  .orr-fill { height: 100%; border-radius: 999px; }
+  .ind-foot { display: flex; justify-content: space-between; align-items: center; font-size: 0.73rem; color: #cbd5e1; padding-top: 5px; border-top: 1px solid rgba(51,65,85,0.55); margin-top: auto; }
+
+  .spotlight-card { position: sticky; top: 14px; background: linear-gradient(180deg, #131c31 0%, #0f172a 100%); border: 1px solid #475569; border-radius: 12px; padding: 15px 16px; box-shadow: 0 10px 28px rgba(0,0,0,0.35); }
+  .spot-nav { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; padding-bottom: 8px; border-bottom: 1px solid #1e293b; }
+  .nav-mini { background: var(--card); color: #e2e8f0; border: 1px solid var(--border); padding: 3px 9px; border-radius: 6px; font-size: 0.73rem; font-weight: 700; cursor: pointer; }
+  .nav-mini:hover { border-color: var(--accent); color: #7dd3fc; }
+  .qp-chip { background: rgba(30,41,59,0.8); color: var(--muted); border: 1px solid var(--border); padding: 2px 7px; border-radius: 999px; font-size: 0.69rem; font-weight: 700; cursor: pointer; }
+  .qp-chip.active, .qp-chip:hover { color: #fff; border-color: var(--accent); background: rgba(56,189,248,0.2); }
+  .spot-kpi-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 10px 0; }
+  .spot-kpi { background: rgba(15,23,42,0.75); border: 1px solid #1e293b; border-radius: 8px; padding: 8px 10px; }
+  .sk-l { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+  .sk-v { font-size: 1.02rem; font-weight: 800; margin-top: 2px; }
+  .sk-s { font-size: 0.71rem; color: var(--muted); margin-top: 1px; }
+  .spot-sec { background: rgba(30,41,59,0.45); border: 1px solid #1e293b; border-radius: 8px; padding: 9px 11px; margin-bottom: 8px; }
+  .ss-t { font-size: 0.76rem; font-weight: 800; color: #f8fafc; margin-bottom: 4px; }
+  .demo-act-btn { background: var(--card); color: #e2e8f0; border: 1px solid var(--border); padding: 7px 12px; border-radius: 8px; font-size: 0.77rem; font-weight: 700; cursor: pointer; }
+  .demo-act-btn:hover { border-color: var(--accent); color: #fff; }
+  .demo-act-btn.primary { background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%); border-color: #38bdf8; color: #fff; }
 </style>
 </head>
 <body>
 <div class="header">
-  <div>
-    <h1 id="hdr-title">AMG 757 (Tarlatamab / IMDELLTRA) — v4.3.2 Registry-Grounded Evidence Studio</h1>
-    <p id="hdr-sub">Table A (12 Active/Committed SCLC + 7 Historical Baseline = 19 Studies) vs Table B (10 Incremental Options: V0 / V1 IIT [0.90 &amp; 0.75 Sens] / V2 De Novo Basket) | 208 Verified + 25 Source-Only + 27 Analyst Rows</p>
+  <div class="hdr-top">
+    <div>
+      <span class="eyebrow" id="hdr-eyebrow">IMDELLTRA® (AMG 757 · DLL3 × CD3 BiTE) · INDICATION EXPANSION LIVE DEMO</span>
+      <h1 id="hdr-title">AMG 757 (Tarlatamab / IMDELLTRA) — v4.3.2 Recommended Indications &amp; Evidence Studio</h1>
+      <p id="hdr-lead">Interactive guide to find, compare, and present recommended AMG 757 expansion indications — grounded in patient tumor DLL3 biopsy prevalence, clinical trial response rates, trial route economics, and 120 ClinicalTrials.gov studies.</p>
+    </div>
+    <div class="hdr-actions">
+      <button type="button" class="ghost-btn" id="btn-open-kg" onclick="openCompanionStudio(DEMO_SELECTED ? (DATA.decision_rows.find(x=>x.cohort_id===DEMO_SELECTED)||{}).disease_id : 'EFO_1001471', DEMO_SELECTED, 'bite-expansion')">🕸️ Companion KG &amp; Biopsy Studio &rarr;</button>
+      <button type="button" class="ghost-btn" id="btn-audit-toggle" onclick="toggleAuditDrawer()">🛡️ Technical &amp; Biostat Audit Badges ▾</button>
+      <button class="lang-btn" id="lang-toggle" onclick="toggleLang()">中文 / EN</button>
+    </div>
+  </div>
+
+  <div id="audit-drawer" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(148,163,184,0.22);">
+    <p id="hdr-sub" style="font-size:0.78rem;color:var(--muted);">Table A (12 Active/Committed SCLC + 7 Historical Baseline = 19 Studies) vs Table B (10 Incremental Options: V0 / V1 IIT [0.90 &amp; 0.75 Sens] / V2 De Novo Basket) | 208 Verified + 25 Source-Only + 27 Analyst Rows</p>
     <div class="badge-row">
       <span class="badge ok">Statutory RPE Floor 2036-05-16 | PRV = $0.0M</span>
       <span class="badge warn">NCT06788938 = UCLA Single-Arm (N=29, Closed) | NCT07402343 = Maastricht CNS (N=35)</span>
@@ -58,25 +153,70 @@
       <span class="badge warn">Q5 KG/ML: RETIRED (PE1 Leak +0.123; P5 Frozen (16, 8) tanh lbfgs alpha=8.0 tol=0.001 max_iter=300) | Q4 Recall@50 = 0.000</span>
       <span class="badge ok">41 Sealed Ledger Rows (5 Q2 + 4 Prior) | 3/3 Bitcoin PoW Blocks #975,929, #975,963, #976,004, #976,009 | 1,345,373 DDI Rows</span>
     </div>
+    <div class="notice" id="gov-notice">
+      <strong>Illustrative Pre-Finance Scenarios — Pending Corporate Finance Validation:</strong> Dollar waterfall compares V0 (Standalone Ph2 INDs), V1 (Coordinated External IIT Federation across 11 open/planned IITs, N=517, +1.0y lag, plus 0.75 drug-supply attrition sensitivity), and V2 (Prospective De Novo Amgen Master Basket, +0.65y lag). EXP-S4 33.0%† is Systemic SCLC Reference Only (Primary RANO-BM Intracranial ORR Unmodeled).
+    </div>
+    <div class="kpi-grid" id="kpi-grid"></div>
   </div>
-  <button class="lang-btn" id="lang-toggle" onclick="toggleLang()">中文 / EN</button>
 </div>
-
-<div class="notice" id="gov-notice">
-  <strong>Illustrative Pre-Finance Scenarios — Pending Corporate Finance Validation:</strong> Dollar waterfall compares V0 (Standalone Ph2 INDs), V1 (Coordinated External IIT Federation across 11 open/planned IITs, N=517, +1.0y lag, plus 0.75 drug-supply attrition sensitivity), and V2 (Prospective De Novo Amgen Master Basket, +0.65y lag). EXP-S4 33.0%† is Systemic SCLC Reference Only (Primary RANO-BM Intracranial ORR Unmodeled).
-</div>
-
-<div class="kpi-grid" id="kpi-grid"></div>
 
 <div class="tabs">
-  <button class="tab-btn active" onclick="switchTab('t1', this)" id="tb-1">1. Table A (12+7) &amp; Table B (V0 / V1 / V2)</button>
+  <button class="tab-btn demo-star active" onclick="switchTab('t0', this)" id="tb-0">★ Recommended Indications (Live Demo)</button>
+  <button class="tab-btn" onclick="switchTab('t1', this)" id="tb-1">1. Table A (12+7) &amp; Table B (V0 / V1 / V2)</button>
   <button class="tab-btn" onclick="switchTab('t2', this)" id="tb-2">2. PE1 Discovery Back-Test &amp; Within-NE MDE</button>
   <button class="tab-btn" onclick="switchTab('t3', this)" id="tb-3">3. WP9 Trade-Off &amp; IIT Network</button>
   <button class="tab-btn" onclick="switchTab('t4', this)" id="tb-4">4. Bitcoin .ots Ledger &amp; EVSI Triggers</button>
   <button class="tab-btn" onclick="switchTab('t5', this)" id="tb-5">5. Q4 Combos &amp; Appendix B (Q6 Heuristics)</button>
 </div>
 
-<div id="t1" class="tab-pane active">
+<div id="t0" class="tab-pane active">
+  <div class="rib-grid" id="demo-tier-ribbon"></div>
+
+  <div class="demo-toolbar">
+    <div class="demo-search-row">
+      <div class="search-wrap">
+        <input type="text" id="demo-search" placeholder="🔍 Search recommended indication, organ, biomarker (>=50%), NCT trial, or combo partner (e.g. Brain, LCNEC, Prostate, Merkel)..." oninput="DEMO_SEARCH=this.value;renderDemoHub();">
+        <button type="button" class="ghost-btn" id="btn-demo-reset" onclick="DEMO_SEARCH='';document.getElementById('demo-search').value='';DEMO_FILTER='RECOMMENDED';DEMO_SORT='priority';document.getElementById('demo-sort').value='priority';renderDemoHub();">↺ Reset</button>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+        <select id="demo-sort" onchange="DEMO_SORT=this.value;renderDemoHub();">
+          <option value="priority">Sort: Recommended Priority (#1 &rarr; #10)</option>
+          <option value="orr">Sort: Expected Response Rate (ORR %)</option>
+          <option value="dll3">Sort: Tumor Surface DLL3+ (%)</option>
+          <option value="rnpv">Sort: Shared-Basket Value (rNPV)</option>
+          <option value="patients">Sort: Eligible Patients / Year</option>
+        </select>
+        <select id="demo-loe" onchange="syncLoeHorizon(this.value)">
+          <option value="2036">2036 Statutory Floor</option>
+          <option value="2039">2039 Patent Scenario</option>
+        </select>
+        <button type="button" class="ghost-btn" id="btn-map-toggle" onclick="DEMO_SHOW_MAP=!DEMO_SHOW_MAP;renderDemoHub();">📈 Map On/Off</button>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
+      <div class="f-pills" id="demo-filter-pills"></div>
+      <div id="demo-count-lbl" style="font-size:0.75rem;color:var(--muted);"></div>
+    </div>
+  </div>
+
+  <div class="card" id="demo-map-card">
+    <div class="demo-map-grid">
+      <div>
+        <h2 id="h-demo-map" style="margin-bottom:4px;">Visual Indication Map — Tumor Surface DLL3+ (%) vs Expected Patient Response (ORR %)</h2>
+        <div id="sub-demo-map" style="font-size:0.75rem;color:var(--muted);margin-bottom:6px;">Bubble size = biomarker-eligible patients/yr (US+EU5+JP) · Dashed vertical bar = 95% credible interval on selected cohort · Click any bubble to inspect</div>
+        <div id="demo-map-svg-box"></div>
+      </div>
+      <div id="demo-route-box" style="background:rgba(30,41,59,0.5);border:1px solid #334155;border-radius:10px;padding:13px 14px;"></div>
+    </div>
+  </div>
+
+  <div class="demo-workspace">
+    <div class="ind-grid" id="demo-cards-grid"></div>
+    <div class="spotlight-card" id="demo-spotlight"></div>
+  </div>
+</div>
+
+<div id="t1" class="tab-pane">
   <div class="card">
     <h2 id="h-taba">Table A — Committed SCLC Franchise Baseline (12 Active/Committed SCLC + 7 Historical Baseline = 19 Studies)</h2>
     <table id="tab-a"><thead><tr>
@@ -93,7 +233,7 @@
           <option value="Incremental_Intra_SCLC_Option">Incremental Intra-SCLC Option (EXP-S4 Active Brain Mets, N=35)</option>
           <option value="Negative_Guardrail">Negative Guardrails (Do Not Enroll)</option>
         </select>
-        <select id="loe-mode" onchange="renderTableB()">
+        <select id="loe-mode" onchange="syncLoeHorizon(this.value)">
           <option value="2036">2036-05-16 Statutory RPE Floor</option>
           <option value="2039">2039-05-16 Patent-Extended Scenario</option>
         </select>
@@ -196,8 +336,15 @@ function fmtM(v, dec=1, signed=false) { const n = Number(v); const abs = Math.ab
 
 const I18N = {
   en: {
-    title: 'AMG 757 (Tarlatamab / IMDELLTRA) — v4.3.2 Registry-Grounded Evidence Studio',
+    eyebrow: 'IMDELLTRA® (AMG 757 · DLL3 × CD3 BiTE) · INDICATION EXPANSION LIVE DEMO',
+    title: 'AMG 757 (Tarlatamab / IMDELLTRA) — v4.3.2 Recommended Indications & Evidence Studio',
+    lead: 'Interactive guide to find, compare, and present recommended AMG 757 expansion indications — grounded in patient tumor DLL3 biopsy prevalence, clinical trial response rates, trial route economics, and 120 ClinicalTrials.gov studies.',
+    openKg: '🕸️ Companion KG & Biopsy Studio →',
+    searchPh: '🔍 Search recommended indication, organ, biomarker (>=50%), NCT trial, or combo partner (e.g. Brain, LCNEC, Prostate, Merkel)...',
+    mapTitle: 'Visual Indication Map — Tumor Surface DLL3+ (%) vs Expected Patient Response (ORR %)',
+    mapSub: 'Bubble size = biomarker-eligible patients/yr (US+EU5+JP) · Dashed vertical bar = 95% credible interval on selected cohort · Click any bubble to inspect',
     notice: '<strong>Illustrative Pre-Finance Scenarios — Pending Corporate Finance Validation:</strong> Dollar waterfall compares V0 (Standalone Ph2 INDs), V1 (Coordinated External IIT Federation across 11 open/planned IITs, N=517, +1.0y lag, plus 0.75 drug-supply attrition sensitivity), and V2 (Prospective De Novo Amgen Master Basket, +0.65y lag). EXP-S4 33.0%† is Systemic SCLC Reference Only (Primary RANO-BM Intracranial ORR Unmodeled).',
+    tb0: '★ Recommended Indications (Live Demo)',
     tb1: '1. Table A (12+7) & Table B (V0 / V1 / V2)',
     tb2: '2. PE1 Discovery Back-Test & Within-NE MDE',
     tb3: '3. WP9 Trade-Off & IIT Network',
@@ -205,8 +352,15 @@ const I18N = {
     tb5: '5. Q4 Combos & Appendix B (Q6 Heuristics)'
   },
   zh: {
-    title: 'AMG 757 (Tarlatamab / IMDELLTRA) — v4.3.2 注册试验锚定版循证决策工作台',
+    eyebrow: 'IMDELLTRA® (AMG 757 · DLL3 × CD3 双特异T细胞衔接器) · 推荐拓展适应症交互演示台',
+    title: 'AMG 757 (Tarlatamab / IMDELLTRA) — v4.3.2 推荐拓展适应症与循证决策工作台',
+    lead: '面向现场演示打造的推荐适应症检索、对比与临床证据穿透指南——融合患者活检 DLL3 表达谱、临床客观缓解率后验、临床开发路径经济学与 120 项注册试验。',
+    openKg: '🕸️ 打开知识图谱与活检伴随工作台 →',
+    searchPh: '🔍 搜索推荐适应症、器官、生物标志物 (>=50%)、NCT试验号或联用药物 (如 脑转移、LCNEC、前列腺、默克尔)...',
+    mapTitle: '推荐适应症全景图 — 患者肿瘤表面 DLL3+ 阳性率 (%) vs 预期临床缓解率 (ORR %)',
+    mapSub: '气泡大小 = 美欧日年均符合标志物筛查患者数 · 虚线竖条 = 当前选中适应症 95% 可信区间 · 点击任意气泡查看右侧详情',
     notice: '<strong>说明性财务前情景估算——待企业财务团队核准：</strong> 美元瀑布并列对比 V0（独立 II 期 IND）、V1（协调外部 11 项开放 IIT 联盟，总注册 N=517，+1.0 年滞后，含 0.75 供药折损敏感性）与 V2（新建 Amgen 注册级主篮式方案，+0.65 年滞后）。EXP-S4 33.0%† 仅作全身 SCLC 参考（注册主要终点颅内 RANO-BM ORR 未直接建模）。',
+    tb0: '★ 推荐拓展适应症 (现场演示主页)',
     tb1: '1. 表A (12在研+7历史) 与 表B (V0 / V1 / V2)',
     tb2: '2. PE1 全新适应症回测与 12簇功效 MDE',
     tb3: '3. WP9 I类错误vs成本权衡与 IIT 网络',
@@ -215,24 +369,940 @@ const I18N = {
   }
 };
 
+
+let DEMO_FILTER = 'RECOMMENDED';
+let DEMO_SORT = 'priority';
+let DEMO_SEARCH = '';
+let DEMO_SELECTED = 'EXP-S4';
+let DEMO_SHOW_MAP = true;
+let AUDIT_OPEN = false;
+
+const COHORT_FRIENDLY = {
+  'EXP-S4': {
+    enName: 'ES-SCLC with Untreated / Active Brain Metastases',
+    zhName: '伴未治疗/活动性脑转移的广泛期小细胞肺癌 (ES-SCLC)',
+    organEn: 'Brain / Lung (Intra-SCLC)', organZh: '脑实质 / 肺 (SCLC亚群)',
+    tierKey: 'TIER1',
+    badgeEn: 'Advance Dedicated Ph2 Now', badgeZh: '立即推进独立 II 期',
+    badgeCls: 'b-emerald',
+    gatePlainEn: 'All-Comer SCLC (No Extra Biopsy Delay)',
+    gatePlainZh: '全人群入组 (无需额外活检等待)',
+    gateCls: 'g-open',
+    watchEn: '33.0%† ORR is a systemic SCLC reference only; primary endpoint is intracranial RANO-BM ORR in recruiting Maastricht NCT07402343 (N=35, >=12/35 Go gate).',
+    watchZh: '33.0%† 客观缓解率仅作全身 SCLC 参考；注册主要终点为颅内 RANO-BM ORR（马斯特里赫特 NCT07402343 在研，N=35，>=12/35 推进阈值）。'
+  },
+  'EXP-L1': {
+    enName: 'Pulmonary Large-Cell Neuroendocrine Carcinoma (LCNEC)',
+    zhName: '肺大细胞神经内分泌癌 (Pulmonary LCNEC)',
+    organEn: 'Thoracic / Lung NE', organZh: '胸部 / 肺神经内分泌',
+    tierKey: 'TIER2',
+    badgeEn: 'Lead New Tumor · IIT + Shared Basket', badgeZh: '新瘤种首位 · IIT联盟+主篮式',
+    badgeCls: 'b-sky',
+    gatePlainEn: 'Screen Surface DLL3+ (SP347 >=1%)',
+    gatePlainZh: '伴随诊断筛选 DLL3+ (SP347 >=1%)',
+    gateCls: 'g-ge1',
+    watchEn: 'Highest predicted new-histology ORR (44.5%), but 0 direct AMG 757 cohorts exist yet (anchored by n=10 obrixtamig cohort; 29.9% without obrixtamig) — include an N=15 early futility check.',
+    watchZh: '新瘤种预测缓解率最高 (44.5%)，但尚无 AMG 757 直接临床队列（锚定 n=10 竞品 TCE 数据；剔除后为 29.9%），建议设置 N=15 早期无效中止门控。'
+  },
+  'EXP-L2': {
+    enName: 'EGFR-Mutant Transformed SCLC (Post-Osimertinib)',
+    zhName: '奥希替尼耐药后组织学转化型 SCLC (EGFR突变 t-SCLC)',
+    organEn: 'Thoracic / Lung Lineage Plasticity', organZh: '胸部 / 肺谱系可塑性转化',
+    tierKey: 'TIER2',
+    badgeEn: 'Combination Required · IIT + Basket', badgeZh: '需联用方案 · IIT联盟+主篮式',
+    badgeCls: 'b-sky',
+    gatePlainEn: 'Screen Surface DLL3+ (SP347 >=1%) + Combo',
+    gatePlainZh: '筛选 DLL3+ (>=1%) 且必须联合给药',
+    gateCls: 'g-ge1',
+    watchEn: 'High target expression (79.1% DLL3+), but real-world AMG 757 monotherapy ORR was only 7.1% (1/14) — requires chemo-IO or EGFR/ADC combination (Samsung Ph2 NCT06830694 recruiting, N=50).',
+    watchZh: '靶点高表达 (79.1% DLL3+)，但真实世界单药缓解率仅 7.1% (1/14)，必须采用化疗免疫或靶向/ADC联用方案（三星医疗院 II 期 NCT06830694 在研，N=50）。'
+  },
+  'EXP-A': {
+    enName: 'Merkel Cell Carcinoma (Post-PD-1 Cutaneous NEC)',
+    zhName: 'PD-(L)1 经治默克尔细胞癌 (皮肤神经内分泌癌 MCC)',
+    organEn: 'Skin / Cutaneous NEC', organZh: '皮肤神经内分泌癌',
+    tierKey: 'TIER3',
+    badgeEn: 'Screen in Open IITs -> Shared Basket', badgeZh: '开放IIT信号筛选 -> 主篮式',
+    badgeCls: 'b-violet',
+    gatePlainEn: 'Screen Surface DLL3+ (SP347 >=1%)',
+    gatePlainZh: '伴随诊断筛选 DLL3+ (SP347 >=1%)',
+    gateCls: 'g-ge1',
+    watchEn: '82.9% surface DLL3+ with immune-inflamed skin TME; 0 prior TCE cohorts (only historical failed Rova-T ADC). Watch NTU TAURUS NCT06816394 (N=32) & Arizona RT+BiTE IIT readouts.',
+    watchZh: '82.9% 表面 DLL3+ 且具免疫热肿瘤微环境；尚无 TCE 临床读出，可通过台大 TAURUS (NCT06816394, N=32) 等开放学术 IIT 低成本验证信号。'
+  },
+  'EXP-D': {
+    enName: 'Treatment-Emergent Neuroendocrine Prostate Cancer (t-NEPC)',
+    zhName: '治疗诱导型神经内分泌前列腺癌 (t-NEPC)',
+    organEn: 'Prostate (Post-ARPI Plasticity)', organZh: '前列腺 (内分泌耐药谱系转化)',
+    tierKey: 'TIER3',
+    badgeEn: 'High-Density DLL3 >=50% + AMG 509', badgeZh: '高密度 DLL3>=50% 门控 + 双BiTE',
+    badgeCls: 'b-violet',
+    gatePlainEn: 'Mandatory High-Density DLL3 >=50% (SP347)',
+    gatePlainZh: '强制高密度门控 DLL3 >=50% (SP347)',
+    gateCls: 'g-ge50',
+    watchEn: 'Completed DeLLpro-300 proved 22.2% ORR in DLL3+ vs 0.0% in DLL3-; mixed AR+/NE heterogeneity requires strict SP347 >=50% cutoff (MSKCC Ph2 NCT07111507 recruiting, N=32) + AMG 509 sequencing.',
+    watchZh: 'DeLLpro-300 已证实 DLL3+ 缓解率 22.2% 而阴性为 0%；因腺癌/神经内分泌异质性，须严格执行 SP347 >=50% 高表达筛选（MSKCC NCT07111507 在研，N=32）。'
+  },
+  'EXP-C': {
+    enName: 'GU & GYN Extrapulmonary Small-Cell NEC (Bladder / Cervix / Ovary)',
+    zhName: '泌尿与妇科肺外小细胞神经内分泌癌 (膀胱 / 宫颈 / 卵巢)',
+    organEn: 'Bladder & Gynecologic NEC', organZh: '泌尿生殖与妇科神经内分泌',
+    tierKey: 'TIER3',
+    badgeEn: 'Screen in Open IITs -> Shared Basket', badgeZh: '开放IIT信号筛选 -> 主篮式',
+    badgeCls: 'b-violet',
+    gatePlainEn: 'Screen Surface DLL3+ (SP347 >=1%)',
+    gatePlainZh: '伴随诊断筛选 DLL3+ (SP347 >=1%)',
+    gateCls: 'g-ge1',
+    watchEn: 'Peer DLL3 TCE gocatamig achieved 44.0% ORR (11/25) in epNEC/bladder SCBC; CHU Strasbourg GYN NCT07788365 (N=20) covers GYN-NEC while bladder SCBC needs multi-center IIT or shared basket.',
+    watchZh: '同类 TCE Gocatamig 在肺外/膀胱小细胞癌取得 44.0% (11/25) 缓解率；斯特拉斯堡 NCT07788365 (N=20) 覆盖妇科队列，膀胱队列需多中心 IIT 或共享篮式覆盖。'
+  },
+  'EXP-E': {
+    enName: 'Gastroenteropancreatic Neuroendocrine Carcinoma (WHO G3 GEP-NEC)',
+    zhName: '胃肠胰高级别神经内分泌癌 (WHO G3 GEP-NEC)',
+    organEn: 'GI & Pancreas (Strict Grade 3 NEC)', organZh: '胃肠胰 (严格限定 WHO G3 NEC)',
+    tierKey: 'TIER3',
+    badgeEn: 'Mandatory DLL3 >=50% · IIT Screen', badgeZh: '强制 DLL3>=50% · 外部IIT筛选',
+    badgeCls: 'b-violet',
+    gatePlainEn: 'Mandatory High-Density DLL3 >=50% (SP347)',
+    gatePlainZh: '强制高密度门控 DLL3 >=50% (SP347)',
+    gateCls: 'g-ge50',
+    watchEn: 'Peer TCE obrixtamig showed 40.0% ORR (12/30) at DLL3 >=50% vs 3.3% (1/30) at 1-49%! Accrual/competitor watchout: Korea NCT06893783 (N=60) & IFCT Ph3 active, while BI DAREON-5 leads timing.',
+    watchZh: '同类 TCE 证实 DLL3>=50% 缓解率达 40.0% (12/30)，而 1-49% 低表达仅 3.3% (1/30)！必须严格锁定 >=50% 高密度人群并依托韩国 NCT06893783 (N=60) 验证。'
+  },
+  'EXP-B': {
+    enName: 'Desmoplastic Medullary Thyroid Carcinoma (Post-RET/TKI MTC)',
+    zhName: 'RET抑制剂经治促纤维增生型甲状腺髓样癌 (MTC)',
+    organEn: 'Thyroid (C-Cell Neuroendocrine)', organZh: '甲状腺 (滤泡旁C细胞神经内分泌)',
+    tierKey: 'TIER3',
+    badgeEn: 'Shared Master-Basket Exploratory Arm', badgeZh: '仅限共享主篮式探索臂',
+    badgeCls: 'b-violet',
+    gatePlainEn: 'Screen Surface DLL3+ (SP347 >=1%) + Desmoplasia',
+    gatePlainZh: '筛选 DLL3+ (>=1%) 促纤维增生亚型',
+    gateCls: 'g-ge1',
+    watchEn: '83.3% posterior DLL3+ in desmoplastic MTC, but 0 TCE clinical cohorts and no dedicated monotherapy IIT — negative standalone rNPV (-$4.9M), positive (+$2.2M) inside a shared master basket.',
+    watchZh: '促纤维增生型 MTC 达 83.3% DLL3+，但尚无 TCE 临床数据或专属单药 IIT；独立开试验净现值为负 (-$4.9M)，仅在共享主篮式分摊成本下转正 (+$2.2M)。'
+  },
+  'EXP-G': {
+    enName: 'Pediatric Relapsed/Refractory High-Risk Adrenergic Neuroblastoma',
+    zhName: '儿童复发/难治高危肾上腺素能型神经母细胞瘤',
+    organEn: 'Pediatric Oncology (BPCA Option)', organZh: '儿童肿瘤 (BPCA书面请求期权)',
+    tierKey: 'EXPLORE',
+    badgeEn: 'Conditional on FDA BPCA Written Request', badgeZh: '仅在获 FDA BPCA 书面请求时启动',
+    badgeCls: 'b-amber',
+    gatePlainEn: 'Screen DLL3+ (>=1%) · Inpatient Step-Up',
+    gatePlainZh: '筛选 DLL3+ (>=1%) · 住院阶梯给药',
+    gateCls: 'g-ge1',
+    watchEn: 'Standalone pediatric trial is -$12.5M (statutory PRV = $0.0M because IMDELLTRA is already FDA-approved); economically compelling ONLY if FDA grants a voluntary BPCA §351(m) +6-month exclusivity extension.',
+    watchZh: '独立儿童试验直接净现值为 -$12.5M（因药物已获批，法定罕见儿科 PRV = $0）；仅在获得 FDA 自愿性 BPCA §351(m) 6个月独占期顺延授权时具备高商业价值。'
+  },
+  'EXP-F': {
+    enName: 'IDH-Mutant Diffuse Glioma (Post-Vorasidenib Recurrent CNS)',
+    zhName: 'Vorasidenib 经治复发 IDH 突变弥漫性胶质瘤',
+    organEn: 'Primary CNS Tumor (BBB Gate)', organZh: '原发中枢神经肿瘤 (血脑屏障门控)',
+    tierKey: 'EXPLORE',
+    badgeEn: 'Await Academic BBB / T-Cell PD Readout', badgeZh: '等待学术血脑屏障药效学读出',
+    badgeCls: 'b-amber',
+    gatePlainEn: 'Mandatory DLL3 >=50% + 48h ICANS Gate',
+    gatePlainZh: '强制 DLL3 >=50% + 48h住院ICANS监护',
+    gateCls: 'g-ge50',
+    watchEn: '83.9% DLL3+ in IDH-mutant glioma, but intact Blood-Brain Barrier restricts ~105 kDa BiTE IgG penetration & raises ICANS neurotoxicity risk — await UHN window NCT06776250 & CLB NCT07243470 signals first.',
+    watchZh: '虽有 83.9% DLL3+ 高表达，但完整血脑屏障限制大分子抗体穿透且伴中枢 ICANS 风险；建议先等待多伦多大学 NCT06776250 手术窗药效学读出，暂不投入商业主篮式。'
+  },
+  'GUARD-1': {
+    enName: 'Well-Differentiated Grade 1/2 GEP-NET (Carcinoid Tumors)',
+    zhName: '高分化 G1/G2 胃肠胰神经内分泌瘤 (类癌 — 严禁入组)',
+    organEn: 'Negative Biomarker Guardrail', organZh: '阴性生物标志物安全护栏',
+    tierKey: 'GUARD',
+    badgeEn: 'Do Not Enroll (DLL3 Absent: 5.6%)', badgeZh: '严禁入组 (DLL3缺失: 5.6%)',
+    badgeCls: 'b-rose',
+    gatePlainEn: 'Contraindicated (SSTR2, Not DLL3)',
+    gatePlainZh: '禁忌入组 (表达 SSTR2 而非 DLL3)',
+    gateCls: 'g-stop',
+    watchEn: 'General KG similarity confuses slow-growing G1/G2 carcinoids with aggressive G3 NECs, but multicentric IHC (22/431 = 5.1%) proves DLL3 is absent. Patients should receive SSTR2 radioligands instead.',
+    watchZh: '通用知识图谱易将慢生型 G1/G2 类癌与高级别 G3 NEC 混淆，但多中心大样本病理 (22/431 = 5.1%) 证实其几乎不表达 DLL3，临床应优选 SSTR2 核药。'
+  },
+  'GUARD-2': {
+    enName: 'Unselected Non-Neuroendocrine Solid Tumors (Breast / Ovarian HGSC / MM / NSCLC)',
+    zhName: '非筛选常见实体瘤与血液肿瘤 (乳腺 / 卵巢浆液癌 / 骨髓瘤 / 普通肺腺癌)',
+    organEn: 'Negative Hub-Bias Guardrail', organZh: '通用图谱中心度偏差护栏',
+    tierKey: 'GUARD',
+    badgeEn: 'Do Not Enroll (0%–2.9% DLL3+)', badgeZh: '严禁入组 (0%–2.9% DLL3+)',
+    badgeCls: 'b-rose',
+    gatePlainEn: 'Contraindicated (Zero Target Surface Protein)',
+    gatePlainZh: '禁忌入组 (肿瘤表面无靶点蛋白)',
+    gateCls: 'g-stop',
+    watchEn: 'High-degree oncology hubs score artificially high in generic link prediction, yet primary human IHC confirms 0.0%–1.3% DLL3+ — hard target-expression gating prevents futile clinical trials.',
+    watchZh: '高连接度常见大癌种在通用图谱模型中易产生假阳性高分，但人体活检 IHC 证实仅 0%–1.3% 表达，硬性靶点门控可避免无效临床投入。'
+  },
+  'EXP-S1': {
+    enName: '1L Extensive-Stage SCLC Maintenance & Chemo-IO (DeLLphi-305 / 312)',
+    zhName: '一线广泛期小细胞肺癌维持与联合一线基线 (DeLLphi-305 / 312)',
+    organEn: 'Committed SCLC Franchise (Table A)', organZh: '已承诺 SCLC 核心基线 (表A)',
+    tierKey: 'BASE',
+    badgeEn: 'Committed Registrational Ph3 Baseline', badgeZh: '已承诺注册 III 期核心基线',
+    badgeCls: 'b-teal',
+    gatePlainEn: 'All-Comer SCLC Franchise Anchor',
+    gatePlainZh: '全人群 SCLC 核心适应症锚点',
+    gateCls: 'g-open',
+    watchEn: 'Already in late-stage Phase 3 execution (DeLLphi-305 positive OS HR 0.42; DeLLphi-312 N=350 ongoing) — segregated in Table A so core SCLC revenue never inflates new indication expansion ROI.',
+    watchZh: '已处于注册 III 期兑现阶段（DeLLphi-305 总生存 HR 0.42 阳性），单独归入表 A，严防将核心 SCLC 价值混入新适应症拓展回报。'
+  },
+  'EXP-S3': {
+    enName: 'Limited-Stage SCLC Post-Chemoradiation Consolidation (DeLLphi-306)',
+    zhName: '局限期小细胞肺癌同步放化疗后巩固治疗 (DeLLphi-306)',
+    organEn: 'Committed SCLC Franchise (Table A)', organZh: '已承诺 SCLC 核心基线 (表A)',
+    tierKey: 'BASE',
+    badgeEn: 'Committed Registrational Ph3 Baseline', badgeZh: '已承诺注册 III 期核心基线',
+    badgeCls: 'b-teal',
+    gatePlainEn: 'All-Comer LS-SCLC Consolidation',
+    gatePlainZh: '全人群局限期 SCLC 巩固基线',
+    gateCls: 'g-open',
+    watchEn: 'Ongoing Amgen Phase 3 DeLLphi-306 (NCT06117774, N=404) & cooperative PrECOG Phase 3 (NCT07637513, N=430) — segregated in Table A Committed Baseline.',
+    watchZh: 'Amgen III 期 DeLLphi-306 (NCT06117774, N=404) 与 PrECOG 协作组 III 期正在推进，归属表 A 核心已承诺基线。'
+  },
+  'EXP-S2': {
+    enName: 'SCLC Next-Gen ADC Combinations & Subcutaneous Formulation (DeLLphi-310 / 311)',
+    zhName: 'SCLC 下一代 ADC 联用与皮下制剂生命周期管线 (DeLLphi-310 / 311)',
+    organEn: 'Committed SCLC Lifecycle (Table A)', organZh: '已承诺 SCLC 生命周期管线 (表A)',
+    tierKey: 'BASE',
+    badgeEn: 'Committed SCLC Combo & SC Lifecycle', badgeZh: '已承诺 SCLC 联用与皮下管线',
+    badgeCls: 'b-teal',
+    gatePlainEn: 'All-Comer SCLC Next-Gen Lifecycle',
+    gatePlainZh: 'SCLC 制剂升级与 ADC 联用管线',
+    gateCls: 'g-open',
+    watchEn: 'Active Amgen trials combining tarlatamab with ZL-1310 (NCT07531095), AB248 (DeLLphi-311), YL201, and Phase 3 subcutaneous dosing (DeLLphi-310 NCT07778316).',
+    watchZh: '涵盖已启动的 +ZL-1310、+AB248、+YL201 联用及 DeLLphi-310 皮下给药 III 期桥接研究，归入表 A 核心基线。'
+  }
+};
+
+function escH(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function getCompanionKgHref(did, cid, targetTab) {
+  const p = window.location.pathname || '';
+  let base = 'AMG757_Tarlatamab_Indication_Expansion_Studio.html';
+  if (p.indexOf('/results_v4/') !== -1) {
+    base = '../visualization_studio/AMG757_Tarlatamab_Indication_Expansion_Studio.html';
+  } else if (p.indexOf('/amgen_discovery_studio/') !== -1) {
+    base = '../../visualization_studio/AMG757_Tarlatamab_Indication_Expansion_Studio.html';
+  } else if (p.indexOf('/doc_to_gdrive/') !== -1) {
+    base = '../../../visualization_studio/AMG757_Tarlatamab_Indication_Expansion_Studio.html';
+  }
+  const v3Map = {};
+  (DATA.crosswalk || []).forEach(x => {
+    if (x.v4_id && x.v3_id && x.v3_id.indexOf('EXP-') === 0) v3Map[x.v4_id] = 'AMG757-' + x.v3_id;
+  });
+  const params = [];
+  if (did) params.push('disease=' + encodeURIComponent(did));
+  if (cid && v3Map[cid]) params.push('cohort=' + encodeURIComponent(v3Map[cid]));
+  if (targetTab) params.push('tab=' + encodeURIComponent(targetTab));
+  return base + (params.length ? '?' + params.join('&') : '');
+}
+
+function openCompanionStudio(did, cid, targetTab) {
+  window.open(getCompanionKgHref(did, cid, targetTab || 'bite-expansion'), '_blank');
+}
+
+function toggleAuditDrawer() {
+  AUDIT_OPEN = !AUDIT_OPEN;
+  const dr = document.getElementById('audit-drawer');
+  const btn = document.getElementById('btn-audit-toggle');
+  if (dr) dr.style.display = AUDIT_OPEN ? 'block' : 'none';
+  if (btn) {
+    btn.textContent = LANG === 'en'
+      ? (AUDIT_OPEN ? '🛡️ Hide Technical Audit Badges ▴' : '🛡️ Technical & Biostat Audit Badges ▾')
+      : (AUDIT_OPEN ? '🛡️ 收起统计与合规审计铭牌 ▴' : '🛡️ 展开统计与合规审计铭牌 ▾');
+  }
+}
+
+function cohortMeta(r) {
+  return COHORT_FRIENDLY[r.cohort_id] || {
+    enName: r.setting_label, zhName: r.setting_label,
+    organEn: r.portfolio_bucket, organZh: r.portfolio_bucket,
+    tierKey: 'TIER3', badgeEn: r.recommended_portfolio_action, badgeZh: r.recommended_portfolio_action,
+    badgeCls: 'b-sky', gatePlainEn: r.biomarker_gate, gatePlainZh: r.biomarker_gate,
+    gateCls: 'g-ge1', watchEn: r.strategic_rationale, watchZh: r.strategic_rationale
+  };
+}
+
+function isRecommendedPositive(r) {
+  const meta = cohortMeta(r);
+  return meta.tierKey === 'TIER1' || meta.tierKey === 'TIER2' || meta.tierKey === 'TIER3';
+}
+
+function bestRouteRnpv(r, loe) {
+  const v0 = loe === '2036' ? r.q3_rnpv_base_musd : r.q3_rnpv_patent_2039_musd;
+  const v1 = loe === '2036' ? r.q3_rnpv_v1_iit_federation_2036_musd : r.q3_rnpv_v1_iit_federation_2039_musd;
+  const v2 = loe === '2036' ? r.q3_rnpv_v2_denovo_basket_2036_musd : r.q3_rnpv_v2_denovo_basket_2039_musd;
+  return { v0, v1, v2, best: Math.max(v0, v1, v2) };
+}
+
+function syncLoeHorizon(val) {
+  const s1 = document.getElementById('demo-loe');
+  const s2 = document.getElementById('loe-mode');
+  if (s1 && s1.value !== val) s1.value = val;
+  if (s2 && s2.value !== val) s2.value = val;
+  renderTableB();
+  renderDemoHub();
+}
+
+function setDemoFilter(fKey) {
+  DEMO_FILTER = fKey;
+  renderDemoHub();
+}
+
+function getFilteredDemoRows() {
+  const loe = (document.getElementById('demo-loe') && document.getElementById('demo-loe').value) || '2036';
+  const q = DEMO_SEARCH.trim().toLowerCase();
+  let rows = DATA.decision_rows.filter(r => {
+    const m = cohortMeta(r);
+    if (DEMO_FILTER === 'RECOMMENDED' && !isRecommendedPositive(r)) return false;
+    if (DEMO_FILTER === 'ALL_EXP' && m.tierKey === 'BASE') return false;
+    if (DEMO_FILTER === 'TIER1' && m.tierKey !== 'TIER1') return false;
+    if (DEMO_FILTER === 'TIER2' && m.tierKey !== 'TIER2') return false;
+    if (DEMO_FILTER === 'TIER3' && m.tierKey !== 'TIER3') return false;
+    if (DEMO_FILTER === 'EXPLORE' && m.tierKey !== 'EXPLORE') return false;
+    if (DEMO_FILTER === 'GUARD' && m.tierKey !== 'GUARD') return false;
+    if (DEMO_FILTER === 'BASE' && m.tierKey !== 'BASE') return false;
+    if (q) {
+      const hay = [
+        r.cohort_id, r.setting_label, m.enName, m.zhName, m.organEn, m.organZh,
+        m.gatePlainEn, r.biomarker_gate, r.anchor_trial_nct, r.federation_iit_ncts,
+        r.q4_top1_partner, r.q4_top2_partner, r.strategic_rationale
+      ].join(' ').toLowerCase();
+      if (hay.indexOf(q) === -1) return false;
+    }
+    return true;
+  });
+
+  rows.sort((a, b) => {
+    if (DEMO_SORT === 'orr') {
+      const oa = a.q2_pred_orr_median != null ? a.q2_pred_orr_median : -1;
+      const ob = b.q2_pred_orr_median != null ? b.q2_pred_orr_median : -1;
+      return ob - oa;
+    }
+    if (DEMO_SORT === 'dll3') {
+      return (b.q1_dll3_ge1_median || 0) - (a.q1_dll3_ge1_median || 0);
+    }
+    if (DEMO_SORT === 'rnpv') {
+      return bestRouteRnpv(b, loe).v2 - bestRouteRnpv(a, loe).v2;
+    }
+    if (DEMO_SORT === 'patients') {
+      return (b.q3_biomarker_eligible_patients || 0) - (a.q3_biomarker_eligible_patients || 0);
+    }
+    const ra = a.shared_basket_option_rank != null ? a.shared_basket_option_rank : (cohortMeta(a).tierKey === 'BASE' ? 50 : 99);
+    const rb = b.shared_basket_option_rank != null ? b.shared_basket_option_rank : (cohortMeta(b).tierKey === 'BASE' ? 50 : 99);
+    return ra - rb;
+  });
+  return rows;
+}
+
+function stepDemoCohort(delta) {
+  const rows = getFilteredDemoRows();
+  if (!rows.length) return;
+  const idx = rows.findIndex(r => r.cohort_id === DEMO_SELECTED);
+  const nextIdx = idx === -1 ? 0 : (idx + delta + rows.length) % rows.length;
+  focusDemoCohort(rows[nextIdx].cohort_id, false);
+}
+
+function focusDemoCohort(cid, scrollCard) {
+  DEMO_SELECTED = cid;
+  selectCohort(cid);
+  renderDemoHub();
+  if (scrollCard) {
+    const el = document.querySelector(`.ind-card[data-cid="${cid}"]`);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
+function jumpToTableBCohort(cid) {
+  const tb1 = document.getElementById('tb-1');
+  if (tb1) switchTab('t1', tb1);
+  const tf = document.getElementById('tier-filter');
+  if (tf) { tf.value = 'ALL'; renderTableB(); }
+  selectCohort(cid);
+  const rowEl = document.querySelector(`#tab-b tbody tr[data-cid="${cid}"]`);
+  if (rowEl) rowEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function renderDemoRibbon() {
+  const loe = (document.getElementById('demo-loe') && document.getElementById('demo-loe').value) || '2036';
+  const s4 = DATA.decision_rows.find(r => r.cohort_id === 'EXP-S4');
+  const l1 = DATA.decision_rows.find(r => r.cohort_id === 'EXP-L1');
+  const l2 = DATA.decision_rows.find(r => r.cohort_id === 'EXP-L2');
+  const ps = DATA.breakdown;
+  const voi = DATA.voi_summary;
+  const s4Val = loe === '2036' ? s4.q3_rnpv_v2_denovo_basket_2036_musd : s4.q3_rnpv_v2_denovo_basket_2039_musd;
+  const thorVal = (loe === '2036' ? l1.q3_rnpv_v2_denovo_basket_2036_musd + l2.q3_rnpv_v2_denovo_basket_2036_musd : l1.q3_rnpv_v2_denovo_basket_2039_musd + l2.q3_rnpv_v2_denovo_basket_2039_musd);
+
+  const cards = LANG === 'en' ? [
+    {
+      cls: 'rib-emerald', fKey: 'TIER1', pick: 'EXP-S4',
+      step: 'PRIORITY 1 · ADVANCE DEDICATED PH2 NOW',
+      title: '#1 ES-SCLC Active Brain Mets (EXP-S4)',
+      metric: `${fmtM(s4Val, 1, true)} (${loe}) · 80.8% DLL3+`,
+      desc: 'Unmet active CNS metastasis subgroup; Maastricht Ph2 NCT07402343 (N=35) recruiting now.'
+    },
+    {
+      cls: 'rib-sky', fKey: 'TIER2', pick: 'EXP-L1',
+      step: 'PRIORITY 2 · LEAD THORACIC NEUROENDOCRINE',
+      title: '#2 Lung LCNEC & #3 EGFRm t-SCLC',
+      metric: `LCNEC ${(100*l1.q2_pred_orr_median).toFixed(1)}% ORR · ${fmtM(thorVal, 1, true)}`,
+      desc: 'ASCL1+ lineage plasticity tumors; IFCT Ph3 NCT06937905 & Samsung Ph2 NCT06830694 recruiting.'
+    },
+    {
+      cls: 'rib-violet', fKey: 'TIER3', pick: 'EXP-A',
+      step: 'PRIORITY 3 · RARE EXTRA-PULMONARY BASKET (#4–#8)',
+      title: 'Merkel · Prostate NEPC · GU/GYN · GEP-NEC · MTC',
+      metric: `V0 ${fmtM(ps.incremental_rare_non_sclc_standalone_rnpv_musd,1,true)} -> V1 ${fmtM(ps.incremental_rare_non_sclc_v1_iit_federation_rnpv_musd,1,true)} -> V2 ${fmtM(ps.incremental_rare_non_sclc_v2_denovo_basket_rnpv_musd,1,true)}`,
+      desc: `Screen in 11 open academic IITs (EVSI $${voi.total_evsi_across_non_sclc_v1_iit_triggers_musd.toFixed(2)}M) or run 1 Shared Basket — never standalone trials.`
+    },
+    {
+      cls: 'rib-rose', fKey: 'GUARD', pick: 'GUARD-1',
+      step: 'SAFETY & BIOMARKER GUARDRAILS (4 SETTINGS)',
+      title: '2 Exploratory Gates + 2 Do-Not-Enroll Stops',
+      metric: 'G1/G2 Carcinoid 5.6% · Non-NE Hubs 2.9% DLL3+',
+      desc: 'Neuroblastoma (BPCA gate) & Glioma (BBB gate) deferred; low-DLL3 tumors strictly excluded.'
+    }
+  ] : [
+    {
+      cls: 'rib-emerald', fKey: 'TIER1', pick: 'EXP-S4',
+      step: '第一梯队 · 立即推进独立 II 期',
+      title: '#1 伴活动性脑转移 ES-SCLC (EXP-S4)',
+      metric: `${fmtM(s4Val, 1, true)} (${loe}) · 80.8% DLL3+`,
+      desc: '未满足的活动性脑转移亚群；马斯特里赫特 II 期 NCT07402343 (N=35) 正在招募。'
+    },
+    {
+      cls: 'rib-sky', fKey: 'TIER2', pick: 'EXP-L1',
+      step: '第二梯队 · 胸部神经内分泌主力拓展',
+      title: '#2 肺大细胞 LCNEC 与 #3 EGFR转化型 SCLC',
+      metric: `LCNEC 预测 ${(100*l1.q2_pred_orr_median).toFixed(1)}% ORR · 合计 ${fmtM(thorVal, 1, true)}`,
+      desc: '共享 ASCL1 神经内分泌谱系；法国 IFCT III 期与三星 II 期联合试验在研。'
+    },
+    {
+      cls: 'rib-violet', fKey: 'TIER3', pick: 'EXP-A',
+      step: '第三梯队 · 5项罕见肺外神经内分泌篮式 (#4–#8)',
+      title: '默克尔癌 · 前列腺NEPC · 泌尿妇科 · 胃肠胰 · 甲髓癌',
+      metric: `独立V0 ${fmtM(ps.incremental_rare_non_sclc_standalone_rnpv_musd,1,true)} -> 联盟V1 ${fmtM(ps.incremental_rare_non_sclc_v1_iit_federation_rnpv_musd,1,true)} -> 篮式V2 ${fmtM(ps.incremental_rare_non_sclc_v2_denovo_basket_rnpv_musd,1,true)}`,
+      desc: `先借 11 项开放学术 IIT 免费探路 (信息价值 $${voi.total_evsi_across_non_sclc_v1_iit_triggers_musd.toFixed(2)}M) 或共享主篮式分摊成本。`
+    },
+    {
+      cls: 'rib-rose', fKey: 'GUARD', pick: 'GUARD-1',
+      step: '安全与生物标志物红线护栏 (4项)',
+      title: '2项条件性探索 + 2项严禁入组阴性对照',
+      metric: 'G1/G2类癌 5.6% · 普通大癌种 2.9% DLL3+',
+      desc: '神母细胞瘤(待BPCA)与胶质瘤(血脑屏障)审慎观望；无靶点肿瘤硬性拦截。'
+    }
+  ];
+
+  const box = document.getElementById('demo-tier-ribbon');
+  if (!box) return;
+  box.innerHTML = cards.map(c => `
+    <div class="rib-card ${c.cls} ${DEMO_FILTER === c.fKey ? 'rib-active' : ''}" onclick="DEMO_FILTER='${c.fKey}';DEMO_SELECTED='${c.pick}';selectCohort('${c.pick}');renderDemoHub();">
+      <div class="rib-step">${escH(c.step)}</div>
+      <div class="rib-title">${escH(c.title)}</div>
+      <div class="rib-metric">${escH(c.metric)}</div>
+      <div class="rib-desc">${escH(c.desc)}</div>
+    </div>
+  `).join('');
+}
+
+function renderDemoFilterPills() {
+  const counts = {
+    RECOMMENDED: DATA.decision_rows.filter(isRecommendedPositive).length,
+    ALL_EXP: DATA.decision_rows.filter(r => cohortMeta(r).tierKey !== 'BASE').length,
+    TIER1: DATA.decision_rows.filter(r => cohortMeta(r).tierKey === 'TIER1').length,
+    TIER2: DATA.decision_rows.filter(r => cohortMeta(r).tierKey === 'TIER2').length,
+    TIER3: DATA.decision_rows.filter(r => cohortMeta(r).tierKey === 'TIER3').length,
+    EXPLORE: DATA.decision_rows.filter(r => cohortMeta(r).tierKey === 'EXPLORE').length,
+    GUARD: DATA.decision_rows.filter(r => cohortMeta(r).tierKey === 'GUARD').length,
+    BASE: DATA.decision_rows.filter(r => cohortMeta(r).tierKey === 'BASE').length
+  };
+  const defs = LANG === 'en' ? [
+    ['RECOMMENDED', `★ Top Recommended (${counts.RECOMMENDED})`],
+    ['ALL_EXP', `All Expansion + Guardrails (${counts.ALL_EXP})`],
+    ['TIER1', `Tier 1: Immediate Ph2 (${counts.TIER1})`],
+    ['TIER2', `Tier 2: Thoracic NE (${counts.TIER2})`],
+    ['TIER3', `Tier 3: Rare NE Basket (${counts.TIER3})`],
+    ['EXPLORE', `Exploratory Gates (${counts.EXPLORE})`],
+    ['GUARD', `⛔ Do Not Enroll (${counts.GUARD})`],
+    ['BASE', `✓ Core SCLC Baseline (${counts.BASE})`]
+  ] : [
+    ['RECOMMENDED', `★ 推荐拓展适应症 (${counts.RECOMMENDED})`],
+    ['ALL_EXP', `全部候选与阴性护栏 (${counts.ALL_EXP})`],
+    ['TIER1', `第一梯队：立即II期 (${counts.TIER1})`],
+    ['TIER2', `第二梯队：胸部神经内分泌 (${counts.TIER2})`],
+    ['TIER3', `第三梯队：罕见肺外篮式 (${counts.TIER3})`],
+    ['EXPLORE', `条件探索门控 (${counts.EXPLORE})`],
+    ['GUARD', `⛔ 严禁入组护栏 (${counts.GUARD})`],
+    ['BASE', `✓ 已承诺SCLC基线 (${counts.BASE})`]
+  ];
+  const el = document.getElementById('demo-filter-pills');
+  if (!el) return;
+  el.innerHTML = defs.map(([k, lbl]) =>
+    `<button type="button" class="f-pill ${DEMO_FILTER === k ? 'active' : ''}" onclick="setDemoFilter('${k}')">${escH(lbl)}</button>`
+  ).join('');
+}
+
+function parseCriBounds(criStr) {
+  const m = String(criStr || '').match(/([\d.]+)%[^\d]+([\d.]+)%/);
+  if (!m) return null;
+  return [parseFloat(m[1]), parseFloat(m[2])];
+}
+
+function renderDemoVisualMap(activeRow) {
+  const wrap = document.getElementById('demo-map-card');
+  if (!wrap) return;
+  wrap.style.display = DEMO_SHOW_MAP ? 'block' : 'none';
+  if (!DEMO_SHOW_MAP) return;
+
+  const loe = (document.getElementById('demo-loe') && document.getElementById('demo-loe').value) || '2036';
+  const mapRows = DATA.decision_rows.filter(r => cohortMeta(r).tierKey !== 'BASE');
+  const W = 760, H = 286;
+  const padT = 24, padB = 38;
+  const ih = H - padT - padB;
+  // Broken X-axis: [50..130] = 0..14% Guardrail zone; [156..556] = 45..92% Zoomed Expansion zone; [556..752] = Right callout margin
+  const gX0 = 50, gX1 = 130, mX0 = 156, mX1 = 556;
+  const xOf = pct => {
+    if (pct <= 14) return gX0 + (Math.max(0, pct) / 14) * (gX1 - gX0);
+    return mX0 + ((Math.max(45, Math.min(92, pct)) - 45) / 47) * (mX1 - mX0);
+  };
+  const yOf = orr => padT + ih - Math.max(0, Math.min(62, orr)) / 62 * ih;
+
+  const colorMap = {
+    TIER1: '#10b981', TIER2: '#38bdf8', TIER3: '#a78bfa', EXPLORE: '#f59e0b', GUARD: '#f43f5e'
+  };
+
+  const pts = mapRows.map(r => {
+    const m = cohortMeta(r);
+    const xPct = 100 * (r.q1_dll3_ge1_median || 0);
+    const yPct = r.q2_pred_orr_median != null ? 100 * r.q2_pred_orr_median : (r.cohort_id === 'GUARD-1' ? 6.5 : 2.5);
+    const ptsYr = r.q3_biomarker_eligible_patients || 250;
+    const rad = m.tierKey === 'GUARD' ? 6.0 : Math.max(7.0, Math.min(14.5, 5.2 + Math.sqrt(ptsYr / 460)));
+    const shortLbl = LANG === 'en'
+      ? ({
+          'EXP-S4': '#1 Brain Mets (33%†)', 'EXP-L1': '#2 Lung LCNEC (44.5%)', 'EXP-L2': '#3 EGFRm t-SCLC',
+          'EXP-A': '#4 Merkel Cell', 'EXP-D': '#5 Prostate NEPC (>=50%)', 'EXP-C': '#6 GU/GYN SCNEC',
+          'EXP-E': '#7 GEP-NEC (>=50%)', 'EXP-B': '#8 Medullary Thyroid',
+          'EXP-G': '#9 Pedi Neuroblastoma', 'EXP-F': '#10 IDH Glioma (BBB)',
+          'GUARD-1': '⛔ G1/G2 Carcinoid', 'GUARD-2': '⛔ Non-NE Hubs'
+        }[r.cohort_id] || r.cohort_id)
+      : ({
+          'EXP-S4': '#1 脑转移SCLC (33%†)', 'EXP-L1': '#2 肺LCNEC (44.5%)', 'EXP-L2': '#3 EGFR转化SCLC',
+          'EXP-A': '#4 默克尔癌', 'EXP-D': '#5 前列腺NEPC (>=50%)', 'EXP-C': '#6 泌尿妇科SCNEC',
+          'EXP-E': '#7 胃肠胰NEC (>=50%)', 'EXP-B': '#8 甲状腺髓样癌',
+          'EXP-G': '#9 儿童神母(BPCA)', 'EXP-F': '#10 胶质瘤(BBB)',
+          'GUARD-1': '⛔ G1/G2类癌', 'GUARD-2': '⛔ 普通实体瘤'
+        }[r.cohort_id] || r.cohort_id);
+    // Split high-DLL3 cluster cleanly into Left Callout Bank (<=78% DLL3+) vs Right Callout Bank (>78% DLL3+)
+    const bank = m.tierKey === 'GUARD' ? 'guard' : (xPct <= 78.0 ? 'left' : 'right');
+    return {
+      r, m, x: xOf(xPct), y: yOf(yPct), xPct, yPct, rad,
+      color: colorMap[m.tierKey] || '#38bdf8',
+      shortLbl, bank
+    };
+  });
+
+  // Guardrail labels sit right beside their low-DLL3 dots
+  pts.filter(p => p.bank === 'guard').sort((a, b) => a.y - b.y).forEach((p, idx) => {
+    p.lx = p.x + p.rad + 5;
+    p.ly = idx === 0 ? p.y - 3 : p.y + 6;
+    p.anchor = 'start';
+  });
+
+  // Left callout bank at x = 312 (well left of 65.4% = 329.6) and Right callout bank at x = 548 (well right of 83.9% = 487.1)
+  [
+    { key: 'left', lx: 310, anchor: 'end', yMin: padT + 28, yMax: padT + ih - 8 },
+    { key: 'right', lx: 522, anchor: 'start', yMin: padT + 34, yMax: padT + ih - 6 }
+  ].forEach(cfg => {
+    const grp = pts.filter(p => p.bank === cfg.key).sort((a, b) => a.y - b.y);
+    grp.forEach((p, i) => {
+      p.lx = cfg.lx;
+      p.anchor = cfg.anchor;
+      p.ly = Math.max(cfg.yMin, p.y + 3.5);
+      if (i > 0 && p.ly - grp[i - 1].ly < 21) p.ly = grp[i - 1].ly + 21;
+    });
+    for (let i = grp.length - 1; i >= 0; i--) {
+      if (grp[i].ly > cfg.yMax) grp[i].ly = cfg.yMax;
+      if (i > 0 && grp[i].ly - grp[i - 1].ly < 19.5) grp[i - 1].ly = Math.max(cfg.yMin, grp[i].ly - 19.5);
+    }
+  });
+
+  const selPt = pts.find(p => p.r.cohort_id === (activeRow && activeRow.cohort_id));
+  let selCriLine = '';
+  if (selPt && selPt.r.q2_pred_orr_median != null) {
+    const bds = parseCriBounds(selPt.r.q2_pred_orr_cri95);
+    if (bds) {
+      const yLo = yOf(Math.min(61, bds[0])), yHi = yOf(Math.min(61, bds[1]));
+      selCriLine = `<line x1="${selPt.x.toFixed(1)}" y1="${yHi.toFixed(1)}" x2="${selPt.x.toFixed(1)}" y2="${yLo.toFixed(1)}" stroke="#f8fafc" stroke-width="1.7" stroke-dasharray="3 2" opacity="0.85"/>`;
+    }
+  }
+
+  const xAxisLbl = LANG === 'en' ? 'Patient Tumor Surface DLL3+ Positivity (Q1 Posterior Median % — Zoomed 50%–90% Sweet-Spot)' : '患者肿瘤表面 DLL3+ 阳性率 (Q1 后验中位数 % — 50%–90% 甜点区放大)';
+  const yAxisLbl = LANG === 'en' ? 'Expected ORR (%)' : '预期缓解率 ORR (%)';
+  const sweetLbl = LANG === 'en' ? '★ Recommended High-DLL3 / Active Response Zone' : '★ 推荐拓展甜点区 (高DLL3 + 高预期缓解)';
+  const stopLbl = LANG === 'en' ? '⛔ Exclude' : '⛔ 禁入区';
+
+  const svgHtml = `
+    <svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block;">
+      <rect x="${xOf(50).toFixed(1)}" y="${padT}" width="${(xOf(91) - xOf(50)).toFixed(1)}" height="${(yOf(18) - padT).toFixed(1)}" rx="7" fill="rgba(16,185,129,0.09)" stroke="rgba(16,185,129,0.34)" stroke-dasharray="4 3"/>
+      <rect x="${gX0}" y="${yOf(16).toFixed(1)}" width="${(gX1 - gX0 + 20).toFixed(1)}" height="${(padT + ih - yOf(16)).toFixed(1)}" rx="5" fill="rgba(244,63,94,0.10)" stroke="rgba(244,63,94,0.32)" stroke-dasharray="3 3"/>
+      <text x="${(xOf(51.5)).toFixed(1)}" y="${padT + 15}" fill="#6ee7b7" font-size="10.5" font-weight="700">${escH(sweetLbl)}</text>
+      <text x="${gX0 + 5}" y="${(yOf(16) + 13).toFixed(1)}" fill="#fda4af" font-size="9.6" font-weight="700">${escH(stopLbl)}</text>
+      ${[0, 10].map(v => `
+        <line x1="${xOf(v).toFixed(1)}" y1="${padT}" x2="${xOf(v).toFixed(1)}" y2="${padT + ih}" stroke="rgba(148,163,184,0.12)"/>
+        <text x="${xOf(v).toFixed(1)}" y="${padT + ih + 14}" text-anchor="middle" fill="#94a3b8" font-size="9.8">${v}%</text>
+      `).join('')}
+      <text x="143" y="${padT + ih + 13}" text-anchor="middle" fill="#64748b" font-size="11" font-weight="800">//</text>
+      ${[50, 60, 70, 80, 90].map(v => `
+        <line x1="${xOf(v).toFixed(1)}" y1="${padT}" x2="${xOf(v).toFixed(1)}" y2="${padT + ih}" stroke="rgba(148,163,184,0.12)"/>
+        <text x="${xOf(v).toFixed(1)}" y="${padT + ih + 14}" text-anchor="middle" fill="#94a3b8" font-size="9.8">${v}%</text>
+      `).join('')}
+      ${[0, 20, 40, 60].map(v => `
+        <line x1="${gX0}" y1="${yOf(v).toFixed(1)}" x2="${W - 14}" y2="${yOf(v).toFixed(1)}" stroke="rgba(148,163,184,0.11)"/>
+        <text x="${gX0 - 7}" y="${(yOf(v) + 3.5).toFixed(1)}" text-anchor="end" fill="#94a3b8" font-size="9.8">${v}%</text>
+      `).join('')}
+      ${selCriLine}
+      ${pts.map(p => {
+        const isSel = activeRow && p.r.cohort_id === activeRow.cohort_id;
+        let leader = '';
+        if (p.bank === 'left') {
+          const sx = p.x - p.rad - 1.5;
+          const kneeX = Math.min(sx - 6, p.lx + 14);
+          leader = `<polyline points="${sx.toFixed(1)},${p.y.toFixed(1)} ${kneeX.toFixed(1)},${(p.ly - 3.2).toFixed(1)} ${(p.lx + 3).toFixed(1)},${(p.ly - 3.2).toFixed(1)}" fill="none" stroke="${isSel ? '#7dd3fc' : 'rgba(148,163,184,0.42)'}" stroke-width="${isSel ? '1.4' : '0.95'}"/>`;
+        } else if (p.bank === 'right') {
+          const sx = p.x + p.rad + 1.5;
+          const kneeX = Math.max(sx + 6, p.lx - 14);
+          leader = `<polyline points="${sx.toFixed(1)},${p.y.toFixed(1)} ${kneeX.toFixed(1)},${(p.ly - 3.2).toFixed(1)} ${(p.lx - 3).toFixed(1)},${(p.ly - 3.2).toFixed(1)}" fill="none" stroke="${isSel ? '#7dd3fc' : 'rgba(148,163,184,0.42)'}" stroke-width="${isSel ? '1.4' : '0.95'}"/>`;
+        }
+        return `
+          <g style="cursor:pointer;" onclick="focusDemoCohort('${p.r.cohort_id}', true)">
+            ${leader}
+            ${isSel ? `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${(p.rad + 4.2).toFixed(1)}" fill="none" stroke="#fff" stroke-width="2"/>` : ''}
+            <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${p.rad.toFixed(1)}" fill="${p.color}" fill-opacity="${isSel ? '0.98' : '0.84'}" stroke="${isSel ? '#fff' : '#0f172a'}" stroke-width="${isSel ? '2' : '1.3'}">
+              <title>${escH(p.m.enName)} (${p.r.cohort_id}) — DLL3+: ${p.xPct.toFixed(1)}%, ORR: ${p.r.q2_pred_orr_median != null ? p.yPct.toFixed(1) + '%' : 'Guardrail'}</title>
+            </circle>
+            <text x="${p.lx.toFixed(1)}" y="${p.ly.toFixed(1)}" text-anchor="${p.anchor}" fill="${isSel ? '#ffffff' : '#dbeafe'}" font-size="${isSel ? '10.6' : '9.9'}" font-weight="${isSel ? '800' : '600'}">${escH(p.shortLbl)}</text>
+          </g>
+        `;
+      }).join('')}
+      <text x="${(gX0 + W - 14) / 2}" y="${H - 6}" text-anchor="middle" fill="#cbd5e1" font-size="10.5" font-weight="700">${escH(xAxisLbl)}</text>
+      <text transform="translate(14, ${padT + ih / 2}) rotate(-90)" text-anchor="middle" fill="#cbd5e1" font-size="10.5" font-weight="700">${escH(yAxisLbl)}</text>
+    </svg>
+  `;
+
+  // Right side of map card: Route Economics visual for active indication + Rare 7-cohort summary
+  const ps = DATA.breakdown;
+  const rObj = activeRow || DATA.decision_rows.find(x => x.cohort_id === 'EXP-S4');
+  const rm = cohortMeta(rObj);
+  const rv = bestRouteRnpv(rObj, loe);
+  const maxAbs = Math.max(40, Math.abs(rv.v0), Math.abs(rv.v1), Math.abs(rv.v2));
+  const routeRows = LANG === 'en' ? [
+    { lbl: 'Route V0 · Separate Standalone Ph2 Trial', val: rv.v0, sub: 'Full standalone IND overhead per disease' },
+    { lbl: 'Route V1 · Screen First in Open Academic IITs', val: rv.v1, sub: '11 recruiting academic trials (N=517) filter winners first' },
+    { lbl: 'Route V2 · Amgen Shared Master Basket', val: rv.v2, sub: '1 shared protocol across rare DLL3+ cohorts' }
+  ] : [
+    { lbl: '路径 V0 · 每个癌种单独开独立 II 期', val: rv.v0, sub: '单一罕见瘤种无法承担高昂固定建组成本' },
+    { lbl: '路径 V1 · 依托 11 项开放学术 IIT 先筛信号', val: rv.v1, sub: '学术网络 (N=517) 先筛出有效队列再追加投入' },
+    { lbl: '路径 V2 · 新建 Amgen 共享主篮式方案', val: rv.v2, sub: '多个 DLL3+ 队列共享同一主方案分摊成本' }
+  ];
+
+  document.getElementById('demo-map-svg-box').innerHTML = svgHtml;
+  document.getElementById('demo-route-box').innerHTML = `
+    <div style="font-size:0.74rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--accent);font-weight:700;margin-bottom:3px;">
+      ${LANG === 'en' ? 'WHY CLINICAL TRIAL ROUTE MATTERS' : '为什么临床开发路径决定成败'} (${loe})
+    </div>
+    <div style="font-size:0.93rem;font-weight:700;color:#fff;margin-bottom:8px;">
+      ${escH(rObj.cohort_id)} · ${escH(LANG === 'en' ? rm.enName : rm.zhName)}
+    </div>
+    ${routeRows.map(rr => {
+      const pos = rr.val >= 0;
+      const wPct = Math.min(100, Math.max(4, Math.abs(rr.val) / maxAbs * 100));
+      return `
+        <div style="margin-bottom:9px;">
+          <div style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:3px;">
+            <span style="font-weight:600;color:#e2e8f0;">${escH(rr.lbl)}</span>
+            <strong style="color:${pos ? '#34d399' : '#fb7185'};">${fmtM(rr.val, 1, true)}</strong>
+          </div>
+          <div style="height:8px;background:#0f172a;border-radius:999px;overflow:hidden;border:1px solid #1e293b;">
+            <div style="width:${wPct.toFixed(1)}%;height:100%;background:${pos ? 'linear-gradient(90deg,#059669,#34d399)' : 'linear-gradient(90deg,#be123c,#fb7185)'};border-radius:999px;"></div>
+          </div>
+          <div style="font-size:0.71rem;color:var(--muted);margin-top:2px;">${escH(rr.sub)}</div>
+        </div>
+      `;
+    }).join('')}
+    <div style="margin-top:8px;padding:8px 10px;border-radius:8px;background:rgba(56,189,248,0.09);border:1px solid rgba(56,189,248,0.28);font-size:0.75rem;color:#cbd5e1;">
+      ${LANG === 'en'
+        ? `<strong>7 Rare Extra-Pulmonary Cohorts Combined (2036):</strong> Standalone <code>V0 = ${fmtM(ps.incremental_rare_non_sclc_standalone_rnpv_musd,1,true)}</code> vs Open IIT Screen <code>V1 = ${fmtM(ps.incremental_rare_non_sclc_v1_iit_federation_rnpv_musd,1,true)}</code> vs Shared Basket <code>V2 = ${fmtM(ps.incremental_rare_non_sclc_v2_denovo_basket_rnpv_musd,1,true)}</code>.`
+        : `<strong>7项罕见肺外队列合计 (2036)：</strong> 独立开试验 <code>V0 = ${fmtM(ps.incremental_rare_non_sclc_standalone_rnpv_musd,1,true)}</code> vs 开放IIT筛选 <code>V1 = ${fmtM(ps.incremental_rare_non_sclc_v1_iit_federation_rnpv_musd,1,true)}</code> vs 共享主篮式 <code>V2 = ${fmtM(ps.incremental_rare_non_sclc_v2_denovo_basket_rnpv_musd,1,true)}</code>。`}
+    </div>
+  `;
+}
+
+function renderDemoCards(rows, loe) {
+  const grid = document.getElementById('demo-cards-grid');
+  if (!grid) return;
+  if (!rows.length) {
+    grid.innerHTML = `<div class="card" style="text-align:center;color:var(--muted);padding:28px;">${LANG === 'en' ? 'No indications match your search. Click Reset to view all recommended indications.' : '未找到匹配的适应症，请点击重置查看全部推荐适应症。'}</div>`;
+    return;
+  }
+
+  grid.innerHTML = rows.map(r => {
+    const m = cohortMeta(r);
+    const isSel = r.cohort_id === DEMO_SELECTED;
+    const rv = bestRouteRnpv(r, loe);
+    const ge1 = 100 * (r.q1_dll3_ge1_median || 0);
+    const ge50 = 100 * (r.q1_dll3_ge50_median || 0);
+    const sysTag = r.orr_applicability_scope === 'systemic_reference_only_intracranial_primary' ? '†' : '';
+    const orrVal = r.q2_pred_orr_median != null ? (100 * r.q2_pred_orr_median) : null;
+    const rkLbl = r.shared_basket_option_rank != null
+      ? (LANG === 'en' ? `#${r.shared_basket_option_rank} Priority` : `推荐 #${r.shared_basket_option_rank}`)
+      : (m.tierKey === 'GUARD' ? (LANG === 'en' ? '⛔ Exclude' : '⛔ 禁入') : (LANG === 'en' ? 'Core SCLC' : '核心基线'));
+    const anchorTxt = r.anchor_trial_nct && r.anchor_trial_nct.indexOf('NCT') === 0
+      ? r.anchor_trial_nct
+      : (LANG === 'en' ? 'Master Basket / Proposed' : '主篮式 / 拟议队列');
+    const ptsStr = r.q3_biomarker_eligible_patients > 0
+      ? `${r.q3_biomarker_eligible_patients.toLocaleString()} ${LANG === 'en' ? 'pts/yr' : '例/年'}`
+      : (LANG === 'en' ? '0 eligible (Excluded)' : '0 (禁忌入组)');
+
+    return `
+      <div class="ind-card ${isSel ? 'selected' : ''} tier-${m.tierKey.toLowerCase()}" data-cid="${r.cohort_id}" onclick="focusDemoCohort('${r.cohort_id}', false)">
+        <div class="ind-top">
+          <span class="rk-chip ${m.badgeCls}">${escH(rkLbl)}</span>
+          <span class="act-chip ${m.badgeCls}">${escH(LANG === 'en' ? m.badgeEn : m.badgeZh)}</span>
+        </div>
+        <div class="ind-title">${escH(LANG === 'en' ? m.enName : m.zhName)}</div>
+        <div class="ind-sub">
+          <code>${escH(r.cohort_id)}</code> · ${escH(LANG === 'en' ? m.organEn : m.organZh)} · <code>${escH(anchorTxt)}</code>
+        </div>
+        <div class="gate-banner ${m.gateCls}">
+          ${escH(LANG === 'en' ? m.gatePlainEn : m.gatePlainZh)}
+        </div>
+
+        <div class="metric-row">
+          <div class="metric-hdr">
+            <span>${LANG === 'en' ? 'Tumor Surface DLL3+ (>=1% / High >=50%)' : '肿瘤表面 DLL3+ (>=1% / 高密度 >=50%)'}</span>
+            <strong>${ge1.toFixed(1)}% <span style="color:var(--muted);font-weight:500;">/ ${ge50.toFixed(1)}%${r.q1_ge50_imputed_flag ? '*' : ''}</span></strong>
+          </div>
+          <div class="dual-bar">
+            <div class="dual-ge1" style="width:${Math.min(100, ge1).toFixed(1)}%;"></div>
+            <div class="dual-ge50" style="width:${Math.min(100, ge50).toFixed(1)}%;"></div>
+          </div>
+        </div>
+
+        <div class="metric-row">
+          <div class="metric-hdr">
+            <span>${LANG === 'en' ? 'Expected Response Rate (Q2 ORR)' : '预期客观缓解率 (Q2 ORR)'}</span>
+            <strong>${orrVal != null ? `${orrVal.toFixed(1)}%${sysTag} <span style="color:var(--muted);font-weight:500;">${escH(r.q2_pred_orr_cri95)}</span>` : (m.tierKey === 'BASE' ? (LANG === 'en' ? 'Ph3 OS / PFS Endpoint' : 'III期 OS/PFS 终点') : (LANG === 'en' ? 'Do Not Enroll' : '严禁入组'))}</strong>
+          </div>
+          <div class="dual-bar">
+            <div class="orr-fill" style="width:${orrVal != null ? Math.min(100, orrVal * 1.5).toFixed(1) : (m.tierKey === 'BASE' ? '78' : '0')}%;background:${m.tierKey === 'GUARD' ? '#f43f5e' : '#10b981'};"></div>
+          </div>
+        </div>
+
+        <div class="ind-foot">
+          <span>👥 ${escH(ptsStr)}</span>
+          ${m.tierKey === 'GUARD'
+            ? `<span style="color:#fda4af;font-weight:700;">${LANG === 'en' ? 'Contraindicated' : '不予开发'}</span>`
+            : `<span>
+                <span style="color:${rv.v0 >= 0 ? '#94a3b8' : '#fda4af'};">V0 ${fmtM(rv.v0, 1, true)}</span> ->
+                <strong style="color:${rv.v2 >= 0 ? '#34d399' : '#fbbf24'};">V2 ${fmtM(rv.v2, 1, true)}</strong>
+              </span>`}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderDemoSpotlight(r, allFiltered, loe) {
+  const box = document.getElementById('demo-spotlight');
+  if (!box || !r) return;
+  const m = cohortMeta(r);
+  const rv = bestRouteRnpv(r, loe);
+  const idx = allFiltered.findIndex(x => x.cohort_id === r.cohort_id);
+  const posLbl = idx !== -1
+    ? `${idx + 1} / ${allFiltered.length}`
+    : `1 / ${allFiltered.length || 1}`;
+
+  const sysTag = r.orr_applicability_scope === 'systemic_reference_only_intracranial_primary' ? '†' : '';
+  const orrTxt = r.q2_pred_orr_median != null
+    ? `${(100 * r.q2_pred_orr_median).toFixed(1)}%${sysTag}`
+    : (m.tierKey === 'BASE' ? 'OS / PFS' : '0% (Stop)');
+
+  const matchingTriggers = DATA.voi_triggers.filter(t => t.cohort_id_ref === r.cohort_id);
+  const matchingForecasts = DATA.forecasts.filter(f => f.cohort_id_ref === r.cohort_id);
+  const iitNcts = String(r.federation_iit_ncts || '').split(';').map(s => s.trim()).filter(Boolean);
+  const matchingIits = DATA.iit_inventory.filter(it => it.nct_id === r.anchor_trial_nct || iitNcts.indexOf(it.nct_id) !== -1).slice(0, 4);
+  const evs = (DATA.evidence_by_did[r.disease_id] || []).slice(0, 4);
+  const q6 = DATA.appendix_q6_by_cid[r.cohort_id];
+
+  const quickPicks = [
+    ['EXP-S4', LANG === 'en' ? '#1 Brain Mets' : '#1 脑转移'],
+    ['EXP-L1', LANG === 'en' ? '#2 Lung LCNEC' : '#2 肺LCNEC'],
+    ['EXP-A', LANG === 'en' ? '#4 Merkel Cell' : '#4 默克尔癌'],
+    ['EXP-D', LANG === 'en' ? '#5 Prostate NEPC' : '#5 前列腺NEPC'],
+    ['GUARD-1', LANG === 'en' ? '⛔ Carcinoid Stop' : '⛔ 类癌护栏']
+  ];
+
+  box.innerHTML = `
+    <div class="spot-nav">
+      <div style="display:flex;align-items:center;gap:6px;">
+        <button type="button" class="nav-mini" onclick="stepDemoCohort(-1)">◀ ${LANG === 'en' ? 'Prev' : '上一项'}</button>
+        <span style="font-size:0.75rem;color:var(--muted);font-weight:700;">${posLbl}</span>
+        <button type="button" class="nav-mini" onclick="stepDemoCohort(1)">${LANG === 'en' ? 'Next' : '下一项'} ▶</button>
+      </div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap;">
+        ${quickPicks.map(([cid, lbl]) =>
+          `<button type="button" class="qp-chip ${r.cohort_id === cid ? 'active' : ''}" onclick="if(DEMO_FILTER!=='ALL_EXP'&&'${cid}'==='GUARD-1'){DEMO_FILTER='ALL_EXP';}focusDemoCohort('${cid}', true)">${escH(lbl)}</button>`
+        ).join('')}
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;flex-wrap:wrap;margin-top:8px;">
+      <div>
+        <span class="act-chip ${m.badgeCls}">${escH(LANG === 'en' ? m.badgeEn : m.badgeZh)}</span>
+        <span class="pill" style="margin-left:5px;">${escH(r.cohort_id)} · ${escH(r.disease_id)}</span>
+        <h3 style="font-size:1.08rem;color:#fff;margin-top:6px;line-height:1.3;">${escH(LANG === 'en' ? m.enName : m.zhName)}</h3>
+        <div style="font-size:0.77rem;color:var(--muted);margin-top:2px;">${escH(r.setting_label)}</div>
+      </div>
+    </div>
+
+    <div class="spot-kpi-row">
+      <div class="spot-kpi">
+        <div class="sk-l">${LANG === 'en' ? 'Surface DLL3+ (>=1%)' : '表面 DLL3+ (>=1%)'}</div>
+        <div class="sk-v" style="color:#a78bfa;">${(100 * r.q1_dll3_ge1_median).toFixed(1)}%</div>
+        <div class="sk-s">${LANG === 'en' ? 'High >=50%:' : '高表达>=50%:'} ${(100 * r.q1_dll3_ge50_median).toFixed(1)}%${r.q1_ge50_imputed_flag ? '*' : ''}</div>
+      </div>
+      <div class="spot-kpi">
+        <div class="sk-l">${LANG === 'en' ? 'Expected ORR' : '预期缓解率 ORR'}</div>
+        <div class="sk-v" style="color:#34d399;">${escH(orrTxt)}</div>
+        <div class="sk-s">${escH(r.q2_pred_orr_cri95)}</div>
+      </div>
+      <div class="spot-kpi">
+        <div class="sk-l">${LANG === 'en' ? 'Eligible Pts / Yr' : '年符合筛查患者'}</div>
+        <div class="sk-v" style="color:#38bdf8;">${r.q3_biomarker_eligible_patients.toLocaleString()}</div>
+        <div class="sk-s">${LANG === 'en' ? 'Incidence:' : '总发病:'} ${r.q3_annual_incidence_us_eu5_jp.toLocaleString()}/yr</div>
+      </div>
+      <div class="spot-kpi">
+        <div class="sk-l">${LANG === 'en' ? `Shared Basket (${loe})` : `共享篮式价值 (${loe})`}</div>
+        <div class="sk-v" style="color:${rv.v2 >= 0 ? '#34d399' : '#fb7185'};">${fmtM(rv.v2, 1, true)}</div>
+        <div class="sk-s">V0 ${fmtM(rv.v0, 1, true)} · V1 ${fmtM(rv.v1, 1, true)}</div>
+      </div>
+    </div>
+
+    <div class="spot-sec" style="border-left:3px solid #38bdf8;">
+      <div class="ss-t">${LANG === 'en' ? '💡 Plain-English Rationale & Key Clinical Watchout' : '💡 核心推荐逻辑与临床关键注意事项'}</div>
+      <div style="font-size:0.8rem;color:#e2e8f0;margin-bottom:5px;">${escH(LANG === 'en' ? m.watchEn : m.watchZh)}</div>
+      <div style="font-size:0.75rem;color:var(--muted);"><strong>${LANG === 'en' ? 'Biomarker Gate:' : '伴随诊断门控：'}</strong> <code>${escH(r.biomarker_gate)}</code> — ${escH(LANG === 'en' ? m.gatePlainEn : m.gatePlainZh)}</div>
+    </div>
+
+    ${(matchingTriggers.length || matchingIits.length || matchingForecasts.length) ? `
+    <div class="spot-sec" style="border-left:3px solid #10b981;">
+      <div class="ss-t">${LANG === 'en' ? '🏥 Active Clinical Trials & Locked Go/No-Go Readout Gate' : '🏥 在研临床试验锚点与预设 Go/No-Go 读出门控'}</div>
+      ${matchingTriggers.map(t => `
+        <div style="font-size:0.77rem;margin-bottom:5px;padding:6px 8px;background:rgba(16,185,129,0.09);border-radius:6px;border:1px solid rgba(16,185,129,0.28);">
+          <strong><code>${escH(t.nct_id)}</code> (${escH(t.trigger_id)})</strong> · Gate: <code>${escH(t.prespecified_k_or_binary_cutoff)}</code> (N=${t.sample_size_n}) ·
+          P(Met) = <strong>${(100 * t.prob_trigger_met).toFixed(1)}%</strong> · EVSI = <strong>$${Number(t.evsi_optimal_bayes_musd).toFixed(2)}M</strong>
+        </div>
+      `).join('')}
+      ${matchingIits.map(it => `
+        <div style="font-size:0.75rem;color:#cbd5e1;margin-top:3px;">
+          • <code>${escH(it.nct_id)}</code> — <strong>${escH(it.sponsor_name)}</strong> (${escH(it.overall_status)}, N=${it.enrollment}, ${escH(it.primary_completion_date)})
+        </div>
+      `).join('')}
+    </div>` : ''}
+
+    ${m.tierKey !== 'GUARD' ? `
+    <div class="spot-sec" style="border-left:3px solid #a78bfa;">
+      <div class="ss-t">${LANG === 'en' ? '🧪 Hypothesis-Generating Combination & Next-Gen Backup' : '🧪 机制联用搭档假设与下一代双靶点构型'}</div>
+      <div style="font-size:0.78rem;color:#e2e8f0;">
+        <strong>#1 Partner:</strong> ${escH(r.q4_top1_partner)} <span style="color:var(--muted);">(#2: ${escH(r.q4_top2_partner)})</span>
+      </div>
+      <div style="font-size:0.74rem;color:var(--muted);margin-top:3px;">
+        <strong>${LANG === 'en' ? 'Safety Note:' : '安全管理：'}</strong> ${escH(r.q4_safety_guidance)}
+        ${q6 ? `<br><strong>${LANG === 'en' ? 'Appendix B Synapse Backup:' : '附录B 突触双靶点备选：'}</strong> ${escH(q6.recommended_construct)} (${q6.estimated_monomer_span_nm} nm cleft)` : ''}
+      </div>
+    </div>` : ''}
+
+    <div class="spot-sec">
+      <div class="ss-t">${LANG === 'en' ? '📚 Verified Published & Registry Evidence' : '📚 已核验文献与注册库原始证据'} (${evs.length})</div>
+      ${evs.map(e => `<div class="quote-box" style="margin-top:5px;"><strong>${escH(e.source_id)}</strong> (${escH(e.pub_date)}): ${escH(e.quote)}</div>`).join('')}
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
+      <button type="button" class="demo-act-btn primary" onclick="openCompanionStudio('${escH(r.disease_id)}','${escH(r.cohort_id)}','bite-expansion')">
+        🕸️ ${LANG === 'en' ? 'Explore KG Paths & Patient Biopsies ->' : '打开知识图谱路径与患者活检工作台 ->'}
+      </button>
+      ${r.decision_tier !== 'Committed_Registrational_SCLC_Baseline' ? `
+      <button type="button" class="demo-act-btn" onclick="jumpToTableBCohort('${escH(r.cohort_id)}')">
+        📊 ${LANG === 'en' ? 'Inspect Full Table B & Tornado' : '查看表B完整统计与敏感性'}
+      </button>` : ''}
+    </div>
+  `;
+}
+
+function renderDemoHub() {
+  const loe = (document.getElementById('demo-loe') && document.getElementById('demo-loe').value) || '2036';
+  renderDemoRibbon();
+  renderDemoFilterPills();
+  const rows = getFilteredDemoRows();
+  let activeRow = rows.find(r => r.cohort_id === DEMO_SELECTED) || rows[0] || DATA.decision_rows[0];
+  if (activeRow && activeRow.cohort_id !== DEMO_SELECTED) {
+    DEMO_SELECTED = activeRow.cohort_id;
+  }
+  renderDemoVisualMap(activeRow);
+  renderDemoCards(rows, loe);
+  renderDemoSpotlight(activeRow, rows, loe);
+
+  const cntLbl = document.getElementById('demo-count-lbl');
+  if (cntLbl) {
+    cntLbl.textContent = LANG === 'en'
+      ? `Showing ${rows.length} indication cohort(s) · Click any card or bubble to inspect its clinical story`
+      : `当前显示 ${rows.length} 个适应症队列 · 点击任意卡片或气泡查看完整临床推荐依据`;
+  }
+}
+
+document.addEventListener('keydown', function(ev) {
+  if (ev.target && (ev.target.tagName === 'INPUT' || ev.target.tagName === 'SELECT' || ev.target.tagName === 'TEXTAREA')) return;
+  const t0 = document.getElementById('t0');
+  if (!t0 || !t0.classList.contains('active')) return;
+  if (ev.key === 'ArrowDown' || ev.key === 'ArrowRight') { ev.preventDefault(); stepDemoCohort(1); }
+  if (ev.key === 'ArrowUp' || ev.key === 'ArrowLeft') { ev.preventDefault(); stepDemoCohort(-1); }
+});
+
+
 function toggleLang() {
   LANG = LANG === 'en' ? 'zh' : 'en';
   const t = I18N[LANG];
+  document.getElementById('hdr-eyebrow').textContent = t.eyebrow;
   document.getElementById('hdr-title').textContent = t.title;
+  document.getElementById('hdr-lead').textContent = t.lead;
+  document.getElementById('btn-open-kg').textContent = t.openKg;
+  document.getElementById('demo-search').placeholder = t.searchPh;
+  document.getElementById('h-demo-map').textContent = t.mapTitle;
+  document.getElementById('sub-demo-map').textContent = t.mapSub;
   document.getElementById('gov-notice').innerHTML = t.notice;
+  document.getElementById('tb-0').textContent = t.tb0;
   document.getElementById('tb-1').textContent = t.tb1;
   document.getElementById('tb-2').textContent = t.tb2;
   document.getElementById('tb-3').textContent = t.tb3;
   document.getElementById('tb-4').textContent = t.tb4;
   document.getElementById('tb-5').textContent = t.tb5;
+  AUDIT_OPEN = !AUDIT_OPEN; toggleAuditDrawer();
   renderKPIs();
+  renderDemoHub();
 }
 
 function switchTab(id, btn) {
   document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  btn.classList.add('active');
+  if (btn) btn.classList.add('active');
 }
 
 function renderKPIs() {
@@ -269,7 +1339,8 @@ function initStudio() {
     <td>$${r.q3_rnpv_base_musd.toFixed(1)}M / $${r.q3_rnpv_patent_2039_musd.toFixed(1)}M</td></tr>`).join('');
 
   renderTableB();
-  selectCohort('EXP-L1');
+  selectCohort('EXP-S4');
+  renderDemoHub();
   renderBacktests();
 
   document.getElementById('wp9-verdict').textContent = DATA.basket_verdict;
